@@ -103,7 +103,7 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--te-space-4);
+  gap: 20px;
 }
 
 .te-logo {
@@ -116,7 +116,7 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   margin-left: auto;
 }
 
@@ -124,10 +124,10 @@ textarea:focus-visible {
   min-height: 40px;
   display: inline-flex;
   align-items: center;
-  padding: 0 12px;
+  padding: 0 10px;
   border-radius: var(--te-radius);
   color: #4b5563;
-  font-size: 0.95rem;
+  font-size: 0.93rem;
   font-weight: 700;
 }
 
@@ -155,6 +155,12 @@ textarea:focus-visible {
   box-shadow: 0 10px 22px rgba(0, 96, 224, 0.22);
   transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
   white-space: nowrap;
+}
+
+.te-nav .te-button {
+  min-height: 42px;
+  padding: 0 16px;
+  font-size: 0.94rem;
 }
 
 .te-button:hover,

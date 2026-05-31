@@ -69,7 +69,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
     }
 
     .logo {
@@ -81,7 +81,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       margin-left: auto;
     }
 
@@ -89,10 +89,10 @@
       min-height: 40px;
       display: inline-flex;
       align-items: center;
-      padding: 0 12px;
+      padding: 0 10px;
       border-radius: var(--radius);
       color: #4b5563;
-      font-size: 0.95rem;
+      font-size: 0.93rem;
       font-weight: 700;
     }
 
@@ -290,10 +290,9 @@
         <img class="logo" src="assets/logo.png" alt="Techniek Engineering logo">
       </a>
       <nav class="nav-links" aria-label="Main navigation">
-        <a href="engineering-support.html">Engineering</a>
-        <a href="project-management.html">Projects</a>
-        <a href="energy-management.html">Energy</a>
+        <a href="index.html#services">Services</a>
         <a href="support-finder.html">Find Support</a>
+        <a href="index.html#knowledge-prompts">Project History</a>
         <a href="archive.html" aria-current="page">AI Brief</a>
         <a href="index.html#contact">Contact</a>
       </nav>
@@ -305,7 +304,7 @@
       <div class="container">
         <h1>AI Engineering Brief Archive</h1>
         <p class="lead">Browse practical AI lessons for mechanical engineering, civil engineering, project management, and commercial or industrial energy management.</p>
-        <p class="status" id="archive-status">Loading archive from briefs.json.</p>
+        <p class="status" id="archive-status">Loading the latest AI Engineering Briefs.</p>
       </div>
     </section>
 
@@ -413,10 +412,10 @@
         if (!response.ok) throw new Error("Archive feed unavailable");
         const data = await response.json();
         currentItems = data.items || [];
-        archiveStatus.textContent = `Loaded ${currentItems.length} briefs from briefs.json.`;
+        archiveStatus.textContent = `Showing ${currentItems.length} practical briefs.`;
       } catch (error) {
         currentItems = fallbackBriefData.items;
-        archiveStatus.textContent = "Showing built-in sample. On a hosted site, this archive updates from briefs.json.";
+        archiveStatus.textContent = "Showing the built-in brief archive until the latest feed is available.";
       }
       renderFilters(currentItems);
       renderArchive();

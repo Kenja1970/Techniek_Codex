@@ -1227,7 +1227,7 @@
           </div>
 
           <div class="brief-grid">
-            <p class="brief-status" id="brief-status">Loading the latest brief from briefs.json.</p>
+            <p class="brief-status" id="brief-status">Loading the latest brief.</p>
             <article class="brief-card" id="current-brief" aria-live="polite"></article>
 
             <aside class="archive-stack" id="brief-archive" aria-label="AI Engineering Brief archive"></aside>
@@ -1562,7 +1562,7 @@
         <div class="source-links" aria-label="Sources for today's brief">
           ${renderSourceLinks(latest.sources)}
         </div>
-        <p class="automation-note">This section loads from briefs.json on the hosted site, so daily updates can publish without redesigning the page.</p>
+        <p class="automation-note">New briefs are added as current engineering AI lessons are reviewed.</p>
       `;
 
       briefArchive.innerHTML = archives.slice(0, 4).map((item) => `
@@ -1582,7 +1582,7 @@
           throw new Error("Brief feed unavailable");
         }
         const data = await response.json();
-        renderBriefs(data.items, "Loaded from briefs.json");
+        renderBriefs(data.items, "Latest brief loaded.");
       } catch (error) {
         renderBriefs(fallbackBriefData.items, "Showing the built-in brief archive until the live feed is available.");
       }
@@ -1597,10 +1597,10 @@
         const data = await response.json();
         renderPromptData(data);
       } catch (error) {
-        promptSourceStatus.textContent = "Prompt content could not be loaded. Try previewing from the local server.";
-        activePromptTitle.textContent = "Prompt content unavailable.";
+        promptSourceStatus.textContent = "Project-history topics are temporarily unavailable.";
+        activePromptTitle.textContent = "Project topics unavailable.";
         activePromptText.textContent = "";
-        activePromptAnswer.textContent = "The public prompts will return when the local knowledge file is available from the preview server.";
+        activePromptAnswer.textContent = "Please use the support finder or contact Techniek while this section is refreshed.";
         activePromptActions.innerHTML = "";
         activePromptTags.innerHTML = "";
         promptCardStack.innerHTML = "";
@@ -1626,7 +1626,7 @@
         const data = await response.json();
         renderBudgetData(data);
       } catch (error) {
-        budgetStatus.textContent = "DOE budget data could not be loaded. Try previewing from the local server.";
+        budgetStatus.textContent = "DOE budget chart is temporarily unavailable.";
         budgetChart.innerHTML = "";
         budgetSources.innerHTML = "";
         budgetNote.textContent = "";

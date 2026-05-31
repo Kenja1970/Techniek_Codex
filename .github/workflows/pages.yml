@@ -30,12 +30,16 @@ jobs:
       - name: Build deploy folder
         run: |
           mkdir -p dist
-          cp outputs/*.html dist/
+          cp outputs/index.html dist/
+          cp outputs/engineering-support.html dist/
+          cp outputs/project-management.html dist/
+          cp outputs/energy-management.html dist/
+          cp outputs/support-finder.html dist/
+          cp outputs/archive.html dist/
           cp outputs/briefs.json dist/
           cp outputs/briefs.xml dist/
           cp outputs/doe-lab-budgets.json dist/
           cp outputs/robots.txt dist/
-          cp outputs/sitemap.xml dist/
           cp outputs/skills.json dist/
           cp outputs/weekly-knowledge-prompts.json dist/
           cp outputs/.nojekyll dist/

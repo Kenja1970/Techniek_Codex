@@ -1,5 +1,5 @@
 # Local verification artifacts
-.chrome-verification-profile/
+.chrome-verification-profile*/
 work/
 outputs/*.png
 outputs/automation-cadence.md
