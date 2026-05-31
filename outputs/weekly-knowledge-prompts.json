@@ -1,7 +1,7 @@
 {
   "updated": "2026-05-31",
   "refreshCadence": "weekly",
-  "purpose": "Public-safe prompt content for the Techniek Engineering project-history prompt console. Refine this file weekly from approved local project-history uploads and current public source links.",
+  "purpose": "Public-safe project-history topics for the Techniek Engineering website.",
   "sourcePolicy": {
     "uploadRoot": "C:\\Users\\grego\\Documents\\Codex\\2026-05-30\\files-mentioned-by-the-user-logo\\knowledge_uploads",
     "folders": {
@@ -28,16 +28,17 @@
   },
   "centerPrompt": {
     "id": "project-history",
-    "title": "Ask about Techniek's Project History",
-    "eyebrow": "Project history prompt",
-    "prompt": "Use Techniek's approved project-history library and current public engineering sources to summarize relevant experience themes for a commercial or industrial client. Keep the answer concise, practical, and free of private client details.",
-    "answer": "Techniek's public project history should read as practical capability themes: engineering judgment, organized project delivery, energy-performance thinking, field-ready documentation, and clear owner/operator next steps. As the local library grows, this prompt can rotate from broad themes to specific approved lessons by discipline.",
+    "title": "What types of commercial and industrial projects can Techniek support?",
+    "cardCta": "See experience themes",
+    "eyebrow": "Client question",
+    "prompt": "What kinds of engineering, project management, and energy-management situations has Techniek built its services around?",
+    "answer": "Techniek is organized around practical project support: clarifying technical decisions, coordinating complex work, finding energy-performance opportunities, and turning field information into action. The best fit is a commercial or industrial team that needs a clear path from messy project facts to a decision, memo, work plan, or next technical step.",
     "actions": [
-      "Start with the client's project type, facility type, and decision they need to make.",
-      "Match the question to an approved project-history theme or current field lesson.",
-      "Route detailed scoping questions to the contact form or support finder."
+      "Ask what decision needs to be made and what information is already available.",
+      "Match the need to engineering support, project management, energy management, or a combined review.",
+      "Use the support finder when you want a faster service recommendation."
     ],
-    "sourceTags": ["Approved project history", "Service pages", "Weekly review"],
+    "sourceTags": ["Project experience", "Commercial and industrial", "Owner support"],
     "ideaLinks": [
       {
         "name": "DOE AI overview",
@@ -52,14 +53,15 @@
   "deepDivePrompts": [
     {
       "id": "mechanical",
-      "title": "Mechanical systems and reliability",
+      "title": "Can Techniek help us make sense of a mechanical issue?",
+      "cardCta": "Review mechanical support",
       "discipline": "Mechanical Engineering",
-      "prompt": "Review the approved mechanical project-history folder and current field links to identify how Techniek can help with equipment questions, mechanical-system reviews, maintenance decisions, commissioning issues, or technical second opinions.",
-      "answer": "Use this prompt to surface practical mechanical support such as equipment review, issue triage, maintenance planning, operating constraints, commissioning questions, and concise technical memos.",
+      "prompt": "We have a mechanical system, equipment, commissioning, reliability, or maintenance question. What should we prepare, and how could Techniek help?",
+      "answer": "Techniek can help frame the problem, review available records, separate observations from assumptions, and produce a practical technical memo or next-step list. Useful starting material includes drawings, photos, equipment data, trend logs, inspection notes, maintenance history, and the decision the team needs to make.",
       "actions": [
-        "Ask what asset, system, or failure mode is involved.",
-        "Separate field observations from assumptions.",
-        "Request approved drawings, trend data, photos, reports, or inspection notes when needed."
+        "Identify the asset, system, symptom, and operating constraint.",
+        "Gather drawings, photos, trend data, reports, or inspection notes.",
+        "Define whether the goal is troubleshooting, review, planning, or a second opinion."
       ],
       "sourceTags": ["Mechanical systems", "Reliability", "Maintenance"],
       "ideaLinks": [
@@ -75,14 +77,15 @@
     },
     {
       "id": "civil",
-      "title": "Civil and facility infrastructure",
+      "title": "Can Techniek organize a facility or infrastructure question?",
+      "cardCta": "Explore civil support",
       "discipline": "Civil Engineering",
-      "prompt": "Review the approved civil project-history folder and current infrastructure links to identify civil, site, facility, condition, risk, and asset-management questions Techniek can organize into a practical next step.",
-      "answer": "Use this prompt when a visitor has infrastructure, facility condition, documentation, risk, or planning questions and needs a concise technical path forward.",
+      "prompt": "We have a site, facility, infrastructure, condition, or asset-management question. How can Techniek help turn it into a clear next step?",
+      "answer": "Techniek can help organize the facts, identify gaps, and recommend a practical path for condition review, field verification, documentation, or project planning. The most useful starting point is a short description of the asset, known issue, records available, and the decision that depends on the review.",
       "actions": [
         "Clarify whether the issue is planning, condition review, coordination, or risk.",
-        "Separate known facts from assumptions.",
-        "Recommend a field-verification or documentation step before major decisions."
+        "Separate known facts, assumptions, and missing records.",
+        "Identify the field-verification or documentation step that should happen before major decisions."
       ],
       "sourceTags": ["Civil engineering", "Facility assets", "Risk review"],
       "ideaLinks": [
@@ -98,14 +101,15 @@
     },
     {
       "id": "project",
-      "title": "Project controls and recovery",
+      "title": "Can Techniek help reset a delayed or unclear project?",
+      "cardCta": "Map project controls",
       "discipline": "Project Management",
-      "prompt": "Review the approved project-management folder and current project-delivery links to recommend how Techniek can help reset a delayed, unclear, or risk-heavy technical project.",
-      "answer": "Use this prompt for project controls, coordination, open decisions, RFI/submittal cleanup, stakeholder reporting, action lists, and risk registers.",
+      "prompt": "Our project has open decisions, scattered records, RFIs, schedule pressure, or unclear ownership. How can Techniek help create order?",
+      "answer": "Techniek can help build a clear project picture: open decisions, risks, responsible parties, near-term actions, and a rhythm for status updates. The goal is not more paperwork. It is a decision log, risk view, and action list that helps owners, engineers, contractors, and operators work from the same facts.",
       "actions": [
-        "Ask for current phase, open issues, responsible parties, and schedule pressure.",
-        "Build a short action list and decision log.",
-        "Create a weekly status rhythm that separates facts, risks, and next actions."
+        "Share the current phase, blocker, schedule pressure, and open issues.",
+        "Create a decision log, risk register, and prioritized action list.",
+        "Use a weekly status rhythm that separates facts, risks, and next actions."
       ],
       "sourceTags": ["Project controls", "Decision log", "Risk register"],
       "ideaLinks": [
@@ -121,12 +125,13 @@
     },
     {
       "id": "energy",
-      "title": "Energy-management opportunity scan",
+      "title": "Can Techniek find practical energy-management opportunities?",
+      "cardCta": "Scan energy opportunities",
       "discipline": "Energy Management",
-      "prompt": "Review the approved energy project-history folder and current energy-management links to identify commercial or industrial savings opportunities using bills, schedules, BAS trends, and operational constraints.",
-      "answer": "Use this prompt to turn energy data into practical actions: utility review, schedule drift, BAS trend checks, demand spikes, operating waste, and measurement plans.",
+      "prompt": "We have utility bills, interval data, BAS trends, operating schedules, or rising demand costs. How can Techniek help identify practical opportunities?",
+      "answer": "Techniek can help convert energy data into actions that operators can verify: schedule drift, demand spikes, simultaneous heating and cooling, abnormal trends, and measurement plans. A good review connects each recommendation to an owner, expected impact, operating constraint, and follow-up check.",
       "actions": [
-        "Ask for utility bills, interval data, occupancy or production schedules, and BAS trends.",
+        "Gather utility bills, interval data, occupancy or production schedules, and BAS trends.",
         "Flag anomalies that can be verified by operators.",
         "Tie each recommendation to an owner, expected impact, and follow-up check."
       ],

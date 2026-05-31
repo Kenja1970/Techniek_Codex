@@ -106,14 +106,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
       margin-left: auto;
     }
 
@@ -121,10 +121,10 @@
       min-height: 40px;
       display: inline-flex;
       align-items: center;
-      padding: 0 12px;
+      padding: 0 10px;
       border-radius: var(--radius);
       color: #4b5563;
-      font-size: 0.95rem;
+      font-size: 0.93rem;
       font-weight: 700;
     }
 
@@ -138,6 +138,12 @@
       display: block;
       width: min(230px, 54vw);
       height: auto;
+    }
+
+    .nav .button {
+      min-height: 42px;
+      padding: 0 16px;
+      font-size: 0.94rem;
     }
 
     .button {
@@ -442,7 +448,17 @@
     }
 
     .prompt-workspace {
+      position: relative;
+      overflow: hidden;
       box-shadow: var(--shadow);
+    }
+
+    .prompt-workspace::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 5px;
+      background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow));
     }
 
     .prompt-workspace h2 {
@@ -492,6 +508,7 @@
       text-align: left;
       cursor: pointer;
       font: inherit;
+      transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
     }
 
     .prompt-card:hover,
@@ -499,6 +516,11 @@
     .prompt-card[aria-pressed="true"] {
       border-color: var(--blue);
       background: rgba(0, 96, 224, 0.07);
+    }
+
+    .prompt-card:hover,
+    .prompt-card:focus-visible {
+      transform: translateY(-1px);
     }
 
     .prompt-chip-row {
@@ -1061,16 +1083,13 @@
           <img class="logo" src="assets/logo.png" alt="Techniek Engineering logo">
         </a>
         <nav class="nav-links" aria-label="Main navigation">
-          <a href="engineering-support.html">Engineering</a>
-          <a href="project-management.html">Projects</a>
-          <a href="energy-management.html">Energy</a>
+          <a href="#services">Services</a>
           <a href="support-finder.html">Find Support</a>
-          <a href="#knowledge-prompts">Prompt Library</a>
+          <a href="#knowledge-prompts">Project History</a>
           <a href="#brief">AI Brief</a>
-          <a href="archive.html">Archive</a>
           <a href="#contact">Contact</a>
         </nav>
-        <a class="button" href="#contact">Request a Consultation</a>
+        <a class="button" href="#contact">Request Consultation</a>
       </div>
     </header>
 
@@ -1135,21 +1154,21 @@
         <div class="container prompt-console">
           <aside class="prompt-sidebar" aria-label="Knowledge source status">
             <article class="prompt-source-card">
-              <p class="eyebrow">Project history library</p>
-              <h3>Approved insight only</h3>
-              <p id="prompt-source-status">Loading weekly prompt content.</p>
-              <p class="prompt-note">The public prompts use reviewed project themes and field lessons. Private files stay in the local knowledge library until approved for publication.</p>
+              <p class="eyebrow">Project experience</p>
+              <h3>Practical questions, clearer next steps</h3>
+              <p id="prompt-source-status">Loading project-history topics.</p>
+              <p class="prompt-note">Use these guided questions to understand where Techniek can help. Responses stay high-level and client safe.</p>
             </article>
             <article class="prompt-source-card">
-              <h3>How visitors use it</h3>
-              <p>Choose a pre-entered prompt to see practical questions, useful source links, and a clear next step for the type of support they need.</p>
-              <a class="text-link" href="support-finder.html">Open support finder</a>
+              <h3>Need a recommendation?</h3>
+              <p>Use the support finder for a faster match to engineering support, project management, or energy management.</p>
+              <a class="text-link" href="support-finder.html">Find the right support</a>
             </article>
           </aside>
 
           <article class="prompt-workspace" aria-live="polite">
-            <p class="eyebrow" id="active-prompt-eyebrow">Project history prompt</p>
-            <h2 id="knowledge-prompts-title">Ask about Techniek's Project History.</h2>
+            <p class="eyebrow" id="active-prompt-eyebrow">Client question</p>
+            <h2 id="knowledge-prompts-title">Explore Techniek's Project Experience.</h2>
             <div class="prompt-input" id="active-prompt-text"></div>
             <div class="prompt-answer" id="active-prompt-answer"></div>
             <ul class="prompt-actions" id="active-prompt-actions"></ul>
@@ -1406,7 +1425,7 @@
         <button class="prompt-card" type="button" data-prompt-id="${escapeHtml(prompt.id)}" aria-pressed="false">
           <h3>${escapeHtml(prompt.discipline || prompt.title)}</h3>
           <p>${escapeHtml(prompt.title)}</p>
-          <span class="text-link">Use this prompt</span>
+          <span class="text-link">${escapeHtml(prompt.cardCta || "Explore this area")}</span>
         </button>
       `).join("");
 
@@ -1414,7 +1433,7 @@
         <button class="prompt-card" type="button" data-prompt-id="${escapeHtml(data.centerPrompt.id)}" aria-pressed="true">
           <h3>Project history</h3>
           <p>${escapeHtml(data.centerPrompt.title)}</p>
-          <span class="text-link">Use this prompt</span>
+          <span class="text-link">${escapeHtml(data.centerPrompt.cardCta || "Explore experience")}</span>
         </button>
       `);
 
@@ -1428,7 +1447,7 @@
 
     function renderPromptData(data) {
       currentPromptData = data;
-      promptSourceStatus.textContent = `Loaded ${1 + (data.deepDivePrompts || []).length} approved prompt paths. Last reviewed ${data.updated}.`;
+      promptSourceStatus.textContent = `Loaded ${1 + (data.deepDivePrompts || []).length} project-history topics. Reviewed ${data.updated}.`;
       renderPromptCards(data);
       renderPrompt(data.centerPrompt, data.centerPrompt.id);
     }
