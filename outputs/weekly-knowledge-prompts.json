@@ -1,0 +1,153 @@
+{
+  "updated": "2026-05-31",
+  "refreshCadence": "weekly",
+  "purpose": "Public-safe prompt content for the Techniek Engineering project-history prompt console. Refine this file weekly from approved local project-history uploads and current public source links.",
+  "sourcePolicy": {
+    "uploadRoot": "C:\\Users\\grego\\Documents\\Codex\\2026-05-30\\files-mentioned-by-the-user-logo\\knowledge_uploads",
+    "folders": {
+      "mechanicalEngineering": "knowledge_uploads\\mechanical_engineering",
+      "civilEngineering": "knowledge_uploads\\civil_engineering",
+      "energyEngineering": "knowledge_uploads\\energy_engineering",
+      "projectManagement": "knowledge_uploads\\project_management"
+    },
+    "publicUse": [
+      "Approved project-history themes",
+      "Public service descriptions",
+      "Approved case-study lessons with client details removed",
+      "Contemporary engineering and project-management source links",
+      "Public AI Engineering Brief content"
+    ],
+    "doNotPublish": [
+      "Client names",
+      "Private project files",
+      "Proposal pricing",
+      "Financial details",
+      "Unapproved Google Drive or local file contents",
+      "Credentials or past performance details not approved for public use"
+    ]
+  },
+  "centerPrompt": {
+    "id": "project-history",
+    "title": "Ask about Techniek's Project History",
+    "eyebrow": "Project history prompt",
+    "prompt": "Use Techniek's approved project-history library and current public engineering sources to summarize relevant experience themes for a commercial or industrial client. Keep the answer concise, practical, and free of private client details.",
+    "answer": "Techniek's public project history should read as practical capability themes: engineering judgment, organized project delivery, energy-performance thinking, field-ready documentation, and clear owner/operator next steps. As the local library grows, this prompt can rotate from broad themes to specific approved lessons by discipline.",
+    "actions": [
+      "Start with the client's project type, facility type, and decision they need to make.",
+      "Match the question to an approved project-history theme or current field lesson.",
+      "Route detailed scoping questions to the contact form or support finder."
+    ],
+    "sourceTags": ["Approved project history", "Service pages", "Weekly review"],
+    "ideaLinks": [
+      {
+        "name": "DOE AI overview",
+        "url": "https://www.energy.gov/ai"
+      },
+      {
+        "name": "NIST AI Risk Framework",
+        "url": "https://airc.nist.gov/"
+      }
+    ]
+  },
+  "deepDivePrompts": [
+    {
+      "id": "mechanical",
+      "title": "Mechanical systems and reliability",
+      "discipline": "Mechanical Engineering",
+      "prompt": "Review the approved mechanical project-history folder and current field links to identify how Techniek can help with equipment questions, mechanical-system reviews, maintenance decisions, commissioning issues, or technical second opinions.",
+      "answer": "Use this prompt to surface practical mechanical support such as equipment review, issue triage, maintenance planning, operating constraints, commissioning questions, and concise technical memos.",
+      "actions": [
+        "Ask what asset, system, or failure mode is involved.",
+        "Separate field observations from assumptions.",
+        "Request approved drawings, trend data, photos, reports, or inspection notes when needed."
+      ],
+      "sourceTags": ["Mechanical systems", "Reliability", "Maintenance"],
+      "ideaLinks": [
+        {
+          "name": "ASME 2026 research areas",
+          "url": "https://www.asme.org/Topics-Resources/Content/Top-Mechanical-Engineering-Research-Areas-in-2026"
+        },
+        {
+          "name": "ASME education trends",
+          "url": "https://www.asme.org/topics-resources/content/future-of-mechanical-engineering-education-trends-for-2026"
+        }
+      ]
+    },
+    {
+      "id": "civil",
+      "title": "Civil and facility infrastructure",
+      "discipline": "Civil Engineering",
+      "prompt": "Review the approved civil project-history folder and current infrastructure links to identify civil, site, facility, condition, risk, and asset-management questions Techniek can organize into a practical next step.",
+      "answer": "Use this prompt when a visitor has infrastructure, facility condition, documentation, risk, or planning questions and needs a concise technical path forward.",
+      "actions": [
+        "Clarify whether the issue is planning, condition review, coordination, or risk.",
+        "Separate known facts from assumptions.",
+        "Recommend a field-verification or documentation step before major decisions."
+      ],
+      "sourceTags": ["Civil engineering", "Facility assets", "Risk review"],
+      "ideaLinks": [
+        {
+          "name": "ASCE AI balance",
+          "url": "https://www.asce.org/publications-and-news/civil-engineering-source/article/2026/01/16/how-civil-engineers-can-strike-the-ai-balance"
+        },
+        {
+          "name": "ASCE civil tech trends",
+          "url": "https://www.asce.org/publications-and-news/civil-engineering-source/article/2026/03/17/what-technology-is-changing-the-civil-engineering-game"
+        }
+      ]
+    },
+    {
+      "id": "project",
+      "title": "Project controls and recovery",
+      "discipline": "Project Management",
+      "prompt": "Review the approved project-management folder and current project-delivery links to recommend how Techniek can help reset a delayed, unclear, or risk-heavy technical project.",
+      "answer": "Use this prompt for project controls, coordination, open decisions, RFI/submittal cleanup, stakeholder reporting, action lists, and risk registers.",
+      "actions": [
+        "Ask for current phase, open issues, responsible parties, and schedule pressure.",
+        "Build a short action list and decision log.",
+        "Create a weekly status rhythm that separates facts, risks, and next actions."
+      ],
+      "sourceTags": ["Project controls", "Decision log", "Risk register"],
+      "ideaLinks": [
+        {
+          "name": "PMI Pulse 2026",
+          "url": "https://www.pmi.org/about/press-media/2026/pulse-why-complex-projects-fail-best-practices-are-not-enough-system-thinking"
+        },
+        {
+          "name": "PMI AI guidance",
+          "url": "https://www.pmi.org/learning/thought-leadership/ai-impact/shaping-the-future-of-project-management-with-ai"
+        }
+      ]
+    },
+    {
+      "id": "energy",
+      "title": "Energy-management opportunity scan",
+      "discipline": "Energy Management",
+      "prompt": "Review the approved energy project-history folder and current energy-management links to identify commercial or industrial savings opportunities using bills, schedules, BAS trends, and operational constraints.",
+      "answer": "Use this prompt to turn energy data into practical actions: utility review, schedule drift, BAS trend checks, demand spikes, operating waste, and measurement plans.",
+      "actions": [
+        "Ask for utility bills, interval data, occupancy or production schedules, and BAS trends.",
+        "Flag anomalies that can be verified by operators.",
+        "Tie each recommendation to an owner, expected impact, and follow-up check."
+      ],
+      "sourceTags": ["Energy operations", "BAS trends", "Utility data"],
+      "ideaLinks": [
+        {
+          "name": "DOE AI resources",
+          "url": "https://www.energy.gov/ai"
+        },
+        {
+          "name": "DOE building technologies",
+          "url": "https://www.energy.gov/cmei/buildings/emerging-technologies"
+        }
+      ]
+    }
+  ],
+  "weeklyUpdateChecklist": [
+    "Add new raw artifacts to the correct local knowledge_uploads subfolder.",
+    "Create a short approved summary with private details removed.",
+    "Rotate public link names from broad field trends to approved Techniek project-history themes as evidence grows.",
+    "Keep each prompt answer actionable and short enough to scan.",
+    "Update the date field after review."
+  ]
+}

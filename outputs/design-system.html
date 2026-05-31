@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Techniek Design System</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="assets/css/design-system.css">
+  <style>
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .swatch {
+      min-height: 112px;
+      padding: 14px;
+      border: 1px solid var(--te-border);
+      border-radius: var(--te-radius);
+      background: var(--fill);
+      color: var(--text, var(--te-charcoal));
+      font-weight: 700;
+    }
+
+    .component-band {
+      display: grid;
+      gap: 22px;
+    }
+
+    @media (max-width: 880px) {
+      .swatches {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="te-page">
+    <header class="te-header">
+      <div class="te-container te-nav">
+        <a href="index.html" aria-label="Techniek Engineering home">
+          <img class="te-logo" src="assets/logo.png" alt="Techniek Engineering logo">
+        </a>
+        <nav class="te-nav-links" aria-label="Main navigation">
+          <a href="engineering-support.html">Engineering</a>
+          <a href="project-management.html">Projects</a>
+          <a href="energy-management.html">Energy</a>
+          <a href="support-finder.html">Find Support</a>
+          <a href="archive.html">AI Brief</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="te-hero">
+        <div class="te-container">
+          <p class="te-eyebrow">Design System</p>
+          <h1 class="te-page-title">Techniek visual language and reusable site components.</h1>
+          <p class="te-lead">This page documents the design tokens and component patterns used across the landing page, service pages, archive, and future site additions.</p>
+        </div>
+      </section>
+
+      <section class="te-section">
+        <div class="te-container component-band">
+          <div class="te-section-heading">
+            <h2>Brand Colors</h2>
+            <p>Palette taken from the Techniek Engineering logo and tuned for accessible digital UI usage.</p>
+          </div>
+          <div class="swatches">
+            <div class="swatch" style="--fill: var(--te-blue); --text: #fff;">Blue<br>#0060E0</div>
+            <div class="swatch" style="--fill: var(--te-blue-dark); --text: #fff;">Blue Dark<br>#004EB8</div>
+            <div class="swatch" style="--fill: var(--te-green);">Green<br>#60D040</div>
+            <div class="swatch" style="--fill: var(--te-yellow);">Yellow<br>#FFD040</div>
+            <div class="swatch" style="--fill: var(--te-charcoal); --text: #fff;">Charcoal<br>#1F1F1F</div>
+            <div class="swatch" style="--fill: var(--te-panel);">Panel<br>#F8FAFC</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="te-section te-section-muted">
+        <div class="te-container component-band">
+          <div class="te-section-heading">
+            <h2>Components</h2>
+            <p>Reusable patterns for high-trust engineering service pages.</p>
+          </div>
+          <div class="te-actions">
+            <a class="te-button" href="#">Primary Button</a>
+            <a class="te-button te-button-secondary" href="#">Secondary Button</a>
+            <a class="te-text-link" href="#">Text Link</a>
+          </div>
+          <div class="te-card-grid">
+            <article class="te-card">
+              <span class="te-accent"></span>
+              <h3>Service Card</h3>
+              <p>Used to summarize service areas, capabilities, and useful situations.</p>
+            </article>
+            <article class="te-card te-card-white">
+              <span class="te-accent te-accent-green"></span>
+              <h3>Elevated Card</h3>
+              <p>Used for current brief, key deliverables, and high-value information blocks.</p>
+            </article>
+            <article class="te-card">
+              <span class="te-accent te-accent-yellow"></span>
+              <h3>Accent Card</h3>
+              <p>Used when a secondary service or energy-management theme needs emphasis.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="te-section">
+        <div class="te-container">
+          <div class="te-section-heading">
+            <h2>Process Pattern</h2>
+            <p>Used on service pages to explain how a prospect moves from problem to next step.</p>
+          </div>
+          <div class="te-process">
+            <article class="te-process-step">
+              <div>
+                <h3>Define the question</h3>
+                <p>Clarify what decision, risk, or opportunity needs support.</p>
+              </div>
+            </article>
+            <article class="te-process-step">
+              <div>
+                <h3>Review the evidence</h3>
+                <p>Assess technical, project, or energy information against operating constraints.</p>
+              </div>
+            </article>
+            <article class="te-process-step">
+              <div>
+                <h3>Recommend action</h3>
+                <p>Deliver a practical next-step plan with owner, rationale, and follow-up.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

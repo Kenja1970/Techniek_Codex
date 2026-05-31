@@ -1,0 +1,155 @@
+{
+  "updated": "2026-05-30",
+  "items": [
+    {
+      "date": "2026-05-30",
+      "audience": "Energy management",
+      "category": "Building controls",
+      "headline": "Keep AI fault detection in advisory mode until operators verify the trend.",
+      "summary": "AI-enabled building controls and HVAC fault detection are becoming practical, but the safest first use is operator triage. Let AI rank likely faults and explain the evidence, then require a human review of point names, sensor quality, comfort limits, and maintenance history before changing control sequences.",
+      "lessons": [
+        "Start with read-only monitoring for one system, such as air handlers, chillers, boilers, or rooftop units.",
+        "Require each AI alert to show the trend, suspected fault type, affected equipment, and recommended verification step.",
+        "Do not let AI write setpoints or schedules until comfort, safety, production, and equipment-protection limits are documented.",
+        "Track closed-loop results: confirmed fault, false alarm, avoided runtime, maintenance action, and measured energy impact."
+      ],
+      "sources": [
+        {
+          "name": "NIST AI-Optimized Building Controls",
+          "url": "https://www.nist.gov/programs-projects/ai-optimized-building-controls"
+        },
+        {
+          "name": "DOE Building Controls",
+          "url": "https://www.energy.gov/cmei/buildings/building-controls"
+        },
+        {
+          "name": "ScienceDirect agentic HVAC FDD study",
+          "url": "https://www.sciencedirect.com/science/article/abs/pii/S0360132325015707"
+        },
+        {
+          "name": "ACEEE AI in Building Energy Management",
+          "url": "https://www.aceee.org/sites/default/files/pdfs/the_use_of_artificial_intelligence_in_building_energy_management_control_systems.pdf"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-30",
+      "audience": "All disciplines",
+      "category": "AI governance",
+      "headline": "Define the decision before choosing the AI tool.",
+      "summary": "The strongest commercial and industrial AI use cases are narrow enough to measure: a pump failure mode, an HVAC optimization target, an RFI risk category, or a document review task. Start with the decision AI will support, then select the model, data, and review process.",
+      "lessons": [
+        "Mechanical: Pick one asset class and compare AI alerts against vibration, temperature, and maintenance history before changing work orders.",
+        "Civil and construction: Use AI to sort RFIs, submittals, site photos, and issue logs into risk categories, then keep a project manager accountable for final priority calls.",
+        "Energy: Let AI identify patterns in metering, weather, occupancy, and building automation data, but require operating limits for comfort, safety, and equipment protection.",
+        "Project management: Track one before-and-after metric such as review time, avoided downtime, energy intensity, rework, or open-risk aging."
+      ],
+      "sources": [
+        {
+          "name": "DOE AI for Energy",
+          "url": "https://www.energy.gov/cet/articles/ai-energy"
+        },
+        {
+          "name": "NIST AI RMF",
+          "url": "https://airc.nist.gov/"
+        },
+        {
+          "name": "Autodesk AI in Construction",
+          "url": "https://www.construction.autodesk.com/workflows/artificial-intelligence-construction/"
+        },
+        {
+          "name": "AI in Utilities Video",
+          "url": "https://www.csemag.com/video/video-importance-of-ai-in-the-utility-and-facility-management-industries/"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-29",
+      "audience": "Mechanical engineering",
+      "category": "Predictive maintenance",
+      "headline": "Make predictive maintenance explainable before automating work orders.",
+      "summary": "Recent condition-monitoring work shows the value of vibration and current signals for industrial motors, but the practical lesson is governance: every alert should show the signal that changed, the likely failure mode, and the inspection step a technician can verify.",
+      "lessons": [
+        "Start with one failure mode such as bearing wear, imbalance, misalignment, or overheating.",
+        "Keep a short alert card with asset ID, sensor trend, severity, recommended inspection, and confidence level.",
+        "Do not auto-create corrective work orders until maintenance teams have reviewed false positives and missed failures for several cycles."
+      ],
+      "sources": [
+        {
+          "name": "Scientific Reports motor monitoring",
+          "url": "https://www.nature.com/articles/s41598-026-46550-6"
+        },
+        {
+          "name": "Springer TinyML vibration detection",
+          "url": "https://link.springer.com/article/10.1007/s43926-025-00142-4"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-28",
+      "audience": "Energy management",
+      "category": "Energy operations",
+      "headline": "Use AI to find energy drift, then turn it into an operator action.",
+      "summary": "AI can flag load shifts, abnormal schedules, simultaneous heating and cooling, and demand spikes. The useful version is not just a dashboard. It is a daily action with an owner, an expected savings range, and a follow-up check.",
+      "lessons": [
+        "Compare meter data against weather, occupancy, production, and operating schedules before calling an event waste.",
+        "Write comfort, safety, and production constraints before AI recommends setpoint or sequence changes.",
+        "Review the top three anomalies each week and close the loop with measured savings or a documented reason for no action."
+      ],
+      "sources": [
+        {
+          "name": "DOE AI for Energy",
+          "url": "https://www.energy.gov/cet/articles/ai-energy"
+        },
+        {
+          "name": "NIST AI RMF",
+          "url": "https://airc.nist.gov/"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-27",
+      "audience": "Civil engineering",
+      "category": "Digital twins",
+      "headline": "Treat digital twins as focused decision views, not perfect replicas.",
+      "summary": "Digital twin research points toward combining sensor, inspection, asset, and financial data for infrastructure decisions. For owners and engineers, the first win is a focused view that answers one question about risk, maintenance, or capital planning.",
+      "lessons": [
+        "Choose one asset group, such as bridges, pavement, roofs, pumps, or building systems.",
+        "Combine at least two data sources so the model is not driven by a single incomplete signal.",
+        "Publish the uncertainty alongside the recommendation so engineers know when field verification is required."
+      ],
+      "sources": [
+        {
+          "name": "MDPI digital twin framework",
+          "url": "https://www.mdpi.com/2075-5309/13/11/2725"
+        },
+        {
+          "name": "Digital twin structures paper",
+          "url": "https://arxiv.org/abs/2308.01445"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-26",
+      "audience": "Project management",
+      "category": "Project controls",
+      "headline": "Use AI to surface RFI risk, not just speed up paperwork.",
+      "summary": "Construction AI is most helpful when it turns messy project records into risk signals. RFIs, submittals, meeting notes, and change logs can be grouped by discipline, age, root cause, and cost or schedule exposure.",
+      "lessons": [
+        "Tag RFIs by discipline, contract section, responsible party, age, and schedule impact.",
+        "Use AI summaries for triage, but keep the official response in the project record.",
+        "Review repeated RFI themes at coordination meetings so the team fixes causes rather than answering the same question faster."
+      ],
+      "sources": [
+        {
+          "name": "IAARC RFI automation paper",
+          "url": "https://www.iaarc.org/publications/csce_crc_2025/enhancing_request_for_information_rfi_process_in_construction_through_digitalization_and_automation.html"
+        },
+        {
+          "name": "Autodesk AI in Construction",
+          "url": "https://www.construction.autodesk.com/workflows/artificial-intelligence-construction/"
+        }
+      ]
+    }
+  ]
+}

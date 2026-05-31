@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0">
+  <channel>
+    <title>Techniek Engineering AI Brief</title>
+    <link>https://example.com/</link>
+    <description>Practical AI lessons for engineering, project management, and energy management teams.</description>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 30 May 2026 20:40:59 +0000</lastBuildDate>
+    <item>
+      <title>Keep AI fault detection in advisory mode until operators verify the trend.</title>
+      <link>https://example.com/archive.html</link>
+      <guid>techniek-ai-brief-2026-05-30-1-keep-ai-fault-detection-in-advisory-mode-until-o</guid>
+      <pubDate>Sat, 30 May 2026 12:00:00 -0400</pubDate>
+      <description>AI-enabled building controls and HVAC fault detection are becoming practical, but the safest first use is operator triage. Let AI rank likely faults and explain the evidence, then require a human review of point names, sensor quality, comfort limits, and maintenance history before changing control sequences.</description>
+    </item>
+    <item>
+      <title>Define the decision before choosing the AI tool.</title>
+      <link>https://example.com/archive.html</link>
+      <guid>techniek-ai-brief-2026-05-30-2-define-the-decision-before-choosing-the-ai-tool</guid>
+      <pubDate>Sat, 30 May 2026 12:00:00 -0400</pubDate>
+      <description>The strongest commercial and industrial AI use cases are narrow enough to measure: a pump failure mode, an HVAC optimization target, an RFI risk category, or a document review task. Start with the decision AI will support, then select the model, data, and review process.</description>
+    </item>
+    <item>
+      <title>Make predictive maintenance explainable before automating work orders.</title>
+      <link>https://example.com/archive.html</link>
+      <guid>techniek-ai-brief-2026-05-29-3-make-predictive-maintenance-explainable-before-a</guid>
+      <pubDate>Fri, 29 May 2026 12:00:00 -0400</pubDate>
+      <description>Recent condition-monitoring work shows the value of vibration and current signals for industrial motors, but the practical lesson is governance: every alert should show the signal that changed, the likely failure mode, and the inspection step a technician can verify.</description>
+    </item>
+    <item>
+      <title>Use AI to find energy drift, then turn it into an operator action.</title>
+      <link>https://example.com/archive.html</link>
+      <guid>techniek-ai-brief-2026-05-28-4-use-ai-to-find-energy-drift-then-turn-it-into-an</guid>
+      <pubDate>Thu, 28 May 2026 12:00:00 -0400</pubDate>
+      <description>AI can flag load shifts, abnormal schedules, simultaneous heating and cooling, and demand spikes. The useful version is not just a dashboard. It is a daily action with an owner, an expected savings range, and a follow-up check.</description>
+    </item>
+    <item>
+      <title>Treat digital twins as focused decision views, not perfect replicas.</title>
+      <link>https://example.com/archive.html</link>
+      <guid>techniek-ai-brief-2026-05-27-5-treat-digital-twins-as-focused-decision-views-no</guid>
+      <pubDate>Wed, 27 May 2026 12:00:00 -0400</pubDate>
+      <description>Digital twin research points toward combining sensor, inspection, asset, and financial data for infrastructure decisions. For owners and engineers, the first win is a focused view that answers one question about risk, maintenance, or capital planning.</description>
+    </item>
+    <item>
+      <title>Use AI to surface RFI risk, not just speed up paperwork.</title>
+      <link>https://example.com/archive.html</link>
+      <guid>techniek-ai-brief-2026-05-26-6-use-ai-to-surface-rfi-risk-not-just-speed-up-pap</guid>
+      <pubDate>Tue, 26 May 2026 12:00:00 -0400</pubDate>
+      <description>Construction AI is most helpful when it turns messy project records into risk signals. RFIs, submittals, meeting notes, and change logs can be grouped by discipline, age, root cause, and cost or schedule exposure.</description>
+    </item>
+  </channel>
+</rss>

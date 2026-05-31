@@ -1,0 +1,22 @@
+# Local verification artifacts
+.chrome-verification-profile/
+work/
+outputs/*.png
+outputs/automation-cadence.md
+outputs/figma-*
+outputs/skills.schema.json
+outputs/support-finder-owner-guide.md
+
+# Private knowledge artifacts
+knowledge_uploads/**
+!knowledge_uploads/
+!knowledge_uploads/README.md
+!knowledge_uploads/*/
+!knowledge_uploads/*/.gitkeep
+
+# Generated documents not needed for static deployment
+outputs/*.docx
+
+# OS/editor noise
+Thumbs.db
+.DS_Store

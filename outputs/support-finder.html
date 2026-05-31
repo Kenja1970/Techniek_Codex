@@ -1,0 +1,611 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find the Right Support | Techniek Engineering</title>
+  <meta name="description" content="Answer a few practical questions and get a recommended Techniek Engineering service, likely deliverables, useful reading, and a clear next step.">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="assets/css/design-system.css">
+  <style>
+    .finder-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.62fr) minmax(320px, 0.38fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .question-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .question-card {
+      padding: 24px;
+      border: 1px solid var(--te-border);
+      border-radius: var(--te-radius);
+      background: var(--te-white);
+    }
+
+    .question-card h2 {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+      line-height: 1.25;
+    }
+
+    .option-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .option-grid label {
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding: 14px;
+      border: 1px solid var(--te-border-strong);
+      border-radius: var(--te-radius);
+      background: var(--te-panel);
+      cursor: pointer;
+    }
+
+    .option-grid label:has(input:checked) {
+      border-color: var(--te-blue);
+      background: rgba(0, 96, 224, 0.08);
+    }
+
+    .option-grid input {
+      margin-top: 5px;
+      accent-color: var(--te-blue);
+    }
+
+    .prompt-box {
+      display: grid;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .prompt-box textarea {
+      min-height: 112px;
+      width: 100%;
+      resize: vertical;
+      padding: 14px;
+      border: 1px solid var(--te-border-strong);
+      border-radius: var(--te-radius);
+      color: var(--te-charcoal);
+      font: inherit;
+      line-height: 1.5;
+    }
+
+    .prompt-box textarea::placeholder {
+      color: #7b8490;
+    }
+
+    .result-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .result-card {
+      padding: 26px;
+      border: 1px solid var(--te-border);
+      border-radius: var(--te-radius);
+      background: var(--te-white);
+      box-shadow: var(--te-shadow);
+    }
+
+    .result-card h2 {
+      margin: 0 0 8px;
+      font-size: 1.55rem;
+      line-height: 1.2;
+    }
+
+    .score {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: rgba(0, 96, 224, 0.1);
+      color: var(--te-blue-dark);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .result-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .safety-note {
+      margin-top: 18px;
+      padding: 16px;
+      border-left: 4px solid var(--te-yellow);
+      border-radius: 0 var(--te-radius) var(--te-radius) 0;
+      background: var(--te-panel);
+      color: #4b5563;
+      font-size: 0.94rem;
+    }
+
+    .option-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .option-card {
+      padding: 22px;
+      border: 1px solid var(--te-border);
+      border-radius: var(--te-radius);
+      background: var(--te-white);
+    }
+
+    .option-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+      line-height: 1.25;
+    }
+
+    @media (max-width: 880px) {
+      .finder-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .option-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="te-page">
+    <header class="te-header">
+      <div class="te-container te-nav">
+        <a href="index.html" aria-label="Techniek Engineering home">
+          <img class="te-logo" src="assets/logo.png" alt="Techniek Engineering logo">
+        </a>
+        <nav class="te-nav-links" aria-label="Main navigation">
+          <a href="support-finder.html" aria-current="page">Find Support</a>
+          <a href="engineering-support.html">Engineering</a>
+          <a href="project-management.html">Projects</a>
+          <a href="energy-management.html">Energy</a>
+          <a href="archive.html">AI Brief</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+        <a class="te-button" href="index.html#contact">Request a Consultation</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="te-hero">
+        <div class="te-container te-hero-grid">
+          <div>
+            <p class="te-eyebrow">Client support finder</p>
+            <h1>Find the right Techniek support for your situation.</h1>
+            <p class="te-lead">Answer three practical questions, add a short description, and get a recommended service, likely deliverables, useful reading, and a clear next step.</p>
+            <div class="te-actions">
+              <a class="te-button" href="#finder">Start the Finder</a>
+              <p class="te-note">Built for fast decisions, not long browsing sessions.</p>
+            </div>
+          </div>
+          <aside class="te-panel">
+            <span class="te-accent"></span>
+            <h2>What you get</h2>
+            <p>A practical starting point: the best-fit service, what Techniek would likely produce, what to prepare, and where to read more before reaching out.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="te-section te-section-muted" id="finder">
+        <div class="te-container finder-layout">
+          <form class="question-stack" id="support-form" aria-label="Support finder questions">
+            <section class="question-card">
+              <h2>Describe the situation in a sentence or two.</h2>
+              <div class="prompt-box">
+                <textarea id="situation-prompt" name="situation" placeholder="Example: We need help reviewing a mechanical issue, organizing open project risks, or finding the cause of rising energy demand."></textarea>
+                <p class="te-note">Keep it brief. Do not enter confidential names, pricing, account numbers, or private project details on this public page.</p>
+              </div>
+            </section>
+          </form>
+          <aside class="result-stack" aria-live="polite">
+            <div class="result-card" id="result-card">
+              <div class="result-meta">
+                <span class="score">Ready</span>
+              </div>
+              <h2>Answer the questions to get a recommendation.</h2>
+              <p>Results will appear here with the best-fit service, likely deliverables, related brief topics, and a suggested next step.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="te-section">
+        <div class="te-container te-two-column">
+          <div>
+            <div class="te-section-heading">
+              <h2>What to prepare before contacting Techniek</h2>
+              <p>The finder gives a starting recommendation. A better first conversation comes from a few clear inputs that explain the decision, constraint, and urgency.</p>
+            </div>
+            <ul class="te-list">
+              <li>Describe the asset, facility, project phase, or operating problem.</li>
+              <li>Identify the decision you need to make and when you need to make it.</li>
+              <li>List what records are available, such as drawings, logs, photos, schedules, bills, trends, or reports.</li>
+              <li>Note privacy constraints before sharing client, cost, account, or performance details.</li>
+            </ul>
+          </div>
+          <aside class="te-panel">
+            <h2>Good first question</h2>
+            <p>"Here is the issue, here is the decision we need to make, and here is what we already know." That is enough to start a useful technical conversation.</p>
+            <p class="safety-note">Use the public form for general contact. Use a secure owner-approved intake path before sharing sensitive files.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="te-section te-section-muted" aria-labelledby="document-backed-support">
+        <div class="te-container">
+          <div class="te-section-heading">
+            <p class="te-eyebrow">Document-backed support</p>
+            <h2 id="document-backed-support">Sharper answers as the project-history library grows.</h2>
+            <p>Techniek can maintain a private owner-reviewed document library behind the public website. Approved lessons from that library can improve recommendations without exposing raw files to site visitors.</p>
+          </div>
+          <div class="option-cards">
+            <article class="option-card">
+              <h3>Mechanical</h3>
+              <p>Equipment reviews, commissioning notes, maintenance issues, inspection photos, operating trends, and mechanical-system lessons.</p>
+            </article>
+            <article class="option-card">
+              <h3>Civil and PM</h3>
+              <p>Facility condition notes, site constraints, schedules, RFIs, submittals, action logs, risk registers, and closeout summaries.</p>
+            </article>
+            <article class="option-card">
+              <h3>Energy</h3>
+              <p>Utility bills, BAS trends, interval data, operating schedules, energy audits, measurement notes, and savings follow-up checks.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="te-footer">
+      <div class="te-container te-footer-row">
+        <span>&copy; 2026 Techniek Engineering. All rights reserved.</span>
+        <span>Engineering | Project Management | Energy Management</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const fallbackKnowledge = {
+  "updated": "2026-05-31",
+  "purpose": "Public-safe recommendation knowledge for the Techniek Engineering client support finder.",
+  "questions": [
+    {
+      "id": "issue",
+      "label": "What kind of support do you need first?",
+      "options": [
+        { "value": "technical-review", "label": "Engineering review or second opinion" },
+        { "value": "project-control", "label": "Project coordination or risk control" },
+        { "value": "energy-performance", "label": "Energy performance or operating cost review" },
+        { "value": "ai-workflow", "label": "AI, data, or workflow readiness" }
+      ]
+    },
+    {
+      "id": "stage",
+      "label": "Where is the work right now?",
+      "options": [
+        { "value": "planning", "label": "Early planning or scoping" },
+        { "value": "active", "label": "Active project or facility issue" },
+        { "value": "stuck", "label": "Delayed, unclear, or blocked" },
+        { "value": "improve", "label": "Improving an existing process" }
+      ]
+    },
+    {
+      "id": "outcome",
+      "label": "What would help you move forward?",
+      "options": [
+        { "value": "memo", "label": "A clear recommendation" },
+        { "value": "action-list", "label": "A prioritized action list" },
+        { "value": "risk-view", "label": "A clearer risk or status view" },
+        { "value": "data-plan", "label": "A data or measurement plan" }
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "engineering-review-sprint",
+      "title": "Engineering Support Sprint",
+      "service": "Engineering Support",
+      "url": "engineering-support.html",
+      "summary": "A focused technical review for a defined asset, system, proposal, design question, or facility issue.",
+      "bestFor": [
+        "A decision needs a clear technical basis before cost, schedule, or scope moves forward.",
+        "An owner, operator, or project team needs a practical second opinion.",
+        "A technical issue needs to be explained clearly to non-technical stakeholders."
+      ],
+      "outputs": [
+        "Technical review memo",
+        "Options and tradeoff summary",
+        "Issue and risk list",
+        "Recommended next-step plan"
+      ],
+      "match": {
+        "issue": ["technical-review"],
+        "stage": ["planning", "active", "stuck"],
+        "outcome": ["memo", "action-list"]
+      },
+      "relatedBriefCategories": ["AI governance", "Digital twins"],
+      "referenceLinks": [
+        { "label": "Engineering support", "url": "engineering-support.html" },
+        { "label": "Project history prompts", "url": "index.html#knowledge-prompts" }
+      ],
+      "keywordTriggers": [
+        "design",
+        "equipment",
+        "technical",
+        "review",
+        "specification",
+        "submittal",
+        "proposal",
+        "second opinion",
+        "commissioning",
+        "field issue"
+      ],
+      "cta": "Prepare the technical question, the decision deadline, and any drawings, photos, trend data, reports, or inspection notes you can share."
+    },
+    {
+      "id": "project-controls-reset",
+      "title": "Project Controls Reset",
+      "service": "Project Management",
+      "url": "project-management.html",
+      "summary": "A structured review of project records, open issues, decisions, RFIs, submittals, risks, and stakeholder reporting.",
+      "bestFor": [
+        "A project is active but the next actions are unclear.",
+        "Risks, RFIs, decisions, or submittals are scattered across too many places.",
+        "An owner needs a plain-language status view without losing technical detail."
+      ],
+      "outputs": [
+        "Decision log",
+        "Risk register",
+        "Open action list",
+        "Weekly project status view"
+      ],
+      "match": {
+        "issue": ["project-control"],
+        "stage": ["active", "stuck"],
+        "outcome": ["risk-view", "action-list", "memo"]
+      },
+      "relatedBriefCategories": ["Project controls", "AI governance"],
+      "referenceLinks": [
+        { "label": "Project management", "url": "project-management.html" },
+        { "label": "AI brief archive", "url": "archive.html" }
+      ],
+      "keywordTriggers": [
+        "schedule",
+        "rfi",
+        "submittal",
+        "change order",
+        "delay",
+        "risk",
+        "stakeholder",
+        "status",
+        "coordination",
+        "meeting"
+      ],
+      "cta": "Gather the project phase, the current blocker, the open action list, and any issue log or schedule snapshot."
+    },
+    {
+      "id": "energy-opportunity-scan",
+      "title": "Energy Opportunity Scan",
+      "service": "Energy Management",
+      "url": "energy-management.html",
+      "summary": "A practical review of utility data, operating schedules, BAS trends, demand patterns, and obvious energy-waste signals.",
+      "bestFor": [
+        "Utility costs are rising and the cause is unclear.",
+        "Energy data exists but is not yet tied to specific actions.",
+        "Operators need help prioritizing what to verify first."
+      ],
+      "outputs": [
+        "Energy-use observations",
+        "Priority action list",
+        "Operating constraints",
+        "Follow-up and measurement plan"
+      ],
+      "match": {
+        "issue": ["energy-performance"],
+        "stage": ["active", "improve", "planning"],
+        "outcome": ["action-list", "data-plan", "memo"]
+      },
+      "relatedBriefCategories": ["Energy operations", "Building controls"],
+      "referenceLinks": [
+        { "label": "Energy management", "url": "energy-management.html" },
+        { "label": "Daily AI Engineering Brief", "url": "index.html#brief" }
+      ],
+      "keywordTriggers": [
+        "utility",
+        "energy",
+        "meter",
+        "bas",
+        "controls",
+        "demand",
+        "trend",
+        "schedule",
+        "hvac",
+        "operating waste"
+      ],
+      "cta": "Collect utility bills, interval data, BAS trends, operating schedules, occupancy patterns, and known comfort or production limits."
+    },
+    {
+      "id": "ai-workflow-readiness-review",
+      "title": "AI Workflow Readiness Review",
+      "service": "Engineering Support",
+      "url": "engineering-support.html",
+      "summary": "A practical review of an AI use case before it is added to engineering, project, maintenance, or energy workflows.",
+      "bestFor": [
+        "A team wants to use AI but has not defined the decision it will support.",
+        "A workflow needs data-quality checks, human review points, and safe boundaries.",
+        "A public or internal tool needs to avoid exposing private files."
+      ],
+      "outputs": [
+        "AI use-case scorecard",
+        "Data and source map",
+        "Human review workflow",
+        "Public/private content boundary"
+      ],
+      "match": {
+        "issue": ["ai-workflow"],
+        "stage": ["planning", "improve", "stuck"],
+        "outcome": ["data-plan", "memo", "risk-view"]
+      },
+      "relatedBriefCategories": ["AI governance", "Building controls", "Project controls"],
+      "referenceLinks": [
+        { "label": "AI brief archive", "url": "archive.html" },
+        { "label": "Project history prompts", "url": "index.html#knowledge-prompts" }
+      ],
+      "keywordTriggers": [
+        "ai",
+        "automation",
+        "agent",
+        "workflow",
+        "data",
+        "knowledge",
+        "google drive",
+        "documents",
+        "private",
+        "prompt"
+      ],
+      "cta": "Describe the decision, users, source documents, review owner, and what information must remain private."
+    }
+  ],
+  "publicSafety": {
+    "allowed": [
+      "Approved service descriptions",
+      "Public AI Engineering Brief content",
+      "Generalized project situations",
+      "Public process descriptions",
+      "Non-confidential example outputs"
+    ],
+    "notAllowed": [
+      "Client names",
+      "Private project history",
+      "Proposal details",
+      "Financial performance",
+      "Confidential files",
+      "Google Drive documents unless explicitly approved for public use"
+    ]
+  }
+};
+
+    const form = document.querySelector("#support-form");
+    const resultCard = document.querySelector("#result-card");
+    let knowledge = fallbackKnowledge;
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (character) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+      })[character]);
+    }
+
+    function selectedAnswers() {
+      return Object.fromEntries(new FormData(form).entries());
+    }
+
+    function keywordMatches(recommendation, text) {
+      const normalized = String(text || "").toLowerCase();
+      return (recommendation.keywordTriggers || []).filter((keyword) => normalized.includes(String(keyword).toLowerCase()));
+    }
+
+    function scoreRecommendation(recommendation, answers) {
+      const answerScore = Object.entries(answers).reduce((score, [questionId, answer]) => {
+        if (questionId === "situation") return score;
+        return score + ((recommendation.match?.[questionId] || []).includes(answer) ? 1 : 0);
+      }, 0);
+      const promptScore = Math.min(keywordMatches(recommendation, answers.situation).length, 3);
+      return answerScore + promptScore;
+    }
+
+    function renderQuestions() {
+      const promptCard = form.querySelector(".question-card");
+      form.innerHTML = "";
+      form.appendChild(promptCard);
+      form.insertAdjacentHTML("beforeend", knowledge.questions.map((question) => `
+        <fieldset class="question-card">
+          <h2>${escapeHtml(question.label)}</h2>
+          <div class="option-grid">
+            ${question.options.map((option, optionIndex) => `
+              <label>
+                <input type="radio" name="${escapeHtml(question.id)}" value="${escapeHtml(option.value)}" ${optionIndex === 0 ? "checked" : ""}>
+                <span>${escapeHtml(option.label)}</span>
+              </label>
+            `).join("")}
+          </div>
+        </fieldset>
+      `).join(""));
+    }
+
+    function renderResult() {
+      const answers = selectedAnswers();
+      const ranked = [...knowledge.recommendations]
+        .map((recommendation) => ({ ...recommendation, score: scoreRecommendation(recommendation, answers) }))
+        .sort((a, b) => b.score - a.score);
+      const top = ranked[0];
+      const secondary = ranked.slice(1, 3);
+      const matches = keywordMatches(top, answers.situation);
+      const matchedText = matches.length ? matches.slice(0, 5).join(", ") : "question choices";
+
+      resultCard.innerHTML = `
+        <div class="result-meta">
+          <span class="score">Best fit</span>
+          <span class="score">${escapeHtml(top.service)}</span>
+          <span class="score">${top.score} match points</span>
+        </div>
+        <h2>${escapeHtml(top.title)}</h2>
+        <p>${escapeHtml(top.summary)}</p>
+        <p><strong>Why this matched:</strong> ${escapeHtml(matchedText)}</p>
+        <h3>Useful when</h3>
+        <ul class="te-list">
+          ${(top.bestFor || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ul>
+        <h3>Likely outputs</h3>
+        <ul class="te-list">
+          ${(top.outputs || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ul>
+        <p><strong>Related brief topics:</strong> ${escapeHtml((top.relatedBriefCategories || []).join(", "))}</p>
+        <p><strong>Suggested next step:</strong> ${escapeHtml(top.cta)}</p>
+        <p><strong>Useful reading:</strong></p>
+        <div class="te-actions">
+          ${(top.referenceLinks || []).map((link) => `<a class="te-text-link" href="${escapeHtml(link.url)}">${escapeHtml(link.label)}</a>`).join("")}
+        </div>
+        <div class="te-actions">
+          <a class="te-button" href="${escapeHtml(top.url)}">View ${escapeHtml(top.service)}</a>
+          <a class="te-text-link" href="index.html#contact">Contact Techniek</a>
+        </div>
+        <p class="safety-note">Also consider: ${secondary.map((item) => escapeHtml(item.title)).join(" or ")}.</p>
+      `;
+    }
+
+    async function loadKnowledge() {
+      try {
+        const response = await fetch("skills.json", { cache: "no-store" });
+        if (!response.ok) throw new Error("Knowledge file unavailable");
+        knowledge = await response.json();
+      } catch (error) {
+        knowledge = fallbackKnowledge;
+      }
+      renderQuestions();
+      renderResult();
+    }
+
+    form.addEventListener("change", renderResult);
+    form.addEventListener("input", renderResult);
+    loadKnowledge();
+  </script>
+</body>
+</html>
