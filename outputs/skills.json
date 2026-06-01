@@ -184,19 +184,19 @@
       "bestFor": [
         "A team wants to use AI but has not defined the decision it will support.",
         "A workflow needs data-quality checks, human review points, and safe boundaries.",
-        "A public or internal tool needs to avoid exposing private files."
+        "A public or internal tool needs to avoid exposing FCI, CUI, export-controlled data, credentials, or private files."
       ],
       "outputs": [
         "AI use-case scorecard",
         "Data and source map",
         "Human review workflow",
-        "Public/private content boundary"
+        "CMMC-aware public/private content boundary"
       ],
       "prepChecklist": [
         "Decision the workflow should support",
         "Source documents or systems",
         "Who reviews AI output",
-        "Information that must remain private"
+        "Information that must remain restricted, sanitized, or owner-approved"
       ],
       "match": {
         "issue": ["ai-workflow"],
@@ -218,9 +218,13 @@
         "google drive",
         "documents",
         "private",
+        "cmmc",
+        "cui",
+        "fci",
+        "controlled",
         "prompt"
       ],
-      "cta": "Describe the decision, users, source documents, review owner, and what information must remain private."
+      "cta": "Describe the decision, users, source documents, review owner, and whether any information may be FCI, CUI, export-controlled, credentialed, or client-confidential."
     }
   ],
   "publicSafety": {
@@ -237,6 +241,7 @@
       "Proposal details",
       "Financial performance",
       "Confidential files",
+      "FCI, CUI, export-controlled technical data, credentials, or contract-controlled records",
       "Google Drive documents unless explicitly approved for public use"
     ]
   }

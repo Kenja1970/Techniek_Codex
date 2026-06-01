@@ -241,7 +241,7 @@
               <h2>Describe the situation in a sentence or two.</h2>
               <div class="prompt-box">
                 <textarea id="situation-prompt" name="situation" placeholder="Example: We need help reviewing a mechanical issue, organizing open project risks, or finding the cause of rising energy demand."></textarea>
-                <p class="te-note">Keep it brief. Do not enter confidential names, pricing, account numbers, or private project details on this public page.</p>
+                <p class="te-note">Keep it brief. Do not enter FCI, CUI, export-controlled technical data, credentials, pricing, account numbers, client names, or private project details on this public page.</p>
               </div>
             </section>
           </form>
@@ -268,13 +268,13 @@
               <li>Describe the asset, facility, project phase, or operating problem.</li>
               <li>Identify the decision you need to make and when you need to make it.</li>
               <li>List what records are available, such as drawings, logs, photos, schedules, bills, trends, or reports.</li>
-              <li>Note privacy constraints before sharing client, cost, account, or performance details.</li>
+              <li>Flag whether any supporting records may include FCI, CUI, export-controlled data, credentials, pricing, or client-confidential details.</li>
             </ul>
           </div>
           <aside class="te-panel">
             <h2>Good first question</h2>
             <p>"Here is the issue, here is the decision we need to make, and here is what we already know." That is enough to start a useful technical conversation.</p>
-            <p class="safety-note">Use the public form for general contact. Use a secure owner-approved intake path before sharing sensitive files.</p>
+            <p class="safety-note">Use the public form for general contact only. Use a secure owner-approved intake path before sharing controlled, confidential, or contract-related files.</p>
           </aside>
         </div>
       </section>
@@ -284,7 +284,7 @@
           <div class="te-section-heading">
             <p class="te-eyebrow">Document-backed support</p>
             <h2 id="document-backed-support">Sharper answers as the project-history library grows.</h2>
-            <p>Techniek can maintain a private owner-reviewed document library behind the public website. Approved lessons from that library can improve recommendations without exposing raw files to site visitors.</p>
+            <p>Techniek can maintain a private owner-reviewed document library behind the public website. Approved lessons from that library can improve recommendations without exposing raw files, FCI, CUI, export-controlled material, or client-confidential details to site visitors.</p>
           </div>
           <div class="option-cards">
             <article class="option-card">
@@ -499,19 +499,19 @@
       "bestFor": [
         "A team wants to use AI but has not defined the decision it will support.",
         "A workflow needs data-quality checks, human review points, and safe boundaries.",
-        "A public or internal tool needs to avoid exposing private files."
+        "A public or internal tool needs to avoid exposing FCI, CUI, export-controlled data, credentials, or private files."
       ],
       "outputs": [
         "AI use-case scorecard",
         "Data and source map",
         "Human review workflow",
-        "Public/private content boundary"
+        "CMMC-aware public/private content boundary"
       ],
       "prepChecklist": [
         "Decision the workflow should support",
         "Source documents or systems",
         "Who reviews AI output",
-        "Information that must remain private"
+        "Information that must remain restricted, sanitized, or owner-approved"
       ],
       "match": {
         "issue": ["ai-workflow"],
@@ -533,9 +533,13 @@
         "google drive",
         "documents",
         "private",
+        "cmmc",
+        "cui",
+        "fci",
+        "controlled",
         "prompt"
       ],
-      "cta": "Describe the decision, users, source documents, review owner, and what information must remain private."
+      "cta": "Describe the decision, users, source documents, review owner, and whether any information may be FCI, CUI, export-controlled, credentialed, or client-confidential."
     }
   ],
   "publicSafety": {
@@ -552,6 +556,7 @@
       "Proposal details",
       "Financial performance",
       "Confidential files",
+      "FCI, CUI, export-controlled technical data, credentials, or contract-controlled records",
       "Google Drive documents unless explicitly approved for public use"
     ]
   }

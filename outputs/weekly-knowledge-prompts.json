@@ -1,14 +1,16 @@
 {
   "updated": "2026-05-31",
-  "refreshCadence": "weekly",
-  "purpose": "Public-safe project-history topics for the Techniek Engineering website.",
+  "refreshCadence": "daily source scan; weekly owner-approved public prompt refresh",
+  "purpose": "Public-safe project-history topics for the Techniek Engineering website. Raw artifacts remain owner-only and controlled records are never published directly.",
   "sourcePolicy": {
     "uploadRoot": "C:\\Users\\grego\\Documents\\Codex\\2026-05-30\\files-mentioned-by-the-user-logo\\knowledge_uploads",
     "folders": {
       "mechanicalEngineering": "knowledge_uploads\\mechanical_engineering",
       "civilEngineering": "knowledge_uploads\\civil_engineering",
       "energyEngineering": "knowledge_uploads\\energy_engineering",
-      "projectManagement": "knowledge_uploads\\project_management"
+      "projectManagement": "knowledge_uploads\\project_management",
+      "restrictedReview": "knowledge_uploads\\restricted_review",
+      "approvedPublic": "knowledge_uploads\\approved_public"
     },
     "publicUse": [
       "Approved project-history themes",
@@ -24,6 +26,11 @@
       "Financial details",
       "Unapproved Google Drive or local file contents",
       "Credentials or past performance details not approved for public use"
+    ],
+    "cmmcAwareBoundary": [
+      "Do not publish FCI, CUI, export-controlled technical data, credentials, contract numbers, proposal pricing, or client-confidential records.",
+      "Use only owner-approved summaries from knowledge_uploads\\approved_public for public website updates.",
+      "Route likely controlled or confidential artifacts to knowledge_uploads\\restricted_review before any public summary is drafted."
     ]
   },
   "centerPrompt": {
@@ -149,8 +156,10 @@
     }
   ],
   "weeklyUpdateChecklist": [
-    "Add new raw artifacts to the correct local knowledge_uploads subfolder.",
+    "Add new raw artifacts to knowledge_uploads\\inbox only.",
+    "Run the classifier and review any restricted_review or needs_review files.",
     "Create a short approved summary with private details removed.",
+    "Move only sanitized, owner-approved summaries to knowledge_uploads\\approved_public.",
     "Rotate public link names from broad field trends to approved Techniek project-history themes as evidence grows.",
     "Keep each prompt answer actionable and short enough to scan.",
     "Update the date field after review."

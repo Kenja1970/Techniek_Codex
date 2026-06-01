@@ -1,6 +1,8 @@
 # Techniek Project History Upload Library
 
-Use this folder as the private source library for future Techniek project-history and skills prompts. Drop new documents into `inbox`; a background classifier can sort them into the right discipline folder, move ambiguous files to `needs_review`, and keep completed originals in `processed`.
+Use this folder as the private source library for future Techniek project-history and skills prompts. Drop new documents into `inbox`; a background classifier can sort them into the right discipline folder, move controlled or confidential files to `restricted_review`, move ambiguous files to `needs_review`, and keep public website content limited to approved summaries.
+
+This is an owner-only workspace. Do not publish raw artifacts from this folder to the public website.
 
 ## Folders
 
@@ -9,11 +11,15 @@ Use this folder as the private source library for future Techniek project-histor
 - `civil_engineering` - facility, site, infrastructure, condition, asset-management, drainage, utility, inspection, and planning artifacts.
 - `energy_engineering` - utility reviews, BAS trend exports, interval data, energy audits, operating schedules, savings checks, and measurement notes.
 - `project_management` - project controls, schedules, decision logs, risk registers, meeting notes, RFI/submittal lessons, and closeout summaries.
+- `restricted_review` - likely FCI, CUI, export-controlled, client-confidential, pricing, proposal, credential, or contract material. Review and sanitize before any public use.
+- `approved_public` - short owner-approved summaries only. These can be used to update `skills.json`, `weekly-knowledge-prompts.json`, and public pages.
 - `needs_review` - files the classifier cannot confidently place.
 - `processed` - originals or copies after classification and owner review.
 
-## Review Rules
+## CMMC-Aware Review Rules
 
+- Treat FCI, CUI, covered defense information, export-controlled material, DD254 references, contract numbers, proposal pricing, credentials, and private client records as restricted.
+- Do not use public website files for CUI, FCI, export-controlled technical data, passwords, API keys, or confidential client material.
 - Remove or redact client names, pricing, account numbers, addresses, credentials, and confidential commercial terms before anything becomes public.
 - Prefer short approved summaries over raw files for public prompts.
 - Use consistent filenames such as `2026-05-project-type-topic-approved-summary.md`.
@@ -23,12 +29,13 @@ Use this folder as the private source library for future Techniek project-histor
 
 1. Place new documents in `knowledge_uploads/inbox`.
 2. Run `python tools/classify_knowledge_uploads.py` to preview classification. In Codex, use the bundled Python runtime if `python` is not on your PATH.
-3. Run `python tools/classify_knowledge_uploads.py --apply` to move confident matches.
+3. Run `python tools/classify_knowledge_uploads.py --apply` to move files and append `classification-log.jsonl`.
 4. The classifier reads filenames and document text where possible.
 5. It assigns one primary category: mechanical, civil, energy, or project management.
-6. It moves the file into the matching folder or `needs_review`.
-7. It creates or updates an approved summary only after owner review.
-8. Public website prompts use approved summaries, not raw private documents.
+6. It detects likely CMMC-sensitive material and routes it to `restricted_review`.
+7. It moves ambiguous files to `needs_review`.
+8. It creates or updates an approved summary only after owner review.
+9. Public website prompts use approved summaries, not raw private documents.
 
 ## Supported Starting Files
 
