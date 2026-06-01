@@ -28,6 +28,14 @@ The working static site lives in `outputs/`. The included GitHub Actions workflo
 
 Owner notes, screenshots, generated documents, Figma handoff files, and private knowledge uploads are not part of the Pages artifact.
 
+## Design Reference
+
+Figma companion file for the publish-ready upgrade patterns:
+
+```text
+https://www.figma.com/design/ht1NgrK3Nq8g7mnSkFEyg6
+```
+
 ## Private Knowledge Uploads
 
 Start by placing new past-performance artifacts in:
@@ -44,3 +52,15 @@ The intended owner-only agent workflow is:
 4. Publish only approved summaries or public-safe lessons back into website JSON files.
 
 Do not commit private client files, pricing, credentials, or confidential project records.
+
+Preview classification without moving files. In Codex, use the bundled Python runtime if `python` is not on your PATH:
+
+```powershell
+python tools/classify_knowledge_uploads.py
+```
+
+Apply classification:
+
+```powershell
+python tools/classify_knowledge_uploads.py --apply
+```

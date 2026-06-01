@@ -22,8 +22,23 @@ Use this folder as the private source library for future Techniek project-histor
 ## Agent Workflow
 
 1. Place new documents in `knowledge_uploads/inbox`.
-2. The classifier reads filenames and document text where possible.
-3. It assigns one primary category: mechanical, civil, energy, or project management.
-4. It moves the file into the matching folder or `needs_review`.
-5. It creates or updates an approved summary only after owner review.
-6. Public website prompts use approved summaries, not raw private documents.
+2. Run `python tools/classify_knowledge_uploads.py` to preview classification. In Codex, use the bundled Python runtime if `python` is not on your PATH.
+3. Run `python tools/classify_knowledge_uploads.py --apply` to move confident matches.
+4. The classifier reads filenames and document text where possible.
+5. It assigns one primary category: mechanical, civil, energy, or project management.
+6. It moves the file into the matching folder or `needs_review`.
+7. It creates or updates an approved summary only after owner review.
+8. Public website prompts use approved summaries, not raw private documents.
+
+## Supported Starting Files
+
+- Text-like files: `.txt`, `.md`, `.csv`, `.json`, `.xml`, `.html`, `.log`
+- Word documents: `.docx`
+- Other files such as PDFs and images are classified from the filename unless a later OCR/PDF parser is added.
+
+## Classification Categories
+
+- `mechanical_engineering` - HVAC, pumps, motors, mechanical equipment, commissioning, reliability, maintenance, and system review.
+- `civil_engineering` - site, drainage, pavement, utilities, structural/facility condition, inspection, and infrastructure planning.
+- `energy_engineering` - utility bills, meters, BAS, demand, schedules, setpoints, audits, savings, and load profiles.
+- `project_management` - RFIs, submittals, schedule, risk register, decision log, scope, action items, coordination, and closeout.

@@ -1,5 +1,7 @@
 # Local verification artifacts
 .chrome-verification-profile*/
+__pycache__/
+tools/__pycache__/
 work/
 outputs/*.png
 outputs/automation-cadence.md

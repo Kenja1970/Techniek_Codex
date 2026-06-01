@@ -51,6 +51,12 @@
         "Issue and risk list",
         "Recommended next-step plan"
       ],
+      "prepChecklist": [
+        "Decision deadline",
+        "Drawings or photos",
+        "Equipment or system records",
+        "Known constraints"
+      ],
       "match": {
         "issue": ["technical-review"],
         "stage": ["planning", "active", "stuck"],
@@ -91,6 +97,12 @@
         "Risk register",
         "Open action list",
         "Weekly project status view"
+      ],
+      "prepChecklist": [
+        "Current project phase",
+        "Open issue or decision log",
+        "Schedule snapshot",
+        "Known responsible parties"
       ],
       "match": {
         "issue": ["project-control"],
@@ -133,6 +145,12 @@
         "Operating constraints",
         "Follow-up and measurement plan"
       ],
+      "prepChecklist": [
+        "Recent utility bills",
+        "Interval or meter data",
+        "BAS trends and schedules",
+        "Comfort or production limits"
+      ],
       "match": {
         "issue": ["energy-performance"],
         "stage": ["active", "improve", "planning"],
@@ -173,6 +191,12 @@
         "Data and source map",
         "Human review workflow",
         "Public/private content boundary"
+      ],
+      "prepChecklist": [
+        "Decision the workflow should support",
+        "Source documents or systems",
+        "Who reviews AI output",
+        "Information that must remain private"
       ],
       "match": {
         "issue": ["ai-workflow"],

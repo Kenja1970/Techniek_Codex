@@ -101,6 +101,37 @@
       line-height: 1.2;
     }
 
+    .summary-box {
+      width: 100%;
+      min-height: 150px;
+      margin-top: 10px;
+      padding: 14px;
+      border: 1px solid var(--te-border-strong);
+      border-radius: var(--te-radius);
+      background: var(--te-panel);
+      color: var(--te-charcoal);
+      font: inherit;
+      line-height: 1.5;
+      resize: vertical;
+    }
+
+    .prep-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 10px 0 18px;
+    }
+
+    .prep-item {
+      padding: 10px 12px;
+      border: 1px solid var(--te-border);
+      border-radius: var(--te-radius);
+      background: var(--te-panel);
+      color: #4b5563;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
     .score {
       display: inline-flex;
       align-items: center;
@@ -155,6 +186,10 @@
       }
 
       .option-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .prep-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -216,7 +251,7 @@
                 <span class="score">Ready</span>
               </div>
               <h2>Answer the questions to get a recommendation.</h2>
-              <p>Results will appear here with the best-fit service, likely deliverables, related brief topics, and a suggested next step.</p>
+              <p>Results will appear here with the best-fit service, likely deliverables, useful preparation items, and a contact-ready summary.</p>
             </div>
           </aside>
         </div>
@@ -331,6 +366,12 @@
         "Issue and risk list",
         "Recommended next-step plan"
       ],
+      "prepChecklist": [
+        "Decision deadline",
+        "Drawings or photos",
+        "Equipment or system records",
+        "Known constraints"
+      ],
       "match": {
         "issue": ["technical-review"],
         "stage": ["planning", "active", "stuck"],
@@ -371,6 +412,12 @@
         "Risk register",
         "Open action list",
         "Weekly project status view"
+      ],
+      "prepChecklist": [
+        "Current project phase",
+        "Open issue or decision log",
+        "Schedule snapshot",
+        "Known responsible parties"
       ],
       "match": {
         "issue": ["project-control"],
@@ -413,6 +460,12 @@
         "Operating constraints",
         "Follow-up and measurement plan"
       ],
+      "prepChecklist": [
+        "Recent utility bills",
+        "Interval or meter data",
+        "BAS trends and schedules",
+        "Comfort or production limits"
+      ],
       "match": {
         "issue": ["energy-performance"],
         "stage": ["active", "improve", "planning"],
@@ -453,6 +506,12 @@
         "Data and source map",
         "Human review workflow",
         "Public/private content boundary"
+      ],
+      "prepChecklist": [
+        "Decision the workflow should support",
+        "Source documents or systems",
+        "Who reviews AI output",
+        "Information that must remain private"
       ],
       "match": {
         "issue": ["ai-workflow"],
@@ -521,6 +580,27 @@
       return (recommendation.keywordTriggers || []).filter((keyword) => normalized.includes(String(keyword).toLowerCase()));
     }
 
+    function labelForAnswer(questionId, value) {
+      const question = knowledge.questions.find((item) => item.id === questionId);
+      return question?.options.find((option) => option.value === value)?.label || value || "Not selected";
+    }
+
+    function buildContactSummary(top, answers, matchedText) {
+      const situation = String(answers.situation || "").trim() || "No situation description entered yet.";
+      return [
+        `Recommended Techniek support: ${top.title}`,
+        `Service area: ${top.service}`,
+        `Situation: ${situation}`,
+        `Support needed first: ${labelForAnswer("issue", answers.issue)}`,
+        `Current stage: ${labelForAnswer("stage", answers.stage)}`,
+        `Most useful next output: ${labelForAnswer("outcome", answers.outcome)}`,
+        `Why this matched: ${matchedText}`,
+        `Likely outputs: ${(top.outputs || []).join("; ")}`,
+        `Recommended preparation: ${(top.prepChecklist || []).join("; ")}`,
+        `Suggested next step: ${top.cta}`
+      ].join("\\n");
+    }
+
     function scoreRecommendation(recommendation, answers) {
       const answerScore = Object.entries(answers).reduce((score, [questionId, answer]) => {
         if (questionId === "situation") return score;
@@ -558,6 +638,7 @@
       const secondary = ranked.slice(1, 3);
       const matches = keywordMatches(top, answers.situation);
       const matchedText = matches.length ? matches.slice(0, 5).join(", ") : "question choices";
+      const summary = buildContactSummary(top, answers, matchedText);
 
       resultCard.innerHTML = `
         <div class="result-meta">
@@ -576,19 +657,46 @@
         <ul class="te-list">
           ${(top.outputs || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
         </ul>
+        <h3>What to prepare</h3>
+        <div class="prep-grid">
+          ${(top.prepChecklist || []).map((item) => `<span class="prep-item">${escapeHtml(item)}</span>`).join("")}
+        </div>
         <p><strong>Related brief topics:</strong> ${escapeHtml((top.relatedBriefCategories || []).join(", "))}</p>
         <p><strong>Suggested next step:</strong> ${escapeHtml(top.cta)}</p>
+        <h3>Contact-ready summary</h3>
+        <textarea class="summary-box" id="contact-summary" readonly>${escapeHtml(summary)}</textarea>
+        <div class="te-actions">
+          <button class="te-button" type="button" data-copy-summary>Copy Summary</button>
+          <a class="te-text-link" href="index.html#contact">Send to Techniek</a>
+        </div>
         <p><strong>Useful reading:</strong></p>
         <div class="te-actions">
           ${(top.referenceLinks || []).map((link) => `<a class="te-text-link" href="${escapeHtml(link.url)}">${escapeHtml(link.label)}</a>`).join("")}
         </div>
         <div class="te-actions">
           <a class="te-button" href="${escapeHtml(top.url)}">View ${escapeHtml(top.service)}</a>
-          <a class="te-text-link" href="index.html#contact">Contact Techniek</a>
         </div>
         <p class="safety-note">Also consider: ${secondary.map((item) => escapeHtml(item.title)).join(" or ")}.</p>
       `;
     }
+
+    resultCard.addEventListener("click", async (event) => {
+      const copyButton = event.target.closest("[data-copy-summary]");
+      if (!copyButton) return;
+      const summaryField = document.querySelector("#contact-summary");
+      if (!summaryField) return;
+      summaryField.select();
+      try {
+        await navigator.clipboard.writeText(summaryField.value);
+        copyButton.textContent = "Copied";
+      } catch (error) {
+        document.execCommand("copy");
+        copyButton.textContent = "Copied";
+      }
+      window.setTimeout(() => {
+        copyButton.textContent = "Copy Summary";
+      }, 1600);
+    });
 
     async function loadKnowledge() {
       try {
