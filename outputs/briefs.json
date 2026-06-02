@@ -1,6 +1,37 @@
 {
-  "updated": "2026-05-30",
+  "updated": "2026-06-02",
   "items": [
+    {
+      "date": "2026-06-02",
+      "audience": "All disciplines",
+      "category": "Post-deployment monitoring",
+      "headline": "Monitor engineering AI after launch, not just before approval.",
+      "summary": "The practical risk in engineering AI is not only whether a tool passes a pilot. It is whether the tool keeps behaving under real operating conditions, changing inputs, equipment drift, project pressure, and human handoffs. Treat every AI workflow like a monitored control: define the decision, log the recommendation, require human disposition, and review exceptions on a set cadence.",
+      "lessons": [
+        "Define one monitored decision before launch, such as an HVAC fault alert, project risk ranking, maintenance recommendation, or energy anomaly.",
+        "Keep three lightweight logs: input quality, AI recommendation with evidence, and human disposition with outcome.",
+        "For building and mechanical systems, keep AI advisory until point names, sensor quality, comfort limits, safety limits, and cybersecurity boundaries are verified.",
+        "Review exceptions weekly and convert false positives, missed issues, and operator overrides into updated rules, prompts, or procedures."
+      ],
+      "sources": [
+        {
+          "name": "NIST deployed AI monitoring report",
+          "url": "https://www.nist.gov/publications/challenges-monitoring-deployed-ai-systems-center-ai-standards-and-innovation"
+        },
+        {
+          "name": "NIST AI Building Systems Innovation",
+          "url": "https://www.nist.gov/programs-projects/ai-building-systems-innovation-aibsi-program"
+        },
+        {
+          "name": "DOE Artificial Intelligence",
+          "url": "https://www.energy.gov/topics/artificial-intelligence"
+        },
+        {
+          "name": "Energy-aware predictive maintenance study",
+          "url": "https://www.sciencedirect.com/science/article/pii/S0360835226003517"
+        }
+      ]
+    },
     {
       "date": "2026-05-30",
       "audience": "Energy management",

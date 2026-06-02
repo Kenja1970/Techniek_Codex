@@ -5,7 +5,14 @@
     <link>https://example.com/</link>
     <description>Practical AI lessons for engineering, project management, and energy management teams.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 30 May 2026 20:40:59 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jun 2026 08:33:29 +0000</lastBuildDate>
+    <item>
+      <title>Monitor engineering AI after launch, not just before approval.</title>
+      <link>https://example.com/archive.html</link>
+      <guid>techniek-ai-brief-2026-06-02-1-monitor-engineering-ai-after-launch-not-just-before</guid>
+      <pubDate>Tue, 02 Jun 2026 12:00:00 -0400</pubDate>
+      <description>The practical risk in engineering AI is not only whether a tool passes a pilot. It is whether the tool keeps behaving under real operating conditions, changing inputs, equipment drift, project pressure, and human handoffs. Treat every AI workflow like a monitored control: define the decision, log the recommendation, require human disposition, and review exceptions on a set cadence.</description>
+    </item>
     <item>
       <title>Keep AI fault detection in advisory mode until operators verify the trend.</title>
       <link>https://example.com/archive.html</link>
