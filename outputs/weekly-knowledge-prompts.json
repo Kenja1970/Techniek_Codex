@@ -1,7 +1,7 @@
 {
   "updated": "2026-05-31",
-  "refreshCadence": "daily source scan; weekly owner-approved public prompt refresh",
-  "purpose": "Public-safe project-history topics for the Techniek Engineering website. Raw artifacts remain owner-only and controlled records are never published directly.",
+  "refreshCadence": "daily artifact scan; daily public-safe story refresh when eligible artifacts exist",
+  "purpose": "Public-safe project-history topics for the Techniek Engineering website. Raw artifacts remain owner-only and controlled records are never published directly. The automation may update this file from classified artifacts only when the result is sanitized, client-safe, and useful to a site visitor.",
   "sourcePolicy": {
     "uploadRoot": "C:\\Users\\grego\\Documents\\Codex\\2026-05-30\\files-mentioned-by-the-user-logo\\knowledge_uploads",
     "folders": {
@@ -29,8 +29,16 @@
     ],
     "cmmcAwareBoundary": [
       "Do not publish FCI, CUI, export-controlled technical data, credentials, contract numbers, proposal pricing, or client-confidential records.",
-      "Use only owner-approved summaries from knowledge_uploads\\approved_public for public website updates.",
-      "Route likely controlled or confidential artifacts to knowledge_uploads\\restricted_review before any public summary is drafted."
+      "Use artifacts from normal classified discipline folders only when the classifier did not route them to restricted_review or needs_review.",
+      "Use summaries from knowledge_uploads\\approved_public when they exist.",
+      "Route likely controlled or confidential artifacts to knowledge_uploads\\restricted_review and exclude them from public story generation."
+    ],
+    "automationRules": [
+      "The daily story automation updates this file only from sanitized source material.",
+      "Do not quote raw artifacts directly.",
+      "Write generalized professional experience themes, not client case disclosures.",
+      "Keep every prompt answer client-facing, concise, and action-oriented.",
+      "Commit and push public file changes only after JSON validation passes."
     ]
   },
   "centerPrompt": {
@@ -156,12 +164,12 @@
     }
   ],
   "weeklyUpdateChecklist": [
-    "Add new raw artifacts to knowledge_uploads\\inbox only.",
-    "Run the classifier and review any restricted_review or needs_review files.",
-    "Create a short approved summary with private details removed.",
-    "Move only sanitized, owner-approved summaries to knowledge_uploads\\approved_public.",
+    "Add new professional artifacts to knowledge_uploads\\inbox only.",
+    "Let the daily classifier route artifacts by discipline and sensitivity.",
+    "Let the daily story automation update public-safe project-history themes when eligible artifacts exist.",
+    "Ignore restricted_review and needs_review for public story generation.",
     "Rotate public link names from broad field trends to approved Techniek project-history themes as evidence grows.",
     "Keep each prompt answer actionable and short enough to scan.",
-    "Update the date field after review."
+    "Validate JSON before publishing."
   ]
 }

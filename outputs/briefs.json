@@ -1,6 +1,68 @@
 {
-  "updated": "2026-06-02",
+  "updated": "2026-06-06",
   "items": [
+    {
+      "date": "2026-06-06",
+      "audience": "Energy management",
+      "category": "Load planning",
+      "headline": "Plan large electric loads like projects, not just utility requests.",
+      "summary": "AI data centers are turning electricity, water, interconnection timing, and onsite power into front-end project risks. Commercial and industrial owners do not need to chase every headline, but they should treat large-load growth as a planning constraint: quantify the load, define flexibility, test utility assumptions, and track who owns grid, water, backup power, and emissions decisions before design locks in.",
+      "lessons": [
+        "Build a one-page load plan before committing scope: peak demand, expected runtime, ramp schedule, backup power, water needs, and critical operating limits.",
+        "Ask the utility for interconnection timing, upgrade assumptions, rate exposure, and curtailment or flexibility options before major equipment is ordered.",
+        "Treat energy storage, onsite generation, demand response, and controls as project alternatives with owners, costs, permits, and operating constraints.",
+        "Track water, cooling, emissions, and community impacts alongside power so the team avoids solving one constraint while creating another."
+      ],
+      "sources": [
+        {
+          "name": "DOE data center electricity demand report",
+          "url": "https://www.energy.gov/articles/doe-releases-new-report-evaluating-increase-electricity-demand-data-centers"
+        },
+        {
+          "name": "DOE clean energy resources for data centers",
+          "url": "https://www.energy.gov/oe/clean-energy-resources-meet-data-center-electricity-demand"
+        },
+        {
+          "name": "AP data center energy and water report",
+          "url": "https://apnews.com/article/a792f184a9f2833b5388dbae8b41ca95"
+        },
+        {
+          "name": "S&P Global data center power demand",
+          "url": "https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/050626-surging-us-data-center-power-demand-tests-sustainability-targets"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-05",
+      "audience": "Project management",
+      "category": "AI project controls",
+      "headline": "Treat AI project controls as a data-quality program first.",
+      "summary": "Recent engineering and construction industry signals point to the same practical constraint: AI can improve forecasting, coordination, and risk review, but only when project records are structured enough to trust. For commercial and industrial teams, the near-term win is not a large AI platform. It is a disciplined project-control loop that cleans the data, defines human review, protects sensitive records, and measures whether the tool improves decisions.",
+      "lessons": [
+        "Start with one project-control use case such as schedule-risk review, RFI aging, submittal bottlenecks, change exposure, or weekly action tracking.",
+        "Clean the source records before automating: name owners consistently, close stale actions, tag disciplines, and separate facts from assumptions.",
+        "Create a review rule for every AI output: who accepts it, who rejects it, what evidence is required, and where the decision is logged.",
+        "Track a simple before-and-after measure such as open-risk age, review cycle time, rework avoided, forecast accuracy, or decisions closed per week."
+      ],
+      "sources": [
+        {
+          "name": "Deltek 2026 Clarity Studies",
+          "url": "https://www.deltek.com/en/about/media-center/press-releases/2026/the-latest-deltek-clarity-industry-studies-highlight-ai-challenges"
+        },
+        {
+          "name": "Deloitte 2026 Engineering and Construction Outlook",
+          "url": "https://www.deloitte.com/us/en/insights/industry/engineering-and-construction/engineering-and-construction-industry-outlook.htmluction-industry-trends.html"
+        },
+        {
+          "name": "CMI AI-driven project controls",
+          "url": "https://www.managers.org.uk/knowledge-and-insights/article/ai-driven-project-controls-in-global-construction/"
+        },
+        {
+          "name": "Frontiers GenAI construction risk model",
+          "url": "https://www.frontiersin.org/journals/built-environment/articles/10.3389/fbuil.2026.1842237/full"
+        }
+      ]
+    },
     {
       "date": "2026-06-02",
       "audience": "All disciplines",

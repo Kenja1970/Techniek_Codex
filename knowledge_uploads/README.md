@@ -1,6 +1,6 @@
 # Techniek Project History Upload Library
 
-Use this folder as the private source library for future Techniek project-history and skills prompts. Drop new documents into `inbox`; a background classifier can sort them into the right discipline folder, move controlled or confidential files to `restricted_review`, move ambiguous files to `needs_review`, and keep public website content limited to approved summaries.
+Use this folder as the private source library for future Techniek project-history and skills prompts. Drop new documents into `inbox`; a background classifier can sort them into the right discipline folder, move controlled or confidential files to `restricted_review`, move ambiguous files to `needs_review`, and keep public website content limited to sanitized professional experience themes.
 
 This is an owner-only workspace. Do not publish raw artifacts from this folder to the public website.
 
@@ -12,7 +12,7 @@ This is an owner-only workspace. Do not publish raw artifacts from this folder t
 - `energy_engineering` - utility reviews, BAS trend exports, interval data, energy audits, operating schedules, savings checks, and measurement notes.
 - `project_management` - project controls, schedules, decision logs, risk registers, meeting notes, RFI/submittal lessons, and closeout summaries.
 - `restricted_review` - likely FCI, CUI, export-controlled, client-confidential, pricing, proposal, credential, or contract material. Review and sanitize before any public use.
-- `approved_public` - short owner-approved summaries only. These can be used to update `skills.json`, `weekly-knowledge-prompts.json`, and public pages.
+- `approved_public` - optional short owner-approved summaries. These can be used to update `skills.json`, `weekly-knowledge-prompts.json`, and public pages.
 - `needs_review` - files the classifier cannot confidently place.
 - `processed` - originals or copies after classification and owner review.
 
@@ -34,8 +34,21 @@ This is an owner-only workspace. Do not publish raw artifacts from this folder t
 5. It assigns one primary category: mechanical, civil, energy, or project management.
 6. It detects likely CMMC-sensitive material and routes it to `restricted_review`.
 7. It moves ambiguous files to `needs_review`.
-8. It creates or updates an approved summary only after owner review.
-9. Public website prompts use approved summaries, not raw private documents.
+8. A daily story automation can use normal classified discipline folders and `approved_public` to update public-safe professional experience themes.
+9. Public website prompts use sanitized themes, not raw private documents.
+
+## Hands-Off Publishing Rule
+
+Your only routine input should be artifacts placed in `knowledge_uploads/inbox`.
+
+The automations should run in this order:
+
+1. DOE budget refresh.
+2. Artifact classification.
+3. Professional experience story refresh.
+4. Industry Brief refresh.
+
+The story refresh can update public site data only when the source material is not in `restricted_review` or `needs_review`. If a file may contain FCI, CUI, client names, pricing, credentials, contract numbers, or export-controlled technical data, it must remain outside automatic public storytelling.
 
 ## Supported Starting Files
 
