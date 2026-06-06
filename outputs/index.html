@@ -284,6 +284,55 @@
       font-size: 0.9rem;
     }
 
+    .jump-menu-section {
+      padding: 18px 0;
+      border-top: 1px solid var(--soft-silver);
+      border-bottom: 1px solid var(--soft-silver);
+      background: #ffffff;
+    }
+
+    .jump-menu {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .jump-menu-label {
+      flex: 0 0 auto;
+      color: #5f6874;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .jump-menu-links {
+      display: flex;
+      flex: 1 1 auto;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .jump-menu-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 13px;
+      border: 1px solid #d7dde5;
+      border-radius: var(--radius);
+      background: var(--panel);
+      color: #3f4954;
+      font-size: 0.92rem;
+      font-weight: 700;
+      transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+    }
+
+    .jump-menu-links a:hover,
+    .jump-menu-links a:focus-visible {
+      border-color: rgba(0, 96, 224, 0.38);
+      background: rgba(0, 96, 224, 0.08);
+      color: var(--blue-dark);
+    }
+
     .signup-links {
       margin: -4px 0 2px;
       font-size: 0.92rem;
@@ -1025,6 +1074,10 @@
         font-size: 0.9rem;
       }
 
+      .nav-links a:last-child {
+        grid-column: 1 / -1;
+      }
+
       .nav .button,
       .hero-actions .button,
       .signup-form .button,
@@ -1060,6 +1113,28 @@
         padding: 22px;
       }
 
+      .jump-menu {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .jump-menu-section {
+        padding: 14px 0;
+      }
+
+      .jump-menu-links {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .jump-menu-links a {
+        min-height: 42px;
+        padding: 0 8px;
+        font-size: 0.88rem;
+      }
+
       .features,
       .knowledge-prompts,
       .brief,
@@ -1084,12 +1159,24 @@
         <nav class="nav-links" aria-label="Main navigation">
           <a href="#services">Services</a>
           <a href="support-finder.html">Find Support</a>
-          <a href="#knowledge-prompts">Project History</a>
           <a href="#contact">Contact</a>
         </nav>
         <a class="button" href="#contact">Request Consultation</a>
       </div>
     </header>
+
+    <nav class="jump-menu-section" aria-label="Page jump menu">
+      <div class="container jump-menu">
+        <span class="jump-menu-label">Jump to</span>
+        <div class="jump-menu-links">
+          <a href="#services">Services</a>
+          <a href="#project-prep">Project Prep</a>
+          <a href="#knowledge-prompts">Project Experience</a>
+          <a href="#brief">Industry Brief</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
 
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
@@ -1148,7 +1235,7 @@
         </div>
       </section>
 
-      <section class="proof-library" aria-labelledby="proof-title">
+      <section class="proof-library" id="project-prep" aria-labelledby="proof-title">
         <div class="container">
           <div class="section-heading">
             <p class="eyebrow">Project readiness</p>
