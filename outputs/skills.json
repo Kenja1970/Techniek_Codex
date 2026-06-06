@@ -65,7 +65,7 @@
       "relatedBriefCategories": ["AI governance", "Digital twins"],
       "referenceLinks": [
         { "label": "Engineering support", "url": "engineering-support.html" },
-        { "label": "Project history prompts", "url": "index.html#knowledge-prompts" }
+        { "label": "Project experience", "url": "index.html#knowledge-prompts" }
       ],
       "keywordTriggers": [
         "design",
@@ -112,7 +112,7 @@
       "relatedBriefCategories": ["Project controls", "AI governance"],
       "referenceLinks": [
         { "label": "Project management", "url": "project-management.html" },
-        { "label": "AI brief archive", "url": "archive.html" }
+        { "label": "Industry Brief archive", "url": "archive.html" }
       ],
       "keywordTriggers": [
         "schedule",
@@ -159,7 +159,7 @@
       "relatedBriefCategories": ["Energy operations", "Building controls"],
       "referenceLinks": [
         { "label": "Energy management", "url": "energy-management.html" },
-        { "label": "Daily AI Engineering Brief", "url": "index.html#brief" }
+        { "label": "Industry Brief", "url": "index.html#brief" }
       ],
       "keywordTriggers": [
         "utility",
@@ -205,8 +205,8 @@
       },
       "relatedBriefCategories": ["AI governance", "Building controls", "Project controls"],
       "referenceLinks": [
-        { "label": "AI brief archive", "url": "archive.html" },
-        { "label": "Project history prompts", "url": "index.html#knowledge-prompts" }
+        { "label": "Industry Brief archive", "url": "archive.html" },
+        { "label": "Project experience", "url": "index.html#knowledge-prompts" }
       ],
       "keywordTriggers": [
         "ai",

@@ -609,10 +609,46 @@
 
     .prompt-card {
       width: 100%;
+      position: relative;
+      overflow: hidden;
+      padding-right: 92px;
       text-align: left;
       cursor: pointer;
       font: inherit;
       transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+    }
+
+    .prompt-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 5px;
+      background: var(--blue);
+      opacity: 0.78;
+    }
+
+    .prompt-card:nth-child(2)::before {
+      background: var(--green);
+    }
+
+    .prompt-card:nth-child(3)::before {
+      background: var(--yellow);
+    }
+
+    .prompt-card[aria-pressed="true"]::after {
+      content: "Selected";
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      min-height: 26px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 9px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
     }
 
     .prompt-card:hover,

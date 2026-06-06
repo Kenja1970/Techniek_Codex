@@ -27,9 +27,16 @@
       background: var(--te-white);
     }
 
-    .question-card h2 {
+    fieldset.question-card {
+      min-inline-size: 0;
+      margin: 0;
+    }
+
+    .question-card h2,
+    .question-card legend {
       margin: 0 0 14px;
       font-size: 1.25rem;
+      font-weight: 700;
       line-height: 1.25;
     }
 
@@ -39,25 +46,111 @@
     }
 
     .option-grid label {
+      position: relative;
       display: grid;
-      grid-template-columns: 22px minmax(0, 1fr);
+      grid-template-columns: 24px minmax(0, 1fr);
       gap: 12px;
       align-items: start;
-      padding: 14px;
+      min-height: 56px;
+      padding: 15px 16px 15px 18px;
       border: 1px solid var(--te-border-strong);
       border-radius: var(--te-radius);
       background: var(--te-panel);
       cursor: pointer;
+      transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .option-grid label::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 5px;
+      border-radius: var(--te-radius) 0 0 var(--te-radius);
+      background: var(--te-blue);
+      opacity: 0.72;
+    }
+
+    .option-grid label:nth-child(2)::before {
+      background: var(--te-green);
+    }
+
+    .option-grid label:nth-child(3)::before {
+      background: var(--te-yellow);
+    }
+
+    .option-grid label:nth-child(4)::before {
+      background: var(--te-blue-dark);
+    }
+
+    .option-grid label:hover,
+    .option-grid label:focus-within {
+      border-color: rgba(0, 96, 224, 0.46);
+      box-shadow: 0 0 0 4px rgba(0, 96, 224, 0.08);
     }
 
     .option-grid label:has(input:checked) {
       border-color: var(--te-blue);
       background: rgba(0, 96, 224, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(0, 96, 224, 0.24);
     }
 
     .option-grid input {
-      margin-top: 5px;
+      width: 18px;
+      height: 18px;
+      margin-top: 3px;
       accent-color: var(--te-blue);
+    }
+
+    .option-text {
+      display: grid;
+      gap: 3px;
+      color: var(--te-charcoal);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .option-text small {
+      color: var(--te-muted);
+      font-size: 0.86rem;
+      font-weight: 400;
+      line-height: 1.35;
+    }
+
+    .finder-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px;
+      border: 1px solid var(--te-border);
+      border-radius: var(--te-radius);
+      background: var(--te-white);
+    }
+
+    .finder-controls p {
+      margin: 0;
+      color: var(--te-muted);
+      font-size: 0.94rem;
+    }
+
+    .finder-reset {
+      flex: 0 0 auto;
+      min-height: 42px;
+      padding: 0 14px;
+      border: 1px solid var(--te-border-strong);
+      border-radius: var(--te-radius);
+      background: var(--te-white);
+      color: var(--te-blue-dark);
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .finder-reset:hover,
+    .finder-reset:focus-visible {
+      background: rgba(0, 96, 224, 0.08);
+      border-color: rgba(0, 96, 224, 0.42);
     }
 
     .prompt-box {
@@ -168,10 +261,30 @@
     }
 
     .option-card {
+      position: relative;
+      overflow: hidden;
       padding: 22px;
       border: 1px solid var(--te-border);
       border-radius: var(--te-radius);
       background: var(--te-white);
+    }
+
+    .option-card::before {
+      content: "";
+      display: block;
+      width: 52px;
+      height: 6px;
+      margin-bottom: 18px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--te-blue), var(--te-green));
+    }
+
+    .option-card:nth-child(2)::before {
+      background: linear-gradient(90deg, var(--te-green), var(--te-yellow));
+    }
+
+    .option-card:nth-child(3)::before {
+      background: linear-gradient(90deg, var(--te-yellow), var(--te-blue));
     }
 
     .option-card h3 {
@@ -192,6 +305,15 @@
       .prep-grid {
         grid-template-columns: 1fr;
       }
+
+      .finder-controls {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .finder-reset {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -207,7 +329,7 @@
           <a href="index.html#services">Services</a>
           <a href="support-finder.html" aria-current="page">Find Support</a>
           <a href="index.html#knowledge-prompts">Project History</a>
-          <a href="index.html#brief">AI Brief</a>
+          <a href="index.html#brief">Industry Brief</a>
           <a href="index.html#contact">Contact</a>
         </nav>
         <a class="te-button" href="index.html#contact">Request Consultation</a>
@@ -380,7 +502,7 @@
       "relatedBriefCategories": ["AI governance", "Digital twins"],
       "referenceLinks": [
         { "label": "Engineering support", "url": "engineering-support.html" },
-        { "label": "Project history prompts", "url": "index.html#knowledge-prompts" }
+        { "label": "Project experience", "url": "index.html#knowledge-prompts" }
       ],
       "keywordTriggers": [
         "design",
@@ -427,7 +549,7 @@
       "relatedBriefCategories": ["Project controls", "AI governance"],
       "referenceLinks": [
         { "label": "Project management", "url": "project-management.html" },
-        { "label": "AI brief archive", "url": "archive.html" }
+        { "label": "Industry Brief archive", "url": "archive.html" }
       ],
       "keywordTriggers": [
         "schedule",
@@ -474,7 +596,7 @@
       "relatedBriefCategories": ["Energy operations", "Building controls"],
       "referenceLinks": [
         { "label": "Energy management", "url": "energy-management.html" },
-        { "label": "Daily AI Engineering Brief", "url": "index.html#brief" }
+        { "label": "Industry Brief", "url": "index.html#brief" }
       ],
       "keywordTriggers": [
         "utility",
@@ -520,8 +642,8 @@
       },
       "relatedBriefCategories": ["AI governance", "Building controls", "Project controls"],
       "referenceLinks": [
-        { "label": "AI brief archive", "url": "archive.html" },
-        { "label": "Project history prompts", "url": "index.html#knowledge-prompts" }
+        { "label": "Industry Brief archive", "url": "archive.html" },
+        { "label": "Project experience", "url": "index.html#knowledge-prompts" }
       ],
       "keywordTriggers": [
         "ai",
@@ -590,6 +712,25 @@
       return question?.options.find((option) => option.value === value)?.label || value || "Not selected";
     }
 
+    const optionHints = {
+      "technical-review": "For a technical issue, proposal, design question, or second opinion.",
+      "project-control": "For scattered risks, open decisions, schedules, RFIs, or stakeholder reporting.",
+      "energy-performance": "For utility cost, demand, BAS trends, operating schedules, or savings checks.",
+      "ai-workflow": "For document workflows, measurement plans, automation readiness, or knowledge capture.",
+      "planning": "Before scope, budget, schedule, or procurement is locked in.",
+      "active": "When the project or facility issue is underway and decisions are needed.",
+      "stuck": "When ownership, risk, information, or next steps are unclear.",
+      "improve": "When the current process works but needs better speed, clarity, or evidence.",
+      "memo": "Best when leadership needs a concise recommendation.",
+      "action-list": "Best when the team needs sequenced next steps.",
+      "risk-view": "Best when uncertainty, blockers, or status need structure.",
+      "data-plan": "Best when measurement, trend review, or evidence collection is the next move."
+    };
+
+    function optionHint(value) {
+      return optionHints[value] || "Select this if it best matches the current situation.";
+    }
+
     function buildContactSummary(top, answers, matchedText) {
       const situation = String(answers.situation || "").trim() || "No situation description entered yet.";
       return [
@@ -621,17 +762,26 @@
       form.appendChild(promptCard);
       form.insertAdjacentHTML("beforeend", knowledge.questions.map((question) => `
         <fieldset class="question-card">
-          <h2>${escapeHtml(question.label)}</h2>
+          <legend>${escapeHtml(question.label)}</legend>
           <div class="option-grid">
             ${question.options.map((option, optionIndex) => `
               <label>
                 <input type="radio" name="${escapeHtml(question.id)}" value="${escapeHtml(option.value)}" ${optionIndex === 0 ? "checked" : ""}>
-                <span>${escapeHtml(option.label)}</span>
+                <span class="option-text">
+                  <span>${escapeHtml(option.label)}</span>
+                  <small>${escapeHtml(optionHint(option.value))}</small>
+                </span>
               </label>
             `).join("")}
           </div>
         </fieldset>
       `).join(""));
+      form.insertAdjacentHTML("beforeend", `
+        <div class="finder-controls">
+          <p>Recommendations update as you choose. Keep sensitive project details out of this public page.</p>
+          <button class="finder-reset" type="reset">Reset finder</button>
+        </div>
+      `);
     }
 
     function renderResult() {
@@ -717,6 +867,9 @@
 
     form.addEventListener("change", renderResult);
     form.addEventListener("input", renderResult);
+    form.addEventListener("reset", () => {
+      window.setTimeout(renderResult, 0);
+    });
     loadKnowledge();
   </script>
 </body>

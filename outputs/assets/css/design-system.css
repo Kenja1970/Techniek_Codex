@@ -540,6 +540,10 @@ textarea:focus-visible {
     justify-content: center;
   }
 
+  .te-nav-links a:last-child {
+    grid-column: 1 / -1;
+  }
+
   .te-button {
     width: 100%;
     white-space: normal;
