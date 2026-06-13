@@ -1,6 +1,64 @@
 ﻿{
-    "updated":  "2026-06-07",
+    "updated":  "2026-06-13",
     "items":  [
+                  {
+                      "date":  "2026-06-13",
+                      "audience":  "Project management",
+                      "category":  "Large-load planning",
+                      "headline":  "Lock in curtailment, tariff, and backup-power rules before large loads hit the summer peak.",
+                      "summary":  "Current grid and data-center signals point to the same execution gap: large new electric loads are arriving faster than utilities, tariffs, and operating rules are adapting. DOE says data centers could rise from 4.4% of U.S. electricity use in 2023 to roughly 6.7% to 12% by 2028, while IEA expects data centers to drive about half of U.S. electricity demand growth through 2030. For commercial and industrial project teams, the practical move is to settle the load profile, curtailment triggers, backup-power role, and cost-allocation terms before procurement so summer operations do not depend on assumptions that were never written down.",
+                      "lessons":  [
+                                      "Issue a large-load operating sheet before major purchases: expected megawatts, ramp profile, seasonal peak behavior, minimum service level, and which scenarios permit curtailment or staged energization.",
+                                      "Translate utility discussions into contract language by naming who pays for upgrades, which tariff or rider applies, how demand charges are handled, and what data the facility must share once it is online.",
+                                      "Define the role of onsite generation, storage, and UPS systems in writing; separate backup-only capacity from assets that can shave peaks, ride through disturbances, or support orderly curtailment.",
+                                      "Run a summer-readiness review with engineering, operations, finance, and the utility before startup so the team tests peak-weather assumptions, fuel constraints, alarm paths, and operator decision rights."
+                                  ],
+                      "sources":  [
+                                      {
+                                          "name":  "DOE report on rising data center electricity demand",
+                                          "url":  "https://www.energy.gov/articles/doe-releases-new-report-evaluating-increase-electricity-demand-data-centers"
+                                      },
+                                      {
+                                          "name":  "DOE clean energy resources for data center load growth",
+                                          "url":  "https://www.energy.gov/oe/clean-energy-resources-meet-data-center-electricity-demand"
+                                      },
+                                      {
+                                          "name":  "IEA Electricity 2026 executive summary",
+                                          "url":  "https://www.iea.org/reports/electricity-2026/executive-summary"
+                                      },
+                                      {
+                                          "name":  "Axios on ERCOT record summer demand forecast",
+                                          "url":  "https://www.axios.com/local/houston/2026/06/12/texas-power-grid-summer-demand-ercot-forecast"
+                                      }
+                                  ]
+                  },
+                  {
+                      "date":  "2026-06-08",
+                      "audience":  "Energy management",
+                      "category":  "Grid planning",
+                      "headline":  "Treat large electric loads as flexible grid assets from day one.",
+                      "summary":  "Recent DOE and IEA updates point to the same execution issue: AI-driven load growth is moving faster than interconnection, generation, and equipment supply chains. For commercial and industrial teams planning data centers or other large electric loads, the practical move is to design flexibility into the project at the front end by defining staged energization, onsite storage or microgrid roles, utility operating constraints, and the conditions under which the facility can support the grid instead of only drawing from it.",
+                      "lessons":  [
+                                      "Write a large-load basis of design before procurement: target megawatts, ramp profile, uptime requirement, cooling water needs, curtailment options, and the utility milestones that control energization.",
+                                      "Evaluate microgrids, storage, and controls as bridge and grid-support assets, not backup-only equipment, so the project can energize sooner and still provide demand response or reserve support later.",
+                                      "Model fast load swings and step changes explicitly; AI-heavy facilities can stress interconnection plans and onsite generation unless controls, storage, and operating envelopes are engineered together.",
+                                      "Tie commercial terms to flexibility performance by assigning who approves curtailment, what operating data is shared with the utility or operator, and how reliability, cost, and ratepayer impacts are reviewed."
+                                  ],
+                      "sources":  [
+                                      {
+                                          "name":  "DOE microgrids and large electric loads",
+                                          "url":  "https://www.energy.gov/oe/articles/microgrids-large-electric-loads-grid-support-how-leverage-microgrids-support-utilities"
+                                      },
+                                      {
+                                          "name":  "DOE clean energy resources for data center demand",
+                                          "url":  "https://www.energy.gov/oe/clean-energy-resources-meet-data-center-electricity-demand"
+                                      },
+                                      {
+                                          "name":  "IEA data centre electricity use surged in 2025",
+                                          "url":  "https://www.iea.org/news/data-centre-electricity-use-surged-in-2025-even-with-tightening-bottlenecks-driving-a-scramble-for-solutions"
+                                      }
+                                  ]
+                  },
                   {
                       "date":  "2026-06-07",
                       "audience":  "Industrial operations",

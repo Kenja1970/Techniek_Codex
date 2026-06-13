@@ -5,7 +5,21 @@
     <link>https://example.com/</link>
     <description>Practical industry signals for engineering, project management, and energy management teams.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Jun 2026 08:30:30 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jun 2026 16:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Lock in curtailment, tariff, and backup-power rules before large loads hit the summer peak.</title>
+      <link>https://example.com/archive.html</link>
+      <guid>techniek-industry-brief-2026-06-13-lock-in-curtailment-tariff-and-backup-power-rules</guid>
+      <pubDate>Sat, 13 Jun 2026 12:00:00 -0400</pubDate>
+      <description>Current grid and data-center signals point to the same execution gap: large new electric loads are arriving faster than utilities, tariffs, and operating rules are adapting. DOE says data centers could rise from 4.4% of U.S. electricity use in 2023 to roughly 6.7% to 12% by 2028, while IEA expects data centers to drive about half of U.S. electricity demand growth through 2030. For commercial and industrial project teams, the practical move is to settle the load profile, curtailment triggers, backup-power role, and cost-allocation terms before procurement so summer operations do not depend on assumptions that were never written down.</description>
+    </item>
+    <item>
+      <title>Treat large electric loads as flexible grid assets from day one.</title>
+      <link>https://example.com/archive.html</link>
+      <guid>techniek-industry-brief-2026-06-08-treat-large-electric-loads-as-flexible-grid-assets</guid>
+      <pubDate>Mon, 08 Jun 2026 12:00:00 -0400</pubDate>
+      <description>Recent DOE and IEA updates point to the same execution issue: AI-driven load growth is moving faster than interconnection, generation, and equipment supply chains. For commercial and industrial teams planning data centers or other large electric loads, the practical move is to design flexibility into the project at the front end by defining staged energization, onsite storage or microgrid roles, utility operating constraints, and the conditions under which the facility can support the grid instead of only drawing from it.</description>
+    </item>
     <item>
       <title>Set AI guardrails before it reaches live operations.</title>
       <link>https://example.com/archive.html</link>
