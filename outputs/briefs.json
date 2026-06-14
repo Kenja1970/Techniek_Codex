@@ -1,6 +1,37 @@
 ﻿{
-    "updated":  "2026-06-13",
+    "updated":  "2026-06-14",
     "items":  [
+                  {
+                      "date":  "2026-06-14",
+                      "audience":  "Project management",
+                      "category":  "Site development",
+                      "headline":  "Treat water, utility, and community approvals as critical-path gates for AI-heavy power projects.",
+                      "summary":  "Current U.S. data-center signals show that power is no longer the only front-end constraint. Recent reporting highlights rising community resistance, water stress at many planned sites, and utility debates over who pays for the infrastructure needed to serve very large new loads. For commercial and industrial project teams, the practical move is to lock water, grid, community, and cost-allocation assumptions into the project basis before land, design, and procurement decisions outrun the approvals they depend on.",
+                      "lessons":  [
+                                      "Add a site-readiness gate before procurement that names expected megawatts, cooling-water strategy, backup generation, noise profile, and which permits or local approvals can still stop the project.",
+                                      "Carry a utility-commercial matrix in parallel with design: interconnection timing, upgrade scope, curtailment rights, tariff exposure, and who pays if the load arrives before permanent infrastructure is ready.",
+                                      "Treat community acceptance as a schedule risk with owners and dates by documenting traffic, water, noise, land-use, and tax questions early instead of leaving them to late hearings.",
+                                      "Model fallback operating modes before startup, such as phased energization, lower-density occupancy, alternative cooling, or temporary generation, so the project can absorb delays without rewriting the full delivery plan."
+                                  ],
+                      "sources":  [
+                                      {
+                                          "name":  "Business Insider on communities blocking or delaying data centers",
+                                          "url":  "https://www.businessinsider.com/data-center-bans-moratoriums-opposition-map-2026-6"
+                                      },
+                                      {
+                                          "name":  "The Guardian on planned AI data centers in drought-hit areas",
+                                          "url":  "https://www.theguardian.com/us-news/2026/jun/08/datacenter-ai-drought-water"
+                                      },
+                                      {
+                                          "name":  "DOE report on rising data center electricity demand",
+                                          "url":  "https://www.energy.gov/articles/doe-releases-new-report-evaluating-increase-electricity-demand-data-centers"
+                                      },
+                                      {
+                                          "name":  "Axios on who pays for AI-driven power infrastructure",
+                                          "url":  "https://www.axios.com/2026/06/13/ai-power-electricity-data-centers-who-pays"
+                                      }
+                                  ]
+                  },
                   {
                       "date":  "2026-06-13",
                       "audience":  "Project management",
