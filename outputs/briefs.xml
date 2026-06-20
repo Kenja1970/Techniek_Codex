@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <rss version="2.0">
   <channel>
     <title>Techniek Engineering Industry Brief</title>
     <link>https://example.com/</link>
     <description>Practical industry signals for engineering, project management, and energy management teams.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 14 Jun 2026 14:28:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jun 2026 15:29:34 +0000</lastBuildDate>
+    <item>
+      <title>Rebaseline industrial capital projects before supplier pressure turns into budget and schedule drift.</title>
+      <link>https://example.com/archive.html</link>
+      <guid>techniek-industry-brief-2026-06-20-rebaseline-industrial-capital-projects-before-supplier-p</guid>
+      <pubDate>Sat, 20 Jun 2026 12:00:00 -0400</pubDate>
+      <description>June indicators show an awkward operating mix: U.S. industrial production edged up only 0.1% in May and manufacturing output was flat, yet the ISM manufacturing index remained in expansion and its prices index stayed exceptionally high at 82.1. The New York Fed also reported longer delivery times and its weakest supply-availability reading since June 2022, while Census data showed private nonresidential construction spending slipping in April. Project teams should treat current vendor pricing and lead times as active controls, not assumptions inherited from the original estimate.</description>
+    </item>
     <item>
       <title>Treat water, utility, and community approvals as critical-path gates for AI-heavy power projects.</title>
       <link>https://example.com/archive.html</link>

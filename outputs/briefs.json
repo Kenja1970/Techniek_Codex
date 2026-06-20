@@ -1,6 +1,37 @@
 ﻿{
-    "updated":  "2026-06-14",
+    "updated":  "2026-06-20",
     "items":  [
+                  {
+                      "date":  "2026-06-20",
+                      "audience":  "Project management",
+                      "category":  "Cost and procurement",
+                      "headline":  "Rebaseline industrial capital projects before supplier pressure turns into budget and schedule drift.",
+                      "summary":  "June indicators show an awkward operating mix: U.S. industrial production edged up only 0.1% in May and manufacturing output was flat, yet the ISM manufacturing index remained in expansion and its prices index stayed exceptionally high at 82.1. The New York Fed also reported longer delivery times and its weakest supply-availability reading since June 2022, while Census data showed private nonresidential construction spending slipping in April. Project teams should treat current vendor pricing and lead times as active controls, not assumptions inherited from the original estimate.",
+                      "lessons":  [
+                                      "Refresh quotes for the highest-cost and longest-lead packages before each funding or release gate, recording expiration dates, escalation clauses, freight assumptions, and the schedule effect of a late award.",
+                                      "Separate design contingency from market contingency so scope development, commodity inflation, tariffs, and supplier capacity are visible instead of being absorbed into one shrinking reserve.",
+                                      "Prequalify at least one technical alternate for critical equipment and materials, including the engineering review, controls integration, permitting, and commissioning work required to use it.",
+                                      "Run a monthly procurement stress test that compares the approved baseline with current price, lead-time, and availability signals, then assigns each variance to accept, mitigate, defer, or redesign."
+                                  ],
+                      "sources":  [
+                                      {
+                                          "name":  "Federal Reserve industrial production and capacity utilization, May 2026",
+                                          "url":  "https://www.federalreserve.gov/releases/g17/current/default.htm"
+                                      },
+                                      {
+                                          "name":  "ISM Manufacturing PMI report, May 2026",
+                                          "url":  "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/pmi/may/"
+                                      },
+                                      {
+                                          "name":  "New York Fed Empire State Manufacturing Survey, June 2026",
+                                          "url":  "https://www.newyorkfed.org/survey/empire/empiresurvey_overview"
+                                      },
+                                      {
+                                          "name":  "U.S. Census Bureau construction spending, April 2026",
+                                          "url":  "https://www.census.gov/construction/c30/current/index.html"
+                                      }
+                                  ]
+                  },
                   {
                       "date":  "2026-06-14",
                       "audience":  "Project management",
