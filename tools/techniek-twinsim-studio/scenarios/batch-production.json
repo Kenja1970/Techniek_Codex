@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "0.1.0",
+  "createdAt": "2026-06-14T00:00:00.000Z",
+  "updatedAt": "2026-06-14T00:00:00.000Z",
+  "appVersion": "0.1.0",
+  "id": "batch-production",
+  "scenarioName": "Batch Production",
+  "scenarioType": "manufacturing",
+  "assumptions": {
+    "summary": "A batch oven waits for full trays or a maximum wait time before processing.",
+    "notes": ["Batch waiting affects WIP and cycle time.", "A stockout can delay release into batch processing."]
+  },
+  "objects": [
+    { "id": "src-b", "type": "source", "category": "manufacturing", "label": "Mixer release", "x": 60, "y": 170, "properties": { "capacity": 1 } },
+    { "id": "queue-b", "type": "queue", "category": "manufacturing", "label": "Tray queue", "x": 230, "y": 170, "properties": { "capacity": 60 } },
+    {
+      "id": "batch-b",
+      "type": "batchProcessor",
+      "category": "manufacturing",
+      "label": "Batch oven",
+      "x": 410,
+      "y": 170,
+      "properties": {
+        "capacity": 1,
+        "batchEnabled": true,
+        "batchSize": 6,
+        "maxBatchWait": 90,
+        "processTime": { "distribution": "normal", "mean": 70, "stdev": 8 },
+        "failureProbability": 0.03,
+        "calendarId": "standard"
+      }
+    },
+    { "id": "pack-b", "type": "processor", "category": "manufacturing", "label": "Pack station", "x": 610, "y": 170, "properties": { "capacity": 2, "processTime": { "distribution": "uniform", "min": 12, "max": 20 }, "calendarId": "standard" } },
+    { "id": "fg-b", "type": "finishedGoods", "category": "manufacturing", "label": "Packed goods", "x": 790, "y": 170, "properties": {} }
+  ],
+  "connectors": [
+    { "id": "bc1", "from": "src-b", "to": "queue-b", "type": "production", "label": "release", "priority": 1, "probability": 1, "condition": "any" },
+    { "id": "bc2", "from": "queue-b", "to": "batch-b", "type": "production", "label": "tray feed", "priority": 1, "probability": 1, "condition": "any" },
+    { "id": "bc3", "from": "batch-b", "to": "pack-b", "type": "production", "label": "cool and pack", "priority": 1, "probability": 1, "condition": "any" },
+    { "id": "bc4", "from": "pack-b", "to": "fg-b", "type": "production", "label": "done", "priority": 1, "probability": 1, "condition": "any" }
+  ],
+  "materials": [
+    { "id": "resin", "name": "Resin kit", "supplier": "Fictional Chem", "startingInventory": 28, "reorderPoint": 10, "reorderQuantity": 36, "supplierLeadTime": 360, "receivingDelay": 30, "receivingWindow": "weekday" }
+  ],
+  "resources": [
+    { "id": "batch-operator", "name": "Batch operator", "capacity": 1, "calendarId": "standard", "costPerHour": 58 }
+  ],
+  "tokenTypes": [
+    {
+      "id": "tray-kit",
+      "label": "Tray kit",
+      "sourceId": "src-b",
+      "arrivalInterval": 18,
+      "maxTokens": 54,
+      "priority": 3,
+      "dueIn": 780,
+      "materialRequirements": [{ "materialId": "resin", "quantity": 1 }],
+      "processTimes": {
+        "batch-b": { "distribution": "normal", "mean": 70, "stdev": 8 },
+        "pack-b": { "distribution": "uniform", "min": 12, "max": 20 }
+      },
+      "businessValue": 95
+    }
+  ],
+  "calendars": [
+    { "id": "standard", "label": "Two-shift weekday", "shiftLength": 480, "shiftsPerDay": 2, "workingDays": [1, 2, 3, 4, 5] }
+  ],
+  "simulation": {
+    "timeUnit": "minutes",
+    "shiftLength": 480,
+    "shiftsPerDay": 2,
+    "workingDays": [1, 2, 3, 4, 5],
+    "runDuration": 960,
+    "warmupPeriod": 0,
+    "reportingPeriod": 60,
+    "seed": 22041,
+    "priorityRule": "FIFO"
+  }
+}

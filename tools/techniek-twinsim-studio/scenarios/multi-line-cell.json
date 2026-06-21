@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "0.1.0",
+  "createdAt": "2026-06-14T00:00:00.000Z",
+  "updatedAt": "2026-06-14T00:00:00.000Z",
+  "appVersion": "0.1.0",
+  "id": "multi-line-cell",
+  "scenarioName": "Multi-Line Manufacturing Cell",
+  "scenarioType": "manufacturing",
+  "assumptions": {
+    "summary": "Two parallel cells feed a shared inspection and finished goods area.",
+    "notes": ["Connector probabilities are placeholders for future load balancing.", "Shared inspection is expected to become the constraint."]
+  },
+  "objects": [
+    { "id": "src-m", "type": "source", "category": "manufacturing", "label": "Demand release", "x": 50, "y": 220, "properties": { "capacity": 1 } },
+    { "id": "cell-a-m", "type": "processor", "category": "manufacturing", "label": "Cell A", "x": 250, "y": 120, "properties": { "capacity": 1, "processTime": { "distribution": "triangular", "min": 24, "mode": 34, "max": 52 }, "calendarId": "standard" } },
+    { "id": "cell-b-m", "type": "processor", "category": "manufacturing", "label": "Cell B", "x": 250, "y": 320, "properties": { "capacity": 1, "processTime": { "distribution": "triangular", "min": 28, "mode": 38, "max": 58 }, "calendarId": "standard", "downtime": { "randomEnabled": true, "mtbf": 560, "mttr": 30, "scheduled": [{ "start": 540, "duration": 30 }] } } },
+    { "id": "inspect-m", "type": "inspection", "category": "manufacturing", "label": "Shared inspection", "x": 520, "y": 220, "properties": { "capacity": 1, "processTime": { "distribution": "uniform", "min": 12, "max": 22 }, "failureProbability": 0.05, "reworkProbability": 0.6, "scrapProbability": 0.15, "calendarId": "standard" } },
+    { "id": "rework-m", "type": "rework", "category": "manufacturing", "label": "Rework cart", "x": 520, "y": 390, "properties": { "capacity": 1, "processTime": { "distribution": "normal", "mean": 26, "stdev": 6 }, "calendarId": "standard" } },
+    { "id": "fg-m", "type": "finishedGoods", "category": "manufacturing", "label": "Finished goods", "x": 760, "y": 220, "properties": {} },
+    { "id": "scrap-m", "type": "scrapSink", "category": "manufacturing", "label": "Scrap", "x": 760, "y": 390, "properties": {} }
+  ],
+  "connectors": [
+    { "id": "mc1", "from": "src-m", "to": "cell-a-m", "type": "production", "label": "line A", "priority": 1, "probability": 0.5, "condition": "any" },
+    { "id": "mc2", "from": "src-m", "to": "cell-b-m", "type": "production", "label": "line B", "priority": 2, "probability": 0.5, "condition": "any" },
+    { "id": "mc3", "from": "cell-a-m", "to": "inspect-m", "type": "production", "label": "inspect", "priority": 1, "probability": 1, "condition": "any" },
+    { "id": "mc4", "from": "cell-b-m", "to": "inspect-m", "type": "production", "label": "inspect", "priority": 1, "probability": 1, "condition": "any" },
+    { "id": "mc5", "from": "inspect-m", "to": "fg-m", "type": "production", "label": "pass", "priority": 1, "probability": 1, "condition": "passed" },
+    { "id": "mc6", "from": "inspect-m", "to": "rework-m", "type": "rework", "label": "rework", "priority": 2, "probability": 1, "condition": "failed" },
+    { "id": "mc7", "from": "inspect-m", "to": "scrap-m", "type": "scrap", "label": "scrap", "priority": 3, "probability": 1, "condition": "failed" },
+    { "id": "mc8", "from": "rework-m", "to": "inspect-m", "type": "rework", "label": "return", "priority": 1, "probability": 1, "condition": "any" }
+  ],
+  "materials": [
+    { "id": "casting-m", "name": "Cell casting", "supplier": "Fictional Foundry", "startingInventory": 64, "reorderPoint": 24, "reorderQuantity": 60, "supplierLeadTime": 360, "receivingDelay": 20, "receivingWindow": "shift-1" }
+  ],
+  "resources": [
+    { "id": "cell-tech", "name": "Cell technician", "capacity": 2, "calendarId": "standard", "costPerHour": 70 }
+  ],
+  "tokenTypes": [
+    {
+      "id": "valve-subassembly",
+      "label": "Valve subassembly",
+      "sourceId": "src-m",
+      "arrivalInterval": 22,
+      "maxTokens": 60,
+      "priority": 2,
+      "dueIn": 720,
+      "materialRequirements": [{ "materialId": "casting-m", "quantity": 1 }],
+      "businessValue": 240
+    }
+  ],
+  "calendars": [
+    { "id": "standard", "label": "Two-shift weekday", "shiftLength": 480, "shiftsPerDay": 2, "workingDays": [1, 2, 3, 4, 5] }
+  ],
+  "simulation": {
+    "timeUnit": "minutes",
+    "shiftLength": 480,
+    "shiftsPerDay": 2,
+    "workingDays": [1, 2, 3, 4, 5],
+    "runDuration": 960,
+    "warmupPeriod": 0,
+    "reportingPeriod": 60,
+    "seed": 42041,
+    "priorityRule": "FIFO"
+  }
+}

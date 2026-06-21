@@ -1,0 +1,23 @@
+name: Nightly TwinSim Checks
+
+on:
+  schedule:
+    # 2:00 AM America/New_York varies with daylight saving time.
+    # EDT: 06:00 UTC. EST: 07:00 UTC.
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm install
+      - run: npm run build
+      - run: npm run validate:scenarios --if-present
+      - run: npm run smoke --if-present
+      # Codex/deep-research/Figma refinement requires approved local or hosted integrations.
+      # Keep this workflow conservative until those integrations are configured.

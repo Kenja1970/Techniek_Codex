@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "0.1.0",
+  "createdAt": "2026-06-14T00:00:00.000Z",
+  "updatedAt": "2026-06-14T00:00:00.000Z",
+  "appVersion": "0.1.0",
+  "id": "simple-production-line",
+  "scenarioName": "Simple Production Line",
+  "scenarioType": "manufacturing",
+  "assumptions": {
+    "summary": "A single product flows through machining, inspection, and finished goods with light random downtime and a rework/scrap branch.",
+    "notes": ["Times are modeled in simulated minutes.", "Material consumption occurs when processing starts."]
+  },
+  "objects": [
+    { "id": "src-a", "type": "source", "category": "manufacturing", "label": "Order release", "x": 60, "y": 180, "properties": { "capacity": 1 } },
+    { "id": "queue-a", "type": "queue", "category": "manufacturing", "label": "Input buffer", "x": 220, "y": 180, "properties": { "capacity": 40 } },
+    {
+      "id": "machine-a",
+      "type": "processor",
+      "category": "manufacturing",
+      "label": "CNC cell",
+      "x": 390,
+      "y": 180,
+      "properties": {
+        "capacity": 1,
+        "processTime": { "distribution": "triangular", "min": 22, "mode": 30, "max": 44 },
+        "failureProbability": 0.02,
+        "calendarId": "standard",
+        "downtime": { "randomEnabled": true, "mtbf": 480, "mttr": 35, "scheduled": [{ "start": 420, "duration": 25 }] }
+      }
+    },
+    {
+      "id": "inspect-a",
+      "type": "inspection",
+      "category": "manufacturing",
+      "label": "Final inspection",
+      "x": 570,
+      "y": 180,
+      "properties": {
+        "capacity": 1,
+        "processTime": { "distribution": "uniform", "min": 8, "max": 14 },
+        "failureProbability": 0.08,
+        "reworkProbability": 0.75,
+        "scrapProbability": 0.2,
+        "calendarId": "standard"
+      }
+    },
+    {
+      "id": "rework-a",
+      "type": "rework",
+      "category": "manufacturing",
+      "label": "Rework bench",
+      "x": 570,
+      "y": 330,
+      "properties": {
+        "capacity": 1,
+        "processTime": { "distribution": "normal", "mean": 28, "stdev": 7 },
+        "calendarId": "standard"
+      }
+    },
+    { "id": "scrap-a", "type": "scrapSink", "category": "manufacturing", "label": "Scrap", "x": 760, "y": 330, "properties": {} },
+    { "id": "fg-a", "type": "finishedGoods", "category": "manufacturing", "label": "Finished goods", "x": 760, "y": 180, "properties": {} }
+  ],
+  "connectors": [
+    { "id": "c1", "from": "src-a", "to": "queue-a", "type": "production", "label": "release", "priority": 1, "probability": 1, "condition": "any" },
+    { "id": "c2", "from": "queue-a", "to": "machine-a", "type": "production", "label": "FIFO", "priority": 1, "probability": 1, "condition": "any" },
+    { "id": "c3", "from": "machine-a", "to": "inspect-a", "type": "production", "label": "machined", "priority": 1, "probability": 1, "condition": "any" },
+    { "id": "c4", "from": "inspect-a", "to": "fg-a", "type": "production", "label": "pass", "priority": 1, "probability": 1, "condition": "passed" },
+    { "id": "c5", "from": "inspect-a", "to": "rework-a", "type": "rework", "label": "rework", "priority": 2, "probability": 1, "condition": "failed" },
+    { "id": "c6", "from": "inspect-a", "to": "scrap-a", "type": "scrap", "label": "scrap", "priority": 3, "probability": 1, "condition": "failed" },
+    { "id": "c7", "from": "rework-a", "to": "inspect-a", "type": "rework", "label": "inspect again", "priority": 1, "probability": 1, "condition": "any" }
+  ],
+  "materials": [
+    { "id": "steel-blank", "name": "Steel blank", "supplier": "Fictional Metals", "startingInventory": 42, "reorderPoint": 16, "reorderQuantity": 40, "supplierLeadTime": 240, "receivingDelay": 20, "receivingWindow": "shift-1" }
+  ],
+  "resources": [
+    { "id": "operator-a", "name": "Line operator", "capacity": 1, "calendarId": "standard", "costPerHour": 65 }
+  ],
+  "tokenTypes": [
+    {
+      "id": "bracket-a",
+      "label": "Bracket A",
+      "sourceId": "src-a",
+      "arrivalInterval": 26,
+      "maxTokens": 42,
+      "priority": 3,
+      "dueIn": 600,
+      "materialRequirements": [{ "materialId": "steel-blank", "quantity": 1 }],
+      "processTimes": {
+        "machine-a": { "distribution": "triangular", "min": 22, "mode": 30, "max": 44 },
+        "inspect-a": { "distribution": "uniform", "min": 8, "max": 14 }
+      },
+      "failureProbability": 0.04,
+      "reworkProbability": 0.7,
+      "scrapProbability": 0.2,
+      "businessValue": 180
+    }
+  ],
+  "calendars": [
+    { "id": "standard", "label": "Two-shift weekday", "shiftLength": 480, "shiftsPerDay": 2, "workingDays": [1, 2, 3, 4, 5] }
+  ],
+  "simulation": {
+    "timeUnit": "minutes",
+    "shiftLength": 480,
+    "shiftsPerDay": 2,
+    "workingDays": [1, 2, 3, 4, 5],
+    "runDuration": 960,
+    "warmupPeriod": 0,
+    "reportingPeriod": 60,
+    "seed": 12041,
+    "priorityRule": "FIFO"
+  }
+}
