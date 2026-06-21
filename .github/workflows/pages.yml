@@ -22,7 +22,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
+
+      - name: Verify flange calculator
+        run: |
+          node --check outputs/tools/flange-capacity/app.js
+          node --check outputs/tools/flange-capacity/configuration.js
+          node outputs/tools/flange-capacity/tests/configuration.test.mjs
+          node outputs/tools/flange-capacity/tests/publishing.test.mjs
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -41,10 +48,18 @@ jobs:
           cp outputs/briefs.xml dist/
           cp outputs/doe-lab-budgets.json dist/
           cp outputs/robots.txt dist/
+          cp outputs/sitemap.xml dist/
           cp outputs/skills.json dist/
           cp outputs/weekly-knowledge-prompts.json dist/
           cp outputs/.nojekyll dist/
           cp -R outputs/assets dist/assets
+
+      - name: Verify deploy artifact
+        run: |
+          test -f dist/index.html
+          test -f dist/sitemap.xml
+          test -f dist/tools/flange-capacity/index.html
+          test -f dist/tools/flange-capacity/agent-manifest.json
 
       - name: Upload site
         uses: actions/upload-pages-artifact@v3

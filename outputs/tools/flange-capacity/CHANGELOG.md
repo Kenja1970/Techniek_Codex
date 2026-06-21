@@ -1,5 +1,13 @@
 # Flange Capacity Explorer Changelog
 
+## 2026-06-21 - Publishing integrity
+
+- Added pre-deployment JavaScript syntax, exact-configuration, and publishing-contract checks.
+- Added canonical GitHub Pages discovery URLs and included the sitemap in the deployed artifact.
+- Documented the repeatable local-check, scoped-commit, deploy, and public smoke-test cycle used by nightly refinement runs.
+
+Engineering calculations and acceptance boundaries are unchanged by this release.
+
 ## 2026-06-21 — Exact configuration integrity
 
 - Replaced index-valued NPS and class sliders with explicit engineering selectors.

@@ -27,6 +27,21 @@ The working static site lives in `outputs/`. The included GitHub Actions workflo
 - `outputs/assets`
 - `outputs/tools`, including the Flange Capacity Explorer
 
+Public site:
+
+```text
+https://kenja1970.github.io/Techniek_Codex/
+```
+
+Every push to `main` runs syntax, exact-configuration, publishing-contract, and
+artifact checks before GitHub Pages deployment. The standard update cycle is:
+
+1. Preserve unrelated worktree changes and edit only the intended site files.
+2. Run the flange calculator checks locally.
+3. Update the tool changelog or source register when engineering behavior changes.
+4. Commit and push the scoped files.
+5. Confirm the Pages workflow succeeds and smoke-test the public URL.
+
 ## Engineering Tools
 
 Public engineering tools are grouped under:
@@ -38,7 +53,7 @@ outputs/tools/
 The flange screening and qualification-preparation tool is available at:
 
 ```text
-outputs/tools/flange-capacity/index.html
+https://kenja1970.github.io/Techniek_Codex/tools/flange-capacity/
 ```
 
 It supports standard-rated and compact flange screening, material and bolting

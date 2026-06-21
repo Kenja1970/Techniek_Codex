@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://example.com/</loc>
-    <lastmod>2026-05-30</lastmod>
+    <loc>https://kenja1970.github.io/Techniek_Codex/</loc>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://example.com/archive.html</loc>
-    <lastmod>2026-05-30</lastmod>
+    <loc>https://kenja1970.github.io/Techniek_Codex/archive.html</loc>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://example.com/engineering-support.html</loc>
-    <lastmod>2026-05-31</lastmod>
+    <loc>https://kenja1970.github.io/Techniek_Codex/engineering-support.html</loc>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://example.com/project-management.html</loc>
-    <lastmod>2026-05-31</lastmod>
+    <loc>https://kenja1970.github.io/Techniek_Codex/project-management.html</loc>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://example.com/energy-management.html</loc>
-    <lastmod>2026-05-31</lastmod>
+    <loc>https://kenja1970.github.io/Techniek_Codex/energy-management.html</loc>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://example.com/support-finder.html</loc>
-    <lastmod>2026-05-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://example.com/tools/</loc>
-    <lastmod>2026-06-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://example.com/tools/flange-capacity/</loc>
+    <loc>https://kenja1970.github.io/Techniek_Codex/support-finder.html</loc>
     <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://example.com/briefs.json</loc>
-    <lastmod>2026-05-30</lastmod>
+    <loc>https://kenja1970.github.io/Techniek_Codex/tools/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kenja1970.github.io/Techniek_Codex/tools/flange-capacity/</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kenja1970.github.io/Techniek_Codex/briefs.json</loc>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://example.com/skills.json</loc>
-    <lastmod>2026-05-31</lastmod>
+    <loc>https://kenja1970.github.io/Techniek_Codex/skills.json</loc>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
