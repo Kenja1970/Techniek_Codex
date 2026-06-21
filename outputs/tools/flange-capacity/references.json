@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "1.0.0",
+  "lastReviewed": "2026-06-21",
+  "purpose": "Source, provenance, trademark, and publication-use register for the Flange Capacity Explorer.",
+  "references": [
+    {
+      "id": "bpvc-viii-2-2019",
+      "title": "ASME BPVC Section VIII, Division 2 (2019)",
+      "owner": "The American Society of Mechanical Engineers",
+      "sourceType": "user-supplied controlled publication",
+      "use": "Nominative reference and independently implemented screening context only.",
+      "contentReproduced": false,
+      "finalDesignRequirement": "Use an authorized controlled copy."
+    },
+    {
+      "id": "bpvc-viii-2-2021",
+      "title": "ASME BPVC Section VIII, Division 2 (2021)",
+      "owner": "The American Society of Mechanical Engineers",
+      "sourceType": "user-supplied controlled publication",
+      "use": "Nominative reference and independently implemented screening context only.",
+      "contentReproduced": false,
+      "finalDesignRequirement": "Use an authorized controlled copy."
+    },
+    {
+      "id": "bpvc-viii-2-2023",
+      "title": "ASME BPVC Section VIII, Division 2 (2023)",
+      "owner": "The American Society of Mechanical Engineers",
+      "sourceType": "user-supplied controlled publication",
+      "use": "Nominative reference and independently implemented screening context only.",
+      "contentReproduced": false,
+      "finalDesignRequirement": "Use an authorized controlled copy."
+    },
+    {
+      "id": "bpvc-viii-2-2025-publication",
+      "title": "ASME BPVC Section VIII, Division 2 (2025)",
+      "owner": "The American Society of Mechanical Engineers",
+      "url": "https://www.asme.org/codes-standards/find-codes-standards/bpvc-viii-2-bpvc-section-viii-rules-construction-pressure-vessels-division-2-alternative-rules-%281%29",
+      "publicationDate": "2025",
+      "verified": "2026-06-21",
+      "sourceType": "official publisher product page",
+      "use": "Edition-availability boundary only; no 2025 controlled equations or tables are implemented.",
+      "contentReproduced": false
+    },
+    {
+      "id": "asme-b16-5-2025",
+      "title": "ASME B16.5-2025 Pipe Flanges and Flanged Fittings",
+      "owner": "The American Society of Mechanical Engineers",
+      "url": "https://www.asme.org/codes-standards/find-codes-standards/b16-5-pipe-flanges-flanged-fittings-nps-1-2-nps-24-metric-inch-standard",
+      "publicationDate": "2025-05-30",
+      "verified": "2026-06-21",
+      "sourceType": "official publisher scope page",
+      "use": "Configuration filtering: NPS 1/2 through 24; Class 2500 limited to NPS 12; Class 400 identified as a current implementation gap.",
+      "contentReproduced": false,
+      "finalDesignRequirement": "Use authorized pressure-temperature rating and dimensional tables."
+    },
+    {
+      "id": "asme-b16-47-2025",
+      "title": "ASME B16.47-2025 Large Diameter Steel Flanges",
+      "owner": "The American Society of Mechanical Engineers",
+      "url": "https://www.asme.org/codes-standards/find-codes-standards/b16-47-large-diameter-steel-flanges-nps-26-nps-60-metric-inch-standard",
+      "publicationDate": "2025-05-30",
+      "verified": "2026-06-21",
+      "sourceType": "official publisher scope page",
+      "use": "Configuration filtering: NPS 26 through 60 and official class scope; Classes 75 and 400 identified as current implementation gaps.",
+      "contentReproduced": false,
+      "finalDesignRequirement": "Use authorized pressure-temperature rating and dimensional tables."
+    },
+    {
+      "id": "iso-27509-2020",
+      "title": "ISO 27509:2020 Compact flanged connections with IX seal ring",
+      "owner": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/78201.html",
+      "publicationDate": "2020-12",
+      "edition": 2,
+      "verified": "2026-06-21",
+      "sourceType": "official standards-organization scope page",
+      "use": "Compact-flange applicability and qualification context only.",
+      "contentReproduced": false,
+      "applicabilityBoundary": "The Explorer does not establish that the supplied vendor product conforms to ISO 27509:2020."
+    },
+    {
+      "id": "asme-pcc-1-2022",
+      "title": "ASME PCC-1-2022 Pressure Boundary Bolted Flange Joint Assembly",
+      "owner": "The American Society of Mechanical Engineers",
+      "url": "https://www.asme.org/codes-standards/find-codes-standards/pressure-boundary-bolted-flange-joint-assembly",
+      "publicationDate": "2022",
+      "verified": "2026-06-21",
+      "sourceType": "official publisher scope page",
+      "use": "Assembly-procedure, bolting, gasket, and leak-tightness evidence context.",
+      "contentReproduced": false
+    },
+    {
+      "id": "asme-bpvc-certification",
+      "title": "ASME Boiler and Pressure Vessel Certification",
+      "owner": "The American Society of Mechanical Engineers",
+      "url": "https://www.asme.org/certification-accreditation/boiler-and-pressure-vessel-certification",
+      "verified": "2026-06-21",
+      "sourceType": "official certification-program guidance",
+      "use": "Certification boundary: certification addresses the applicable design, fabrication, assembly, inspection, and quality-control program, not a calculator result."
+    },
+    {
+      "id": "asme-terms",
+      "title": "ASME Terms of Use",
+      "owner": "The American Society of Mechanical Engineers",
+      "url": "https://www.asme.org/terms-of-use",
+      "sourceType": "official public policy",
+      "use": "Trademark, linking, and non-endorsement boundary."
+    },
+    {
+      "id": "lts-flangetec-product",
+      "title": "FlangeTec ASME/API Compact Flange Series",
+      "owner": "LTS Energy",
+      "url": "https://ltsenergy.com/qoc-twin-leadscrew-5-3/",
+      "sourceType": "official product information",
+      "use": "Product identification and high-level catalog context.",
+      "trademark": "FlangeTec®"
+    },
+    {
+      "id": "lts-flangetec-catalog-supplied",
+      "title": "FLANGETEC ASME SERIES COMPACT FLANGE",
+      "owner": "LTS Energy",
+      "sourceType": "user-supplied vendor catalog",
+      "use": "Compact-flange dimensions, weights, and catalog claims with explicit provenance.",
+      "contentReproduced": false
+    },
+    {
+      "id": "lts-flangetec-workbook-supplied",
+      "title": "FLANGETEC MASTER_old.xls",
+      "owner": "LTS Energy",
+      "sourceType": "user-supplied vendor workbook",
+      "use": "Structured compact-flange catalog geometry and weights."
+    },
+    {
+      "id": "material-allowable-tables-supplied",
+      "title": "User-supplied allowable-stress workbooks",
+      "sourceType": "user-supplied engineering data",
+      "use": "Temperature-dependent material and bolting stress lookup.",
+      "finalDesignRequirement": "Verify values against authorized controlled sources and project material records."
+    }
+  ],
+  "evidenceGaps": [
+    "Controlled ASME B16.5-2025 and B16.47-2025 pressure-temperature rating and dimensional tables are not embedded.",
+    "ASME B16.5 Class 400 and ASME B16.47 Classes 75 and 400 are not implemented.",
+    "The supplied compact-flange catalog has no demonstrated ISO 27509:2020 conformity record in this repository.",
+    "Compact-flange bolt preload, residual seal-contact acceptance, leakage class, external-load qualification, fatigue, thermal effects, rigidity, and proof-test acceptance remain project-specific evidence.",
+    "The ASME BPVC VIII-2 2025 controlled calculation changes have not been reviewed or implemented."
+  ],
+  "legal": {
+    "noEndorsement": "No standards body, publisher, trademark owner, vendor, or certification body is represented as endorsing this calculator.",
+    "noCertification": "The application produces screening evidence only and never grants certification or approval.",
+    "trademarkUsage": "Marks are used nominatively to identify source publications or products and remain the property of their respective owners."
+  }
+}

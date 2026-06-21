@@ -36,6 +36,7 @@ jobs:
           cp outputs/energy-management.html dist/
           cp outputs/support-finder.html dist/
           cp outputs/archive.html dist/
+          cp -R outputs/tools dist/tools
           cp outputs/briefs.json dist/
           cp outputs/briefs.xml dist/
           cp outputs/doe-lab-budgets.json dist/

@@ -1,0 +1,43 @@
+# Flange Capacity Explorer
+
+Purpose: engineering screening for standard-rated and compact flange pressure,
+tensile axial-load, and bending-moment capacity.
+
+Machine-readable interfaces:
+- ./agent-manifest.json
+- ./calculation-schema.json
+- ./references.json
+- DOM element #agentCalculationState on ./index.html
+- JavaScript namespace window.flangeApp
+
+Preferred workflow:
+1. Read agent-manifest.json.
+2. Use window.flangeApp.calculate(explicitState) for a side-effect-free result.
+3. Normalize with window.flangeApp.agentSnapshot(result).
+4. Validate the snapshot against calculation-schema.json.
+5. Require configuration.selectionBasis.matchType = "exact" and
+   implementedConfiguration = true. Do not substitute a neighboring size/class.
+6. Preserve all values with their explicit units and source provenance.
+7. Treat SCREENING_ONLY as screening only.
+8. Treat READY_FOR_ENGINEER_OF_RECORD_REVIEW as a document-readiness state, not
+   certification, Code compliance, approval, or third-party acceptance.
+
+Important boundaries:
+- Standard rated-flange geometry is a generated screening estimate unless a
+  controlled project source replaces it.
+- Compact geometry and weights come from supplied LTS Energy FlangeTec® catalog
+  data and remain subject to drawing and project verification.
+- Compact calculations require an exact supplied catalog NPS/class row.
+- The implemented standard-flange subset excludes B16.5 Class 400 and B16.47
+  Classes 75 and 400 because controlled pressure-rating inputs are not loaded.
+- Controlled standards, equations, and tables are not reproduced.
+- Final work requires authorized publications, project drawings, material
+  records, seal data, load combinations, assembly procedures, inspection, and
+  the applicable conformity-assessment route.
+
+Intellectual property:
+- FlangeTec® is a registered trademark of LTS Energy.
+- ASME is a registered trademark of The American Society of Mechanical
+  Engineers.
+- Trademark and publication references are nominative only and do not imply
+  endorsement, approval, sponsorship, or certification.

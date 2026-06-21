@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "Flange Capacity Explorer",
+  "description": "Engineering screening for standard-rated and compact flange pressure, axial-load, and bending-moment capacity.",
+  "applicationVersion": "0.5.0-config-integrity",
+  "humanEntryPoint": "./index.html",
+  "machineInterfaces": {
+    "liveSnapshot": {
+      "location": "DOM script element #agentCalculationState",
+      "mediaType": "application/json",
+      "schema": "./calculation-schema.json",
+      "updates": "Replaced after every input, material, product-line, or qualification-evidence change."
+    },
+    "javascript": {
+      "namespace": "window.flangeApp",
+      "preferredReadMethod": "agentSnapshot(calculate(explicitState))",
+      "methods": {
+        "calculate": {
+          "purpose": "Calculate a flange screening result without changing the visible controls. Throws RangeError for unsupported family/NPS/class combinations instead of substituting a neighboring row.",
+          "stateFields": [
+            "nps",
+            "ratingClass",
+            "pressurePct",
+            "temperatureF",
+            "temperatureUnit",
+            "materialId",
+            "boltMaterialId",
+            "axialKip",
+            "momentKipFt",
+            "edition",
+            "family",
+            "projectName",
+            "calcId",
+            "preparedBy",
+            "reviewer",
+            "productLine"
+          ]
+        },
+        "currentState": {
+          "purpose": "Return the current visible control state."
+        },
+        "configurationOptions": {
+          "purpose": "Return the exact selectable NPS and pressure-class options for a product line and standard family."
+        },
+        "agentSnapshot": {
+          "purpose": "Normalize a calculated result into the stable machine-readable contract."
+        },
+        "evidenceRecord": {
+          "purpose": "Build the full human-review and audit evidence record."
+        },
+        "buildCalculationHtml": {
+          "purpose": "Build the printable calculation report from an evidence record."
+        }
+      }
+    },
+    "downloads": {
+      "agentSnapshot": "Use the visible Download agent snapshot command.",
+      "fullEvidence": "Use the visible Download JSON evidence command.",
+      "printableReport": "Use the visible Download calculation set or Open printable report command."
+    }
+  },
+  "enumerations": {
+    "productLine": {
+      "asme": "Standard rated-flange screening using referenced standard families.",
+      "compact": "Supplied LTS Energy FlangeTec® compact-flange catalog geometry and weights."
+    },
+    "family": [
+      "B16.5",
+      "B16.47A",
+      "B16.47B"
+    ],
+    "edition": [
+      "2019",
+      "2021",
+      "2023"
+    ],
+    "classification": [
+      "SCREENING_CHECK_FAILED",
+      "SCREENING_ONLY",
+      "READY_FOR_ENGINEER_OF_RECORD_REVIEW"
+    ]
+  },
+  "agentRules": [
+    "Never describe a screening pass as certification, approval, Code compliance, or third-party acceptance.",
+    "Preserve units and do not infer units from field names outside the published schema.",
+    "Require selectionBasis.matchType to be exact and implementedConfiguration to be true; never infer or substitute a neighboring NPS or pressure class.",
+    "Preserve geometry provenance: generated_screening_estimate and supplied_vendor_catalog are not interchangeable.",
+    "Treat null values as not applicable or unavailable; do not replace them with zero.",
+    "Treat ASME B16.5 Class 400 and ASME B16.47 Classes 75 and 400 as unimplemented until controlled pressure-rating and calculation inputs are loaded.",
+    "Use controlled publications, project drawings, material records, seal data, and the conformity-assessment plan for final design decisions.",
+    "Preserve the intellectual-property notices in redistributed reports or snapshots."
+  ],
+  "sourceRegister": "./references.json",
+  "llmGuidance": "./llms.txt",
+  "legal": {
+    "flangetec": "FlangeTec® is a registered trademark of LTS Energy. The mark identifies the referenced product line only.",
+    "asme": "ASME is a registered trademark of The American Society of Mechanical Engineers. References are nominative and do not imply endorsement, approval, or certification.",
+    "controlledPublications": "Controlled standards content is not reproduced by the application."
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./calculation-schema.json",
+  "title": "Flange Capacity Screening Snapshot",
+  "description": "Stable machine-readable output contract for the Flange Capacity Explorer.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "recordType",
+    "generatedAt",
+    "application",
+    "interpretation",
+    "configuration",
+    "materials",
+    "appliedLoads",
+    "capacitiesAtCurrentOtherLoads",
+    "utilization",
+    "geometry",
+    "provenance",
+    "notices"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "1.1.0"
+    },
+    "recordType": {
+      "const": "flange-capacity-screening-snapshot"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "application": {
+      "type": "object",
+      "required": ["name", "version", "interfaceManifest"]
+    },
+    "interpretation": {
+      "type": "object",
+      "required": [
+        "classification",
+        "certificationClaim",
+        "screeningPass",
+        "humanReadableStatus",
+        "qualificationEvidence"
+      ],
+      "properties": {
+        "classification": {
+          "enum": [
+            "SCREENING_CHECK_FAILED",
+            "SCREENING_ONLY",
+            "READY_FOR_ENGINEER_OF_RECORD_REVIEW"
+          ]
+        },
+        "certificationClaim": {
+          "const": false
+        },
+        "screeningPass": {
+          "type": "boolean"
+        },
+        "humanReadableStatus": {
+          "type": "string"
+        },
+        "qualificationEvidence": {
+          "type": "object",
+          "required": ["confirmed", "required", "missingIds"]
+        }
+      }
+    },
+    "configuration": {
+      "type": "object",
+      "required": [
+        "productLine",
+        "nominalPipeSizeIn",
+        "pressureClass",
+        "effectivePressureClass",
+        "sourceEditionBasis",
+        "selectionBasis",
+        "designTemperature"
+      ],
+      "properties": {
+        "selectionBasis": {
+          "type": "object",
+          "required": [
+            "matchType",
+            "implementedConfiguration",
+            "scope",
+            "publicationScope"
+          ],
+          "properties": {
+            "matchType": {
+              "const": "exact"
+            },
+            "implementedConfiguration": {
+              "const": true
+            },
+            "scope": {
+              "type": "string"
+            },
+            "publicationScope": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "materials": {
+      "type": "object",
+      "required": ["flange", "bolting"]
+    },
+    "appliedLoads": {
+      "type": "object",
+      "required": ["pressure", "tensileAxial", "bendingMoment"]
+    },
+    "capacitiesAtCurrentOtherLoads": {
+      "type": "object",
+      "required": ["pressure", "tensileAxial", "bendingMoment"]
+    },
+    "utilization": {
+      "type": "object",
+      "required": [
+        "combinedLoadRatio",
+        "flangeStressRatio",
+        "boltStressRatio",
+        "residualSealContactMarginLbf"
+      ]
+    },
+    "geometry": {
+      "type": "object",
+      "required": [
+        "provenance",
+        "outsideDiameterIn",
+        "boreReferenceIn",
+        "boltCircleIn",
+        "flangeThicknessIn",
+        "boltCount",
+        "boltDiameterIn",
+        "assemblyWeightLb"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "sourceRegister",
+        "calculationMethod",
+        "controlledPublicationContentEmbedded",
+        "finalDesignRequiresControlledSources"
+      ]
+    },
+    "notices": {
+      "type": "object",
+      "required": [
+        "productTrademark",
+        "standardsPublication",
+        "publicationUse"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

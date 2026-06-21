@@ -25,6 +25,26 @@ The working static site lives in `outputs/`. The included GitHub Actions workflo
 - Public JSON/XML feeds used by the pages
 - `robots.txt` and `sitemap.xml`
 - `outputs/assets`
+- `outputs/tools`, including the Flange Capacity Explorer
+
+## Engineering Tools
+
+Public engineering tools are grouped under:
+
+```text
+outputs/tools/
+```
+
+The flange screening and qualification-preparation tool is available at:
+
+```text
+outputs/tools/flange-capacity/index.html
+```
+
+It supports standard-rated and compact flange screening, material and bolting
+selection, coupled pressure/axial/moment interaction, qualification-readiness
+tracking, and downloadable objective evidence. Results remain screening
+evidence until reviewed against controlled publications and project records.
 
 Owner notes, screenshots, generated documents, Figma handoff files, and private knowledge uploads are not part of the Pages artifact.
 
