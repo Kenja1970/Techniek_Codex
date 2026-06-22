@@ -259,6 +259,10 @@ textarea:focus-visible {
   margin-top: var(--te-space-5);
 }
 
+.te-actions .te-text-link {
+  align-self: center;
+}
+
 .te-note {
   margin: 0;
   color: var(--te-muted);
@@ -633,6 +637,10 @@ textarea:focus-visible {
 
   .te-actions {
     align-items: stretch;
+  }
+
+  .te-actions .te-text-link {
+    width: 100%;
   }
 
   .te-note {
