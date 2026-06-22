@@ -1,6 +1,37 @@
 ﻿{
-    "updated":  "2026-06-20",
+    "updated":  "2026-06-22",
     "items":  [
+                  {
+                      "date":  "2026-06-22",
+                      "audience":  "Industrial operations",
+                      "category":  "Extreme heat readiness",
+                      "headline":  "Treat extreme heat as a combined equipment, staffing, and peak-load operating mode.",
+                      "summary":  "NOAA's current hazards outlook shows elevated extreme-heat risk spreading across the Plains, Gulf Coast, Southeast, and Mid-Atlantic, including a moderate risk in the Mid-Atlantic from June 29 through July 2. NERC and FERC both identify high temperatures and extreme weather as summer reliability challenges even after major resource additions. Industrial teams should activate one coordinated heat operating plan that covers worker exposure, equipment derating, cooling capacity, utility peaks, and recovery after the event.",
+                      "lessons":  [
+                                      "Issue a heat-readiness sheet for critical assets that lists ambient design limits, expected derating, alarm thresholds, cooling dependencies, inspection frequency, and the operator authorized to reduce load or stop equipment.",
+                                      "Trend electrical rooms, compressors, chillers, cooling towers, transformers, motors, and process ventilation before the hottest hours so rising temperatures or fouling are caught before protective trips begin.",
+                                      "Move discretionary production, charging, testing, and maintenance away from forecast peak periods where practical, and verify demand-response, backup-power, and orderly-shutdown instructions with the utility and operators.",
+                                      "Use a written worker heat plan with acclimatization, hydration, rest, supervision, emergency response, and indoor heat controls; review it at the same readiness meeting as the equipment and energy plan."
+                                  ],
+                      "sources":  [
+                                      {
+                                          "name":  "NOAA Climate Prediction Center probabilistic hazards outlook",
+                                          "url":  "https://www.cpc.ncep.noaa.gov/products/predictions/threats/threats.php"
+                                      },
+                                      {
+                                          "name":  "NERC 2026 Summer Reliability Assessment",
+                                          "url":  "https://www.nerc.com/our-work/assessments/summer-reliability-assessments"
+                                      },
+                                      {
+                                          "name":  "FERC 2026 summer energy market and reliability assessment",
+                                          "url":  "https://www.ferc.gov/news-events/news/presentation-report-2026-summer-energy-market-and-electric-reliability-assessment"
+                                      },
+                                      {
+                                          "name":  "OSHA heat exposure planning and supervision guidance",
+                                          "url":  "https://www.osha.gov/heat-exposure/planning"
+                                      }
+                                  ]
+                  },
                   {
                       "date":  "2026-06-20",
                       "audience":  "Project management",

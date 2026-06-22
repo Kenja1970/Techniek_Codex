@@ -2,8 +2,8 @@ name: Refresh Industry Brief
 
 on:
   schedule:
-    - cron: "35 12 * * *"
-    - cron: "35 13 * * *"
+    # 11:30 PM EDT / 10:30 PM EST. GitHub schedules use UTC.
+    - cron: "30 3 * * *"
   workflow_dispatch:
 
 permissions:
@@ -16,14 +16,24 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
+      - name: Verify OpenAI API key
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "${OPENAI_API_KEY}" ]; then
+            echo "::error title=Missing OPENAI_API_KEY::Add the OPENAI_API_KEY repository secret under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
