@@ -156,6 +156,15 @@
       font-size: 0.94rem;
     }
 
+    .finder-status {
+      display: grid;
+      gap: 4px;
+    }
+
+    .finder-status strong {
+      color: var(--te-charcoal);
+    }
+
     .finder-reset {
       flex: 0 0 auto;
       min-height: 42px;
@@ -248,6 +257,42 @@
       font-weight: 700;
     }
 
+    .pending-list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--te-muted);
+    }
+
+    .pending-list li + li {
+      margin-top: 6px;
+    }
+
+    .selection-summary {
+      display: grid;
+      gap: 10px;
+      margin: 14px 0 0;
+    }
+
+    .selection-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .selection-item {
+      padding: 10px 12px;
+      border: 1px solid var(--te-border);
+      border-radius: var(--te-radius);
+      background: var(--te-panel);
+    }
+
+    .selection-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--te-charcoal);
+      font-size: 0.9rem;
+    }
+
     .score {
       display: inline-flex;
       align-items: center;
@@ -329,6 +374,10 @@
         grid-template-columns: 1fr;
       }
 
+      .selection-grid {
+        grid-template-columns: 1fr;
+      }
+
       .finder-controls {
         align-items: stretch;
         flex-direction: column;
@@ -366,7 +415,7 @@
           <div>
             <p class="te-eyebrow">Client support finder</p>
             <h1>Find the right Techniek support for your situation.</h1>
-            <p class="te-lead">Answer three practical questions, add a short description, and get a recommended service, likely deliverables, useful reading, and a clear next step.</p>
+            <p class="te-lead">Answer three practical questions, then add a short description if it helps. Techniek will show the best-fit service, likely deliverables, useful reading, and a clear next step after the selection is complete.</p>
             <div class="te-actions">
               <a class="te-button" href="#finder">Start the Finder</a>
               <p class="te-note">Built for fast decisions, not long browsing sessions.</p>
@@ -396,8 +445,8 @@
               <div class="result-meta">
                 <span class="score">Ready</span>
               </div>
-              <h2>Answer the questions to get a recommendation.</h2>
-              <p>Results will appear here with the best-fit service, likely deliverables, useful preparation items, and a contact-ready summary.</p>
+              <h2>Choose the three selection steps to unlock a recommendation.</h2>
+              <p>Results will appear here with the best-fit service, likely deliverables, useful preparation items, and a contact-ready summary after the required choices are complete.</p>
             </div>
           </aside>
         </div>
@@ -726,6 +775,14 @@
       return Object.fromEntries(new FormData(form).entries());
     }
 
+    function answeredQuestionCount(answers) {
+      return knowledge.questions.reduce((count, question) => count + (answers[question.id] ? 1 : 0), 0);
+    }
+
+    function unansweredQuestions(answers) {
+      return knowledge.questions.filter((question) => !answers[question.id]);
+    }
+
     function keywordMatches(recommendation, text) {
       const normalized = String(text || "").toLowerCase();
       return (recommendation.keywordTriggers || []).filter((keyword) => normalized.includes(String(keyword).toLowerCase()));
@@ -794,7 +851,7 @@
           <div class="option-grid">
             ${question.options.map((option, optionIndex) => `
               <label>
-                <input type="radio" name="${escapeHtml(question.id)}" value="${escapeHtml(option.value)}" ${optionIndex === 0 ? "checked" : ""}>
+                <input type="radio" name="${escapeHtml(question.id)}" value="${escapeHtml(option.value)}">
                 <span class="option-text">
                   <span>${escapeHtml(option.label)}</span>
                   <small>${escapeHtml(optionHint(option.value))}</small>
@@ -806,7 +863,10 @@
       `).join(""));
       form.insertAdjacentHTML("beforeend", `
         <div class="finder-controls">
-          <p>Recommendations update as you choose. Keep sensitive project details out of this public page.</p>
+          <div class="finder-status">
+            <strong id="finder-progress">Complete 0 of ${questionTotal} required selection steps.</strong>
+            <p id="finder-status-detail">Recommendations appear after the required choices are complete. Keep sensitive project details out of this public page.</p>
+          </div>
           <button class="finder-reset" type="reset">Reset finder</button>
         </div>
       `);
@@ -814,6 +874,34 @@
 
     function renderResult() {
       const answers = selectedAnswers();
+      const requiredCount = knowledge.questions.length;
+      const completedCount = answeredQuestionCount(answers);
+      const remainingQuestions = unansweredQuestions(answers);
+      const progressField = document.querySelector("#finder-progress");
+      const statusField = document.querySelector("#finder-status-detail");
+      if (progressField) {
+        progressField.textContent = `Complete ${completedCount} of ${requiredCount} required selection steps.`;
+      }
+      if (statusField) {
+        statusField.textContent = remainingQuestions.length
+          ? `Remaining: ${remainingQuestions.map((question) => question.label).join(" · ")}.`
+          : "Recommendation ready. You can refine it further with a short situation note if needed.";
+      }
+      if (completedCount < requiredCount) {
+        resultCard.innerHTML = `
+          <div class="result-meta">
+            <span class="score">Step ${completedCount} of ${requiredCount}</span>
+            <span class="score">Recommendation pending</span>
+          </div>
+          <h2>Finish the required selections to see the best-fit service.</h2>
+          <p>Techniek waits for your explicit choices before suggesting a service so the result reflects your situation instead of a default assumption.</p>
+          <ul class="pending-list">
+            ${remainingQuestions.map((question) => `<li>${escapeHtml(question.label)}</li>`).join("")}
+          </ul>
+          <p class="te-note">The situation note is optional. Use it when a technical issue, project blocker, or operating concern needs more context.</p>
+        `;
+        return;
+      }
       const ranked = [...knowledge.recommendations]
         .map((recommendation) => ({ ...recommendation, score: scoreRecommendation(recommendation, answers) }))
         .sort((a, b) => b.score - a.score);
@@ -843,6 +931,17 @@
         <h3>What to prepare</h3>
         <div class="prep-grid">
           ${(top.prepChecklist || []).map((item) => `<span class="prep-item">${escapeHtml(item)}</span>`).join("")}
+        </div>
+        <div class="selection-summary">
+          <h3>Your selections</h3>
+          <div class="selection-grid">
+            ${knowledge.questions.map((question) => `
+              <div class="selection-item">
+                <strong>${escapeHtml(question.label)}</strong>
+                <span>${escapeHtml(labelForAnswer(question.id, answers[question.id]))}</span>
+              </div>
+            `).join("")}
+          </div>
         </div>
         <p><strong>Related brief topics:</strong> ${escapeHtml((top.relatedBriefCategories || []).join(", "))}</p>
         <p><strong>Suggested next step:</strong> ${escapeHtml(top.cta)}</p>
