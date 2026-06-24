@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "name": "Flange Capacity Explorer",
   "description": "Engineering screening for standard-rated and compact flange pressure, axial-load, and bending-moment capacity.",
-  "applicationVersion": "0.5.0-config-integrity",
+  "applicationVersion": "0.6.0-evidence-traceability",
   "humanEntryPoint": "./index.html",
   "machineInterfaces": {
     "liveSnapshot": {
@@ -85,6 +85,7 @@
     "Preserve units and do not infer units from field names outside the published schema.",
     "Require selectionBasis.matchType to be exact and implementedConfiguration to be true; never infer or substitute a neighboring NPS or pressure class.",
     "Preserve geometry provenance: generated_screening_estimate and supplied_vendor_catalog are not interchangeable.",
+    "Qualification evidence is documented only when the user assertion includes a non-empty drawing, MTR, procedure, calculation, test, or review reference.",
     "Treat null values as not applicable or unavailable; do not replace them with zero.",
     "Treat ASME B16.5 Class 400 and ASME B16.47 Classes 75 and 400 as unimplemented until controlled pressure-rating and calculation inputs are loaded.",
     "Use controlled publications, project drawings, material records, seal data, and the conformity-assessment plan for final design decisions.",

@@ -24,7 +24,7 @@
       "type": "string"
     },
     "schemaVersion": {
-      "const": "1.1.0"
+      "const": "1.2.0"
     },
     "recordType": {
       "const": "flange-capacity-screening-snapshot"
@@ -65,7 +65,46 @@
         },
         "qualificationEvidence": {
           "type": "object",
-          "required": ["confirmed", "required", "missingIds"]
+          "required": [
+            "documented",
+            "asserted",
+            "required",
+            "missingIds",
+            "records"
+          ],
+          "properties": {
+            "documented": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "asserted": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "required": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "missingIds": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "asserted",
+                  "documented",
+                  "evidenceReference",
+                  "issue"
+                ]
+              }
+            }
+          }
         }
       }
     },

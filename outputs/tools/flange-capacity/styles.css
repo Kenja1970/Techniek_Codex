@@ -560,35 +560,83 @@ select:focus-visible {
 
 .evidence-item {
   display: grid;
-  grid-template-columns: 20px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 8px;
-  align-items: start;
   padding: 9px;
   border: 1px solid #e5dcc9;
   border-radius: 6px;
   background: white;
+}
+
+.evidence-item.needs-reference {
+  border-color: #c89038;
+  box-shadow: inset 3px 0 0 #c89038;
+}
+
+.evidence-check {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
   cursor: pointer;
 }
 
-.evidence-item input {
+.evidence-check input {
   width: 17px;
   height: 17px;
   margin: 2px 0 0;
   accent-color: var(--teal);
 }
 
-.evidence-item span {
+.evidence-check span {
   color: var(--ink);
   font-size: 0.82rem;
   font-weight: 750;
   line-height: 1.35;
 }
 
-.evidence-item small {
+.evidence-check small {
   display: block;
   margin-top: 3px;
   color: var(--muted);
   font-weight: 600;
+}
+
+.evidence-reference {
+  display: grid;
+  gap: 4px;
+  padding-left: 28px;
+}
+
+.evidence-reference span {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.evidence-reference input {
+  width: 100%;
+  min-height: 36px;
+  border: 1px solid #b8c6ca;
+  border-radius: 5px;
+  padding: 7px 9px;
+  color: var(--ink);
+  background: #fbfcfc;
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.evidence-reference input[aria-invalid="true"] {
+  border-color: #c89038;
+  background: #fffaf2;
+}
+
+.evidence-state {
+  padding-left: 28px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 
 .compact-title {

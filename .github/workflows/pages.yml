@@ -28,7 +28,9 @@ jobs:
         run: |
           node --check outputs/tools/flange-capacity/app.js
           node --check outputs/tools/flange-capacity/configuration.js
+          node --check outputs/tools/flange-capacity/qualification.js
           node outputs/tools/flange-capacity/tests/configuration.test.mjs
+          node outputs/tools/flange-capacity/tests/qualification.test.mjs
           node outputs/tools/flange-capacity/tests/publishing.test.mjs
 
       - name: Configure Pages

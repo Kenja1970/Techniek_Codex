@@ -1,4 +1,4 @@
-const APP_VERSION = "0.5.0-config-integrity";
+const APP_VERSION = "0.6.0-evidence-traceability";
 const MATERIALS = window.MATERIAL_STRESS_DATA ?? [];
 const BOLT_MATERIALS = window.BOLT_STRESS_DATA ?? [];
 const COMPACT_FLANGES = window.COMPACT_FLANGE_DATA ?? [];
@@ -11,6 +11,10 @@ const {
   npsOptionsFor,
   scopeStatement,
 } = window.FLANGE_CONFIGURATION;
+const {
+  evaluateEvidenceState,
+  normalizeEvidenceState,
+} = window.FLANGE_QUALIFICATION;
 let activeProductLine = "asme";
 const DEFAULT_MATERIAL_ID =
   MATERIALS.find(
@@ -142,75 +146,8 @@ const INTELLECTUAL_PROPERTY_NOTICE = {
     "Controlled standards are not reproduced. Users must obtain authorized publications and determine the governing edition, jurisdiction, and conformity-assessment requirements.",
 };
 
-const EVIDENCE_STORAGE_KEY = "flangeQualificationEvidence.v1";
-const QUALIFICATION_EVIDENCE = [
-  {
-    id: "code_edition",
-    label: "Governing Code edition and jurisdiction confirmed",
-    note: "2025 BPVC is available; the implemented calculation basis stops at the supplied 2023 edition.",
-    appliesTo: "all",
-  },
-  {
-    id: "controlled_geometry",
-    label: "Controlled drawing and final corroded geometry attached",
-    note: "Include bore, hub, flange, bolt-circle, seal, tolerances, and corrosion allowance.",
-    appliesTo: "all",
-  },
-  {
-    id: "material_records",
-    label: "Flange and bolting material records verified",
-    note: "MTRs, heat treatment, specification, grade, and temperature allowables.",
-    appliesTo: "all",
-  },
-  {
-    id: "assembly_procedure",
-    label: "Bolt preload and assembly procedure approved",
-    note: "Target preload, lubrication, tightening method, scatter, and inspection record.",
-    appliesTo: "all",
-  },
-  {
-    id: "seal_basis",
-    label: "Seal or gasket qualification basis attached",
-    note: "Geometry, material, leakage criterion, seating/contact limits, and reuse restrictions.",
-    appliesTo: "all",
-  },
-  {
-    id: "load_combinations",
-    label: "Design load combinations and source calculations approved",
-    note: "Pressure, sustained axial load, bending, occasional loads, and sign conventions.",
-    appliesTo: "all",
-  },
-  {
-    id: "thermal_fatigue",
-    label: "Thermal and cyclic/fatigue applicability resolved",
-    note: "Document evaluation or a justified not-applicable determination.",
-    appliesTo: "all",
-  },
-  {
-    id: "rigidity_rotation",
-    label: "Flange rigidity and rotation acceptance completed",
-    note: "Use the controlled Code method or qualified design-by-analysis model.",
-    appliesTo: "all",
-  },
-  {
-    id: "alternate_method",
-    label: "Compact-flange alternate method evidence attached",
-    note: "Validated FEA, proof testing, or other accepted qualification evidence as applicable.",
-    appliesTo: "compact",
-  },
-  {
-    id: "eor_review",
-    label: "Engineer-of-record review completed",
-    note: "Inputs, assumptions, applicability, calculations, and drawing revision.",
-    appliesTo: "all",
-  },
-  {
-    id: "certifier_plan",
-    label: "Authorized inspector or certifier review plan confirmed",
-    note: "Applicable conformity-assessment route, hold points, and required deliverables.",
-    appliesTo: "all",
-  },
-];
+const EVIDENCE_STORAGE_KEY = "flangeQualificationEvidence.v2";
+const LEGACY_EVIDENCE_STORAGE_KEY = "flangeQualificationEvidence.v1";
 
 const controls = {
   nps: document.getElementById("nps"),
@@ -889,24 +826,24 @@ function rawNumber(value, digits = 6) {
 
 function loadEvidenceState() {
   try {
-    return JSON.parse(localStorage.getItem(EVIDENCE_STORAGE_KEY) || "{}");
+    const current = localStorage.getItem(EVIDENCE_STORAGE_KEY);
+    if (current) return normalizeEvidenceState(JSON.parse(current));
+    const legacy = localStorage.getItem(LEGACY_EVIDENCE_STORAGE_KEY);
+    return normalizeEvidenceState(legacy ? JSON.parse(legacy) : {});
   } catch {
-    return {};
+    return normalizeEvidenceState({});
   }
 }
 
 function saveEvidenceState(state) {
   try {
-    localStorage.setItem(EVIDENCE_STORAGE_KEY, JSON.stringify(state));
+    localStorage.setItem(
+      EVIDENCE_STORAGE_KEY,
+      JSON.stringify(normalizeEvidenceState(state))
+    );
   } catch {
     // The calculator still works when local storage is unavailable.
   }
-}
-
-function requiredEvidenceItems(result) {
-  return QUALIFICATION_EVIDENCE.filter(
-    (item) => item.appliesTo === "all" || item.appliesTo === result.productLine
-  );
 }
 
 function numericalScreeningPasses(result) {
@@ -926,30 +863,11 @@ function numericalScreeningPasses(result) {
 }
 
 function evidenceReadiness(result) {
-  const state = loadEvidenceState();
-  const required = requiredEvidenceItems(result);
-  const items = required.map((item) => ({
-    ...item,
-    confirmed: state[item.id] === true,
-  }));
-  const confirmed = items.filter((item) => item.confirmed).length;
-  const missing = items.filter((item) => !item.confirmed);
-  const numericalPass = numericalScreeningPasses(result);
-  const complete = missing.length === 0;
-  return {
-    numericalPass,
-    complete,
-    confirmed,
-    required: items.length,
-    percent: items.length ? (confirmed / items.length) * 100 : 0,
-    items,
-    missing,
-    level: !numericalPass
-      ? "SCREENING CHECK FAILED"
-      : complete
-        ? "READY FOR ENGINEER-OF-RECORD REVIEW"
-        : "SCREENING ONLY",
-  };
+  return evaluateEvidenceState({
+    productLine: result.productLine,
+    rawState: loadEvidenceState(),
+    numericalPass: numericalScreeningPasses(result),
+  });
 }
 
 function agentSnapshot(result) {
@@ -958,7 +876,7 @@ function agentSnapshot(result) {
   const isCompact = result.productLine === "compact";
   return {
     schema: "./calculation-schema.json",
-    schemaVersion: "1.1.0",
+    schemaVersion: "1.2.0",
     recordType: "flange-capacity-screening-snapshot",
     generatedAt: new Date().toISOString(),
     application: {
@@ -976,9 +894,17 @@ function agentSnapshot(result) {
       screeningPass: readiness.numericalPass,
       humanReadableStatus: status.text,
       qualificationEvidence: {
-        confirmed: readiness.confirmed,
+        documented: readiness.confirmed,
+        asserted: readiness.asserted,
         required: readiness.required,
         missingIds: readiness.missing.map((item) => item.id),
+        records: readiness.items.map((item) => ({
+          id: item.id,
+          asserted: item.asserted,
+          documented: item.confirmed,
+          evidenceReference: item.evidenceReference || null,
+          issue: item.issue,
+        })),
       },
     },
     configuration: {
@@ -1108,19 +1034,34 @@ function renderEvidenceChecklist(result) {
       : "warn";
   els.readinessBar.style.width = `${readiness.percent}%`;
   els.readinessBar.dataset.state = readiness.complete ? "ready" : "warn";
-  els.readinessCount.textContent = `${readiness.confirmed} of ${readiness.required} project evidence items confirmed`;
+  els.readinessCount.textContent = `${readiness.confirmed} of ${readiness.required} evidence items documented · ${readiness.asserted} asserted`;
   els.evidenceChecklist.innerHTML = readiness.items
     .map(
       (item) => `
-        <label class="evidence-item">
-          <input type="checkbox" data-evidence-id="${escapeHtml(item.id)}" ${
-            item.confirmed ? "checked" : ""
-          } />
-          <span>
-            ${escapeHtml(item.label)}
-            <small>${escapeHtml(item.note)}</small>
-          </span>
-        </label>
+        <article class="evidence-item${item.asserted && !item.confirmed ? " needs-reference" : ""}">
+          <label class="evidence-check">
+            <input type="checkbox" data-evidence-id="${escapeHtml(item.id)}" ${
+              item.asserted ? "checked" : ""
+            } />
+            <span>
+              ${escapeHtml(item.label)}
+              <small>${escapeHtml(item.note)}</small>
+            </span>
+          </label>
+          <label class="evidence-reference">
+            <span>Evidence reference</span>
+            <input
+              type="text"
+              data-evidence-reference-id="${escapeHtml(item.id)}"
+              value="${escapeHtml(item.evidenceReference)}"
+              placeholder="${escapeHtml(item.placeholder)}"
+              ${item.asserted && !item.confirmed ? 'aria-invalid="true"' : ""}
+            />
+          </label>
+          <small class="evidence-state">${escapeHtml(
+            item.confirmed ? `Documented: ${item.evidenceReference}` : item.issue
+          )}</small>
+        </article>
       `
     )
     .join("");
@@ -1130,7 +1071,18 @@ function renderEvidenceChecklist(result) {
     .forEach((input) => {
       input.addEventListener("change", () => {
         const state = loadEvidenceState();
-        state[input.dataset.evidenceId] = input.checked;
+        state[input.dataset.evidenceId].asserted = input.checked;
+        saveEvidenceState(state);
+        update();
+      });
+    });
+  els.evidenceChecklist
+    .querySelectorAll("input[data-evidence-reference-id]")
+    .forEach((input) => {
+      input.addEventListener("change", () => {
+        const state = loadEvidenceState();
+        state[input.dataset.evidenceReferenceId].evidenceReference =
+          input.value.trim();
         saveEvidenceState(state);
         update();
       });
@@ -1212,18 +1164,23 @@ function evidenceRecord(result) {
     qualificationReadiness: {
       level: readiness.level,
       numericalScreeningPass: readiness.numericalPass,
-      confirmedProjectEvidenceItems: readiness.confirmed,
+      assertedProjectEvidenceItems: readiness.asserted,
+      documentedProjectEvidenceItems: readiness.confirmed,
       requiredProjectEvidenceItems: readiness.required,
       completionPercent: rawNumber(readiness.percent, 1),
-      confirmed: readiness.items
+      documented: readiness.items
         .filter((item) => item.confirmed)
-        .map((item) => item.label),
+        .map((item) => ({
+          item: item.label,
+          evidenceReference: item.evidenceReference,
+        })),
       missing: readiness.missing.map((item) => ({
         item: item.label,
         requiredEvidence: item.note,
+        issue: item.issue,
       })),
       certificationStatement:
-        "Checklist completion prepares a package for engineer-of-record review; it does not grant Code certification or third-party acceptance.",
+        "Each readiness assertion requires a supporting document or record reference. Completion prepares a package for engineer-of-record review; it does not grant Code certification or third-party acceptance.",
     },
     inputs: {
       productLine: lineInfo.label,
@@ -1518,10 +1475,14 @@ function evidenceRecord(result) {
       },
       ...readiness.items.map((item) => ({
         item: item.label,
-        result: item.confirmed ? "CONFIRMED" : "PENDING",
+        result: item.confirmed
+          ? "DOCUMENTED"
+          : item.asserted
+            ? "REFERENCE REQUIRED"
+            : "PENDING",
         evidence: item.confirmed
-          ? "Project evidence confirmed by the user in the qualification-readiness checklist."
-          : item.note,
+          ? item.evidenceReference
+          : `${item.issue}. ${item.note}`,
       })),
       {
         item: "Qualification package status accurately distinguishes screening from certification.",
@@ -1531,7 +1492,7 @@ function evidenceRecord(result) {
     ],
     requiredAttachments: [
       ...controlledInputsRequired,
-      ...readiness.missing.map((item) => item.label),
+      ...readiness.missing.map((item) => `${item.label} — ${item.issue}`),
     ],
   };
 }

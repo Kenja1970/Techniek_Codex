@@ -41,6 +41,7 @@ assert.match(
 const toolHtml = fs.readFileSync(path.join(toolDirectory, "index.html"), "utf8");
 for (const filename of [
   "configuration.js",
+  "qualification.js",
   "materials-data.js",
   "bolt-materials-data.js",
   "compact-flanges-data.js",
@@ -59,6 +60,13 @@ for (const filename of [
 assert.match(toolHtml, /agentCalculationState/);
 assert.match(toolHtml, /FlangeTec/);
 assert.match(toolHtml, /ASME/);
+assert.match(toolHtml, /A checkbox is not objective evidence/);
+assert.equal(manifest.applicationVersion, "0.6.0-evidence-traceability");
+
+const schema = JSON.parse(
+  fs.readFileSync(path.join(toolDirectory, "calculation-schema.json"), "utf8")
+);
+assert.equal(schema.properties.schemaVersion.const, "1.2.0");
 
 const sitemap = read("outputs", "sitemap.xml");
 assert.equal(sitemap.includes("https://example.com"), false);

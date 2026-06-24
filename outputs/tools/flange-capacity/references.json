@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "lastReviewed": "2026-06-21",
+  "lastReviewed": "2026-06-24",
   "purpose": "Source, provenance, trademark, and publication-use register for the Flange Capacity Explorer.",
   "references": [
     {
@@ -36,7 +36,7 @@
       "owner": "The American Society of Mechanical Engineers",
       "url": "https://www.asme.org/codes-standards/find-codes-standards/bpvc-viii-2-bpvc-section-viii-rules-construction-pressure-vessels-division-2-alternative-rules-%281%29",
       "publicationDate": "2025",
-      "verified": "2026-06-21",
+      "verified": "2026-06-24",
       "sourceType": "official publisher product page",
       "use": "Edition-availability boundary only; no 2025 controlled equations or tables are implemented.",
       "contentReproduced": false
@@ -47,7 +47,7 @@
       "owner": "The American Society of Mechanical Engineers",
       "url": "https://www.asme.org/codes-standards/find-codes-standards/b16-5-pipe-flanges-flanged-fittings-nps-1-2-nps-24-metric-inch-standard",
       "publicationDate": "2025-05-30",
-      "verified": "2026-06-21",
+      "verified": "2026-06-24",
       "sourceType": "official publisher scope page",
       "use": "Configuration filtering: NPS 1/2 through 24; Class 2500 limited to NPS 12; Class 400 identified as a current implementation gap.",
       "contentReproduced": false,
@@ -59,7 +59,7 @@
       "owner": "The American Society of Mechanical Engineers",
       "url": "https://www.asme.org/codes-standards/find-codes-standards/b16-47-large-diameter-steel-flanges-nps-26-nps-60-metric-inch-standard",
       "publicationDate": "2025-05-30",
-      "verified": "2026-06-21",
+      "verified": "2026-06-24",
       "sourceType": "official publisher scope page",
       "use": "Configuration filtering: NPS 26 through 60 and official class scope; Classes 75 and 400 identified as current implementation gaps.",
       "contentReproduced": false,
@@ -72,7 +72,7 @@
       "url": "https://www.iso.org/standard/78201.html",
       "publicationDate": "2020-12",
       "edition": 2,
-      "verified": "2026-06-21",
+      "verified": "2026-06-24",
       "sourceType": "official standards-organization scope page",
       "use": "Compact-flange applicability and qualification context only.",
       "contentReproduced": false,
@@ -84,7 +84,7 @@
       "owner": "The American Society of Mechanical Engineers",
       "url": "https://www.asme.org/codes-standards/find-codes-standards/pressure-boundary-bolted-flange-joint-assembly",
       "publicationDate": "2022",
-      "verified": "2026-06-21",
+      "verified": "2026-06-24",
       "sourceType": "official publisher scope page",
       "use": "Assembly-procedure, bolting, gasket, and leak-tightness evidence context.",
       "contentReproduced": false
@@ -94,9 +94,30 @@
       "title": "ASME Boiler and Pressure Vessel Certification",
       "owner": "The American Society of Mechanical Engineers",
       "url": "https://www.asme.org/certification-accreditation/boiler-and-pressure-vessel-certification",
-      "verified": "2026-06-21",
+      "verified": "2026-06-24",
       "sourceType": "official certification-program guidance",
       "use": "Certification boundary: certification addresses the applicable design, fabrication, assembly, inspection, and quality-control program, not a calculator result."
+    },
+    {
+      "id": "asme-bpv-review-checklist-2025",
+      "title": "Guide for ASME Applicants to be Used by ASME Review Team",
+      "owner": "The American Society of Mechanical Engineers",
+      "url": "https://www.asme.org/getmedia/ce06dfba-1038-495e-9beb-9925003e3e10/BPV-GUI-01-Guide-For-ASME-Applicants-To-Be-Used-By-ASME-Review-Team-12-18-2025.pdf",
+      "publicationDate": "2025-12-18",
+      "verified": "2026-06-24",
+      "sourceType": "official ASME conformity-assessment guidance",
+      "use": "Supports reference-backed evidence fields: the quality-system review checklist requires documented controls and identifies QC Manual references.",
+      "contentReproduced": false
+    },
+    {
+      "id": "dnv-process-system-verification",
+      "title": "Verification of process systems and equipment",
+      "owner": "DNV",
+      "url": "https://www.dnv.com/services/verification-of-process-systems-and-equipment-3511/",
+      "verified": "2026-06-24",
+      "sourceType": "official certification-body service guidance",
+      "use": "Independent verification context: project-specific verification plans, design reviews, surveys, certificates, and reports.",
+      "contentReproduced": false
     },
     {
       "id": "asme-terms",

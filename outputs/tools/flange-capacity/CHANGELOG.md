@@ -1,5 +1,14 @@
 # Flange Capacity Explorer Changelog
 
+## 2026-06-24 - Reference-backed qualification evidence
+
+- Replaced checkbox-only qualification completion with documented evidence assertions.
+- Each readiness item now requires a drawing, MTR, procedure, calculation, test, or review reference before it counts as complete.
+- Added migration-safe evidence storage, visible missing-reference states, structured evidence records in snapshot schema 1.2.0, and report traceability.
+- Added focused qualification-evidence tests and current ASME/DNV documentation sources.
+
+Engineering calculations and numerical acceptance thresholds are unchanged. Readiness still means prepared for engineer-of-record review, not certification or Code compliance.
+
 ## 2026-06-21 - Publishing integrity
 
 - Added pre-deployment JavaScript syntax, exact-configuration, and publishing-contract checks.
