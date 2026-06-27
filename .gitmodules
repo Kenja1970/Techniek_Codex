@@ -4,6 +4,3 @@
 [submodule "tools/Techniek-OpsBoard"]
 	path = tools/Techniek-OpsBoard
 	url = https://github.com/Kenja1970/Techniek-OpsBoard-Pro.git
-[submodule "outputs/tools/techniek-twinsim-studio"]
-	path = outputs/tools/techniek-twinsim-studio
-	url = https://github.com/Kenja1970/Techniek-TwinSimStudio.git

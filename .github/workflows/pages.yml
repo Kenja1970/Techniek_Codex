@@ -26,11 +26,6 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
       - name: Verify flange calculator
         run: |
           node --check outputs/tools/flange-capacity/app.js
@@ -63,17 +58,6 @@ jobs:
           fi
           echo "OpsBoard guardrails passed"
 
-      - name: Build Techniek TwinSim Studio
-        working-directory: outputs/tools/techniek-twinsim-studio
-        run: |
-          set -e
-          npm ci
-          # Build with Vite directly; the repo's build script also runs a
-          # publish-site step that would write a stray copy into outputs/tools.
-          npx vite build
-          test -f dist/index.html
-          rm -rf node_modules
-
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
@@ -91,8 +75,6 @@ jobs:
           rm -f dist/tools/flange-capacity/CHANGELOG.md
           rm -f dist/tools/flange-capacity/qualification-packages-compact-4in-600.md
           rm -rf dist/tools/techniek-opsboard/.git dist/tools/techniek-opsboard/.github
-          rm -rf dist/tools/techniek-twinsim-studio
-          cp -R outputs/tools/techniek-twinsim-studio/dist dist/tools/techniek-twinsim-studio
           cp outputs/briefs.json dist/
           cp outputs/briefs.xml dist/
           cp outputs/doe-lab-budgets.json dist/
