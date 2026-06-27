@@ -1777,6 +1777,130 @@ function dataList(items) {
     .join("");
 }
 
+function pctDelta(value, base) {
+  if (!Number.isFinite(value) || !Number.isFinite(base) || base === 0) return null;
+  return ((value - base) / base) * 100;
+}
+
+function signedPct(value) {
+  if (value === null) return "n/a";
+  const sign = value > 0 ? "+" : "";
+  return `${sign}${formatNumber(value, 1)}%`;
+}
+
+// One axisymmetric half cross-section (flange ring + tapered hub) drawn from
+// the centerline. sign = -1 draws above the centerline, +1 below.
+function profileHalfSection(dims, sign, scale, x0, cy, color) {
+  const outerR = (dims.outsideDiameter / 2) * scale;
+  const hubDia = Math.min(dims.hubDiameter ?? dims.bore, dims.outsideDiameter);
+  const hubR = (hubDia / 2) * scale;
+  const boreR = (dims.bore / 2) * scale;
+  const t = dims.thickness * scale;
+  const hubLen = (dims.hubLength || 0) * scale;
+  const xt = x0 + t;
+  const xEnd = xt + hubLen;
+  const y = (value) => cy + sign * value;
+  const poly = [
+    [x0, cy],
+    [x0, y(outerR)],
+    [xt, y(outerR)],
+    [xt, y(hubR)],
+    [xEnd, y(boreR)],
+    [xEnd, cy]
+  ]
+    .map((point) => point.join(","))
+    .join(" ");
+  const boltY = y((dims.boltCircle / 2) * scale);
+  const boreY = y(boreR);
+  return `
+    <polygon points="${poly}" fill="${color}" stroke="#dbe7eb" stroke-width="1.5" />
+    <line x1="${x0}" y1="${boreY}" x2="${xEnd}" y2="${boreY}" stroke="#0a1a22" stroke-width="1.4" stroke-dasharray="5 4" />
+    <circle cx="${(x0 + xt) / 2}" cy="${boltY}" r="3.4" fill="#071116" stroke="#ffe45c" stroke-width="2" />`;
+}
+
+function dimArrowV(x, yA, yB, label) {
+  const mid = (yA + yB) / 2;
+  return `
+    <line x1="${x}" y1="${yA}" x2="${x}" y2="${yB}" stroke="#9fb8c0" stroke-width="1.4" marker-start="url(#dimArrow)" marker-end="url(#dimArrow)" />
+    <text x="${x - 7}" y="${mid}" fill="#9fb8c0" font-size="11" text-anchor="middle" transform="rotate(-90 ${x - 7} ${mid})">${escapeHtml(label)}</text>`;
+}
+
+// Draws the selected flange as a standard-vs-compact cross-section comparison,
+// to a common scale, so the dimensional differences are directly visible.
+function renderProfileComparison(result) {
+  const svg = document.getElementById("profileDiagram");
+  if (!svg) return;
+  const deltaEl = document.getElementById("profileDelta");
+  const captionEl = document.getElementById("profileCaption");
+
+  const nps = result.nps;
+  const ratingClass = result.ratingClass;
+  const familyEl = document.getElementById("family");
+  const family = result.family || (familyEl ? familyEl.value : "B16.5") || "B16.5";
+
+  let standard = null;
+  let compact = null;
+  try {
+    standard = flangeDimensions({ nps, ratingClass, family });
+  } catch (error) {
+    standard = null;
+  }
+  try {
+    compact = compactDimensions({ nps, ratingClass });
+  } catch (error) {
+    compact = null;
+  }
+
+  const VB_W = 760;
+  const CY = 220;
+  const LEFT = 110;
+  const present = [standard, compact].filter(Boolean);
+  if (captionEl) captionEl.textContent = `NPS ${formatNps(nps)} / Class ${ratingClass}`;
+  if (!present.length) {
+    svg.innerHTML = "";
+    if (deltaEl) deltaEl.innerHTML = "";
+    return;
+  }
+
+  const maxR = Math.max(...present.map((dims) => dims.outsideDiameter / 2));
+  const maxAxial = Math.max(...present.map((dims) => dims.thickness + (dims.hubLength || 0)));
+  const scale = Math.min(150 / maxR, 540 / maxAxial);
+
+  const parts = [
+    `<defs><marker id="dimArrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#9fb8c0" /></marker></defs>`,
+    `<line x1="48" y1="${CY}" x2="${VB_W - 20}" y2="${CY}" stroke="#3c5a64" stroke-width="1" stroke-dasharray="3 5" />`,
+    `<text x="52" y="${CY - 6}" fill="#6f8a93" font-size="11">centerline</text>`
+  ];
+
+  if (standard) {
+    const outerR = (standard.outsideDiameter / 2) * scale;
+    parts.push(profileHalfSection(standard, -1, scale, LEFT, CY, "#6f818c"));
+    parts.push(`<text x="${LEFT}" y="${CY - outerR - 14}" fill="#cfe7ef" font-size="13" font-weight="700">Standard B16 &mdash; generated estimate</text>`);
+    parts.push(dimArrowV(LEFT - 30, CY, CY - outerR, `OD ${formatNumber(standard.outsideDiameter, 1)} in`));
+  }
+  if (compact) {
+    const outerR = (compact.outsideDiameter / 2) * scale;
+    parts.push(profileHalfSection(compact, 1, scale, LEFT, CY, "#3a7d86"));
+    parts.push(`<text x="${LEFT}" y="${CY + outerR + 26}" fill="#bdeef0" font-size="13" font-weight="700">FlangeTec&#174; compact &mdash; catalog</text>`);
+    parts.push(dimArrowV(LEFT - 30, CY, CY + outerR, `OD ${formatNumber(compact.outsideDiameter, 1)} in`));
+  }
+  svg.innerHTML = parts.join("");
+
+  if (!deltaEl) return;
+  if (standard && compact) {
+    deltaEl.innerHTML = dataList([
+      ["Outside diameter", `${formatNumber(compact.outsideDiameter, 2)} vs ${formatNumber(standard.outsideDiameter, 2)} in (${signedPct(pctDelta(compact.outsideDiameter, standard.outsideDiameter))})`],
+      ["Flange thickness", `${formatNumber(compact.thickness, 2)} vs ${formatNumber(standard.thickness, 2)} in (${signedPct(pctDelta(compact.thickness, standard.thickness))})`],
+      ["Hub / flange length", `${formatNumber(compact.hubLength, 2)} vs ${formatNumber(standard.hubLength, 2)} in (${signedPct(pctDelta(compact.hubLength, standard.hubLength))})`],
+      ["Bolt circle", `${formatNumber(compact.boltCircle, 2)} vs ${formatNumber(standard.boltCircle, 2)} in (${signedPct(pctDelta(compact.boltCircle, standard.boltCircle))})`],
+      ["Bolt count", `${compact.boltCount} vs ${standard.boltCount}`],
+      ["Assembly weight", `${formatNumber(compact.assemblyWeight, 0)} vs ${formatNumber(standard.assemblyWeight, 0)} lb (${signedPct(pctDelta(compact.assemblyWeight, standard.assemblyWeight))})`]
+    ]);
+  } else {
+    deltaEl.innerHTML = `<p class="muted">No FlangeTec&#174; compact catalog row exists for NPS ${formatNps(nps)} / Class ${ratingClass}, so only the standard profile is shown. Compact catalog data covers NPS 1&ndash;24 in Classes 600, 900, 1500, and 2500.</p>`;
+  }
+}
+
 function updateOutputs(result) {
   const lineInfo = PRODUCT_LINES[result.productLine] ?? PRODUCT_LINES.asme;
   els.lineControlTitle.textContent = lineInfo.controlTitle;
@@ -1891,6 +2015,7 @@ function updateOutputs(result) {
   els.scopeStatus.textContent = status.text;
   els.scopeStatus.dataset.state = status.state;
   els.meterFill.dataset.state = status.state;
+  renderProfileComparison(result);
   publishAgentSnapshot(result);
 }
 

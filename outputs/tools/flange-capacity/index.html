@@ -278,6 +278,31 @@
         </section>
       </section>
 
+      <section class="wide-band profile-band" aria-label="Standard versus compact flange profile">
+        <div class="band-inner">
+          <section class="panel diagram-panel">
+            <div class="section-title">
+              <span>Standard vs Compact Profile</span>
+              <output id="profileCaption">NPS 4 / Class 300</output>
+            </div>
+            <div class="profile-figure">
+              <svg
+                id="profileDiagram"
+                viewBox="0 0 760 440"
+                role="img"
+                aria-label="Scaled half cross-section comparison of a standard ASME flange and a FlangeTec compact flange for the selected size and class"
+              ></svg>
+            </div>
+            <div id="profileDelta" class="data-list profile-delta"></div>
+            <p class="profile-note">
+              Half cross-sections drawn to a common scale. Standard dimensions are
+              generated screening estimates; compact dimensions are catalog values.
+              Verify against controlled tables before design use.
+            </p>
+          </section>
+        </div>
+      </section>
+
       <section class="wide-band">
         <div class="band-inner chart-layout">
           <section class="panel">
@@ -290,8 +315,8 @@
 
           <section class="panel diagram-panel">
             <div class="section-title">
-              <span>FEA-Style Load Model</span>
-              <span>conceptual deformation</span>
+              <span>Conceptual Load Model</span>
+              <span>illustrative &mdash; not FEA output</span>
             </div>
             <svg viewBox="0 0 700 390" role="img" aria-label="Conceptual flange, metal ring seal, bolts, pressure, dimensions, and stress contour diagram">
               <defs>
