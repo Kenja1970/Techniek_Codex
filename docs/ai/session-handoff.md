@@ -3,7 +3,20 @@
 > Durable catch-up for the next Cursor chat. Companion to root `PROJECT_STATUS.md`.
 > Last updated: 2026-06-27 (all-TODOs session).
 
-## 0. Latest session — all open TODOs addressed (uncommitted, feature branches only)
+## 0. Latest session — BlueLedger + PrecisionFlow elite builds (2026-06-27)
+
+**Branch:** `feat/flange-profile-diagram` (pushed). **Not merged to `main`.**
+
+Shipped full static apps (zero npm build; Leaflet CDN for maps only):
+
+- **`outputs/tools/_shared/`** — `blueledger-core.js` + `blueledger.css` (map, time slider, canvas charts, evidence ledger, claims table, URL hash state, JSON export).
+- **BlueLedger Georgia** — 6 stations (ACF, Savannah POR from 1878, Flint, coastal estuary), basin filter, play/pause time animation, legal placeholders (ACF Compact, GA EPD).
+- **BlueLedger West** — Colorado/Columbia/Sacramento/Great Basin/Rio Grande; metrics: flow, storage, SWE, modeled ET; compact/tribal placeholders.
+- **Techniek PrecisionFlow** — 3-liquid dosing digital twin: PLC scan cycle, tag table, alarms, SPC/Cpk canvas, interlocks, P&amp;ID-style SVG, batch JSON export, hazard-profile gate on recipes.
+
+Tests: `blueledger-georgia/tests/smoke.test.mjs`, `precisionflow/tests/smoke.test.mjs` added to root `npm test`. `npm run lint` covers all new JS.
+
+Still open: lead magnet Formspree URL; TwinSim **source** commit in `%TEMP%\twinsim-dev`; merge/deploy to `main`.
 
 **Branch:** `feat/flange-profile-diagram` (Techniek_Codex). **Nothing merged to `main`, nothing deployed.**
 
