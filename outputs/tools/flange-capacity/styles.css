@@ -806,6 +806,30 @@ canvas {
   font: 700 15px system-ui, sans-serif;
 }
 
+#profileDiagram text {
+  fill: #28363c;
+  font: 600 12px system-ui, sans-serif;
+}
+
+.profile-band .profile-figure {
+  margin-top: 4px;
+}
+
+.profile-delta {
+  margin-top: 14px;
+}
+
+.profile-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
 .plain-list {
   margin: 0;
   padding-left: 20px;
