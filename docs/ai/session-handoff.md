@@ -3,6 +3,39 @@
 > Durable catch-up for the next Cursor chat. Companion to root `PROJECT_STATUS.md`.
 > Last updated: 2026-06-27.
 
+## 0. Latest session (2026-06-27, continued) — multi-tool work IN PROGRESS
+
+Active multi-part request: (1) TwinSim connectors usable, (2) TwinSim domain-relatable object
+properties, (3) Flange tool overhaul (real data + fuller calcs + center drawing + own repo + UI),
+(4) Main-page lead magnet (gated PDF for name/email/optional phone + `gregory@techniekengineering.com`).
+All branches feature-only (nothing merged to `main`, nothing deployed).
+
+DONE + pushed:
+- **TwinSim** branch `feat/connectors-and-domain-properties` (`bd1cfa7`, repo Techniek-TwinSimStudio):
+  visible "+" output port on nodes, "Connect from here" in Properties, context-aware toolbar
+  Connect/Cancel, drag suppressed during connect, connect banner; Properties panel now renders
+  domain-relatable fields via `objectEditorFields()` in `src/data/smartObjects.js` (engineering/
+  logistics labels + defaults; engine property keys unchanged). `npm run verify` passes.
+- **Flange** branch `feat/flange-profile-diagram` (`d0a8d38`, repo Techniek_Codex): new center
+  "Standard vs Compact Profile" parametric SVG (both half cross-sections to common scale +
+  delta list) in `outputs/tools/flange-capacity/{index.html,app.js,styles.css}`; relabeled the
+  misleading "FEA-Style Load Model" → "Conceptual Load Model". `npm run lint`/`npm test` pass.
+
+Decisions captured from user for the remaining flange/lead-magnet work:
+- Flange scope = **deepen but stay a screening tool** (real published B16.5/B16.47 nominal dims +
+  P-T ratings with provenance, fuller VIII-2 §4.16 workflow, ISO 27509 compact path, numeric tests,
+  keep engineer-of-record disclaimer). Data source = **published nominal values, provenance-marked**.
+- **Create repo `Kenja1970/Techniek-FlangeCapacity`**, work on a feature branch, user merges.
+- Lead capture = **third-party form backend (Formspree/Getform)** — needs user's endpoint URL.
+- Lead-magnet PDF = **generate a real content PDF from existing site copy**.
+
+STILL TODO (not started): flange real-data dataset; fuller §4.16 + ISO 27509 calcs; numeric
+`calculate()` tests; extract to `Techniek-FlangeCapacity` repo; lead-magnet PDF + gated form (needs
+Formspree endpoint) + wire `gregory@techniekengineering.com` into Contact.
+
+Also still open from earlier today: TwinSim `chore/code-split-bundle` (unmerged) and the homepage
+sticky-hero (PR #1, merged to `main`).
+
 ## 1. Current project goal
 
 Consolidate Techniek's engineering tools under `Techniek_Codex/outputs/tools/`, each backed by its
