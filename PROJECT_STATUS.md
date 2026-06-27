@@ -70,6 +70,11 @@ Implemented items 1–7 + slider + UI/notes:
    `resourceRequirements: [{resourceId, quantity}]`, seize/delay/release with waiting.
 
 UI / notes:
+- **Canvas pan + zoom** (`src/hooks/useCanvasViewport.js`, `SimulationCanvas.jsx`): empty-space or
+  middle-mouse drag to pan, wheel to zoom (anchored at cursor), overlay controls (+/-, live %, Fit,
+  Reset). Content rendered in a transform-origin `0 0` `.canvas-viewport`; a dnd-kit modifier divides
+  canvas-node drag transforms by zoom; palette drops/node moves convert screen→canvas coords. Shipped
+  in TwinSim `f6def93`, deployed in Techniek_Codex `1569f57`.
 - **Adjustable time slider** (`src/components/studio/TimeSlider.jsx`) under the Studio canvas:
   scrub, play/pause, 0.5×–8× speed, warm-up band marked. Wired in `StudioPage.jsx` (state
   `playbackSpeed`, `scrubTo`, `togglePlayback`).
