@@ -7,6 +7,6 @@
     "dev": "uv run python -m http.server 8127 --bind 127.0.0.1 --directory outputs",
     "build": "echo \"No build step: outputs/ deploys as-is via .github/workflows/pages.yml\"",
     "lint": "node --check outputs/tools/flange-capacity/app.js && node --check outputs/tools/flange-capacity/configuration.js && node --check outputs/tools/flange-capacity/qualification.js",
-    "test": "node outputs/tools/flange-capacity/tests/configuration.test.mjs && node outputs/tools/flange-capacity/tests/qualification.test.mjs && node outputs/tools/flange-capacity/tests/publishing.test.mjs"
+    "test": "node outputs/tools/flange-capacity/tests/configuration.test.mjs && node outputs/tools/flange-capacity/tests/qualification.test.mjs && node outputs/tools/flange-capacity/tests/publishing.test.mjs && node outputs/tools/flange-capacity/tests/calculation.test.mjs"
   }
 }
