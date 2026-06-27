@@ -75,6 +75,18 @@ assert.match(
   new RegExp(`${escapeRegExp(publicBase)}tools/flange-capacity/`)
 );
 
+const briefsFeed = read("outputs", "briefs.xml");
+assert.equal(
+  briefsFeed.includes("https://example.com"),
+  false,
+  "briefs.xml must not ship placeholder example.com links"
+);
+assert.match(
+  briefsFeed,
+  new RegExp(escapeRegExp(publicBase)),
+  "briefs.xml must reference the public site base URL"
+);
+
 const robots = read("outputs", "robots.txt");
 assert.match(robots, new RegExp(`${escapeRegExp(publicBase)}sitemap\\.xml`));
 

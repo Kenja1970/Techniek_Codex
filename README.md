@@ -2,6 +2,24 @@
 
 Static landing page and client support tools for Techniek Engineering.
 
+## Prerequisites
+
+- Python 3.7+ (3.12 matches CI). On Windows, a bare `python` may resolve to the
+  Microsoft Store alias shim instead of a real interpreter; if so, use `uv run python`
+  or invoke a full interpreter path.
+- Node.js (any current LTS) for the flange calculator syntax checks and tests.
+
+## Convenience Scripts
+
+A dependency-free `package.json` wraps the native commands:
+
+```powershell
+npm run dev     # serve outputs/ at http://127.0.0.1:8127 (uses uv run python)
+npm run lint    # node --check on the flange calculator scripts
+npm test        # run the flange calculator test suite
+npm run build   # no-op: outputs/ deploys as-is
+```
+
 ## Preview Locally
 
 From the `outputs` folder, serve the site with a local static server:
@@ -15,6 +33,19 @@ Then open:
 
 ```text
 http://127.0.0.1:8127/index.html
+```
+
+## Tests
+
+Run the flange calculator checks locally (the same checks the Pages workflow runs):
+
+```powershell
+node --check outputs/tools/flange-capacity/app.js
+node --check outputs/tools/flange-capacity/configuration.js
+node --check outputs/tools/flange-capacity/qualification.js
+node outputs/tools/flange-capacity/tests/configuration.test.mjs
+node outputs/tools/flange-capacity/tests/qualification.test.mjs
+node outputs/tools/flange-capacity/tests/publishing.test.mjs
 ```
 
 ## Deployment
@@ -41,6 +72,26 @@ artifact checks before GitHub Pages deployment. The standard update cycle is:
 3. Update the tool changelog or source register when engineering behavior changes.
 4. Commit and push the scoped files.
 5. Confirm the Pages workflow succeeds and smoke-test the public URL.
+
+## Industry Brief Refresh
+
+`tools/refresh_industry_brief.py` prepends one new dated item to `outputs/briefs.json`
+and regenerates `outputs/briefs.xml`. It runs daily via the
+`refresh-industry-brief.yml` workflow and can be run locally:
+
+```powershell
+$env:OPENAI_API_KEY = "sk-..."   # required
+$env:OPENAI_MODEL = "gpt-5.4-mini" # optional, this is the default
+python tools/refresh_industry_brief.py
+```
+
+Environment variables:
+
+- `OPENAI_API_KEY` (required) — the script exits if it is missing.
+- `OPENAI_MODEL` (optional) — defaults to `gpt-5.4-mini`.
+
+The script is idempotent for a given day: if the latest brief already matches the
+current America/New_York date, it makes no changes.
 
 ## Engineering Tools
 

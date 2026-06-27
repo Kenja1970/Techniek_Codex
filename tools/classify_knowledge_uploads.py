@@ -146,7 +146,7 @@ def score_document(path: Path) -> tuple[str, dict[str, int], str]:
             if " " in key:
                 score += normalized.count(key) * 3
             else:
-                score += len(re.findall(rf"\\b{re.escape(key)}\\b", normalized))
+                score += len(re.findall(rf"\b{re.escape(key)}\b", normalized))
         scores[category] = score
 
     ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)

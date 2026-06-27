@@ -16,6 +16,8 @@ OUTPUTS = ROOT / "outputs"
 BRIEFS_PATH = OUTPUTS / "briefs.json"
 RSS_PATH = OUTPUTS / "briefs.xml"
 TZ_NY = ZoneInfo("America/New_York")
+SITE_BASE_URL = "https://kenja1970.github.io/Techniek_Codex/"
+ARCHIVE_URL = f"{SITE_BASE_URL}archive.html"
 
 
 SYSTEM_PROMPT = """You produce one practical industry brief for a commercial and industrial engineering website.
@@ -101,7 +103,7 @@ def regenerate_rss(items):
 
     fields = {
         "title": "Techniek Engineering Industry Brief",
-        "link": "https://example.com/",
+        "link": SITE_BASE_URL,
         "description": "Practical industry signals for engineering, project management, and energy management teams.",
         "language": "en-us",
         "lastBuildDate": email.utils.format_datetime(datetime.now(timezone.utc)),
@@ -118,7 +120,7 @@ def regenerate_rss(items):
             guid = f"techniek-industry-brief-{item_data['date']}-{slugify(headline)}"
 
         ET.SubElement(item, "title").text = headline
-        ET.SubElement(item, "link").text = "https://example.com/archive.html"
+        ET.SubElement(item, "link").text = ARCHIVE_URL
         ET.SubElement(item, "guid").text = guid
         ET.SubElement(item, "pubDate").text = rss_pub_date(item_data["date"])
         ET.SubElement(item, "description").text = item_data["summary"]

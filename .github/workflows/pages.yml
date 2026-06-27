@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@v6
 
       - name: Verify flange calculator
         run: |
@@ -46,6 +46,9 @@ jobs:
           cp outputs/support-finder.html dist/
           cp outputs/archive.html dist/
           cp -R outputs/tools dist/tools
+          rm -rf dist/tools/flange-capacity/tests
+          rm -f dist/tools/flange-capacity/CHANGELOG.md
+          rm -f dist/tools/flange-capacity/qualification-packages-compact-4in-600.md
           cp outputs/briefs.json dist/
           cp outputs/briefs.xml dist/
           cp outputs/doe-lab-budgets.json dist/
