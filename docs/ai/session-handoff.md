@@ -24,7 +24,9 @@ Two repos, both clean and pushed to `main`:
     `Techniek-BlueLedger-GA`, `Techniek-BlueLedger-West`, `Techniek-FlangeCapacity`,
     `Techniek-PrecisionFlow`) are intentionally NOT committed and NOT deployed.
 - **`Kenja1970/Techniek-TwinSimStudio`** (TwinSim source of truth; Vite + React).
-  - Latest commits: `f6def93` (pan + zoom), `2ebd60c` (engine v0.2), `ef8e1f6` (initial import).
+  - `main` latest commits: `f6def93` (pan + zoom), `2ebd60c` (engine v0.2), `ef8e1f6` (initial import).
+  - **Unmerged feature branch `chore/code-split-bundle`** (`1d3f5b7`): bundle code-splitting
+    (TODO #1). Pushed for review; NOT merged to `main`, NOT deployed into `Techniek_Codex`.
 
 TwinSim is published in `Techniek_Codex` as a **committed static build** at
 `outputs/tools/techniek-twinsim-studio/` (NOT a git submodule — deliberate, see §4).
@@ -60,7 +62,12 @@ Rewritten/modified:
 - `package.json` — v0.2; added `validate:engine`; `verify` now runs it.
 
 Files changed in `Techniek_Codex`:
-- `outputs/index.html`, `outputs/tools/index.html` — card reorder (OpsBoard, TwinSim, Flange).
+- `outputs/index.html` — **homepage hero UX (uncommitted, not deployed):** left headline column
+  (`.hero-intro`) is now `position: sticky` (`top: 104px`) so the message stays anchored at the top
+  while the right contact/sign-up panel scrolls; `.hero-grid` switched to `align-items: start`;
+  `.page` `overflow-x: hidden`→`clip` (so the sticky isn't trapped in a scroll container); sticky
+  disabled in the ≤880px stacked layout. Also card reorder (OpsBoard, TwinSim, Flange).
+- `outputs/tools/index.html` — card reorder (OpsBoard, TwinSim, Flange).
 - `outputs/tools/techniek-twinsim-studio/**` — rebuilt static build (twice; current = pan/zoom).
 - `PROJECT_STATUS.md` (new), `docs/ai/session-handoff.md` (this file).
 
@@ -94,8 +101,10 @@ Files changed in `Techniek_Codex`:
 
 ## 6. Tests / build results
 
-- Vite build: clean (worker bundles as own chunk; main bundle ~739 kB / ~215 kB gzip — size warning
-  only, see §8).
+- Vite build: clean. **After code-split (branch `chore/code-split-bundle`)** the single ~739 kB
+  chunk is split into `charts` 321.51 kB / 81.58 kB gzip (recharts+d3), `react-vendor` 193.20 kB,
+  `vendor` 83.01 kB, app `index` 101.07 kB, `dnd` 37.82 kB, plus the worker chunk. **No more
+  >500 kB warning.** `npm run verify` passes (5 scenarios, smoke, M/M/1 + Little's Law).
 - `smoke-check.js`: PASS (throughput 25, bottleneck "CNC cell"; repeatability, probability bounds,
   material delay, no-route rework, event-limit, what-if, seed robustness).
 - `validate-scenarios.js`: PASS (5 scenarios).
@@ -106,28 +115,36 @@ Files changed in `Techniek_Codex`:
 ## 7. Known bugs / blockers
 
 - None functional/known. Watch items:
-  - Main JS bundle >500 kB (warning only) — consider `manualChunks` / dynamic import later.
+  - Bundle >500 kB warning RESOLVED via `manualChunks` (branch `chore/code-split-bundle`, awaiting
+    review/merge + redeploy). Largest chunk now `charts` 321.51 kB.
   - Calendar-closed time is currently attributed to "blocked"; acceptable but could be a separate
     "off-shift" bucket.
   - Middle-mouse pan relies on `preventDefault` at pointerdown; fine in modern browsers.
 
 ## 8. Open TODOs (priority order)
 
-1. (Optional) Code-split the TwinSim bundle (`build.rollupOptions.output.manualChunks`) to clear the
-   500 kB warning and speed first paint.
+1. ✅ DONE (pending review/merge + redeploy) — Code-split the TwinSim bundle
+   (`build.rollupOptions.output.manualChunks`). Implemented on branch `chore/code-split-bundle`
+   (`1d3f5b7`); clears the 500 kB warning. **Merge to `main` + rebuild/redeploy needs approval.**
 2. Build out the spec-only tools, each with its own repo: BlueLedger-GA, BlueLedger-West,
-   PrecisionFlow.
+   PrecisionFlow. *(Large/architectural — needs direction before starting.)*
 3. TwinSim depth: empirical/fitted input distributions; cost modeling; saved-scenario comparison;
-   executive report export (PDF/print).
-4. Consider a dedicated "off-shift" accounting bucket distinct from "blocked".
-5. Optional: keyboard zoom (Ctrl +/-/0), and snap-to-grid for node placement.
+   executive report export (PDF/print). *(Touches data accuracy/UI — needs direction.)*
+4. Consider a dedicated "off-shift" accounting bucket distinct from "blocked". *(Affects data
+   accuracy — needs approval.)*
+5. Optional: keyboard zoom (Ctrl +/-/0), and snap-to-grid for node placement. *(UI direction.)*
 
 ## 9. Exact next step for the next Cursor chat
 
-No work is mid-flight. To resume:
-1. If `%TEMP%\twinsim-dev` is gone, re-clone `Techniek-TwinSimStudio` and `npm install`.
-2. Pick the top open TODO (bundle code-splitting) OR await a new user directive.
-3. For any TwinSim change: edit in the clone → `npx vite build` → `node scripts/smoke-check.js` +
+Code-split work (TODO #1) is implemented + verified on TwinSim branch `chore/code-split-bundle`,
+pushed but NOT merged/deployed. To resume:
+1. **Review/merge `chore/code-split-bundle`** into `Techniek-TwinSimStudio@main` (needs approval),
+   then rebuild and copy `dist/*` into `Techniek_Codex/outputs/tools/techniek-twinsim-studio/`
+   (keep its README.md) and commit/push `Techniek_Codex` (approval for protected `main`).
+2. OR pick the next TODO — but #2–#5 each need a direction/approval call (architecture, data
+   accuracy, or UI), so confirm with the user first.
+3. If `%TEMP%\twinsim-dev` is gone, re-clone `Techniek-TwinSimStudio` and `npm install`.
+4. For any TwinSim change: edit in the clone → `npx vite build` → `node scripts/smoke-check.js` +
    `node scripts/validate-engine.js` → commit/push source repo → copy `dist/*` into
    `Techniek_Codex/outputs/tools/techniek-twinsim-studio/` (keep its README.md) → commit/push
    `Techniek_Codex` (needs approval for protected `main`).

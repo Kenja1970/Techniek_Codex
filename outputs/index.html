@@ -84,7 +84,8 @@
 
     .page {
       min-height: 100vh;
-      overflow-x: hidden;
+      /* clip (not hidden) avoids creating a scroll container that would break the sticky hero */
+      overflow-x: clip;
     }
 
     .container {
@@ -198,7 +199,15 @@
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.75fr);
       gap: 48px;
-      align-items: center;
+      align-items: start;
+    }
+
+    /* Keep the headline pinned at the top while the right-hand panel scrolls past. */
+    .hero-intro {
+      position: sticky;
+      top: 104px;
+      align-self: start;
+      padding-bottom: 8px;
     }
 
     .hero-grid > *,
@@ -1146,6 +1155,13 @@
         grid-template-columns: 1fr;
       }
 
+      /* Stacked layout: let the headline scroll normally with the rest of the page. */
+      .hero-intro {
+        position: static;
+        top: auto;
+        padding-bottom: 0;
+      }
+
       .brief-header {
         align-items: flex-start;
         flex-direction: column;
@@ -1310,7 +1326,7 @@
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
         <div class="container hero-grid">
-          <div>
+          <div class="hero-intro">
             <p class="eyebrow">Engineering made practical</p>
             <h1 id="hero-title">Engineering support for safer, cleaner, better-managed projects.</h1>
             <p class="subheading">Techniek Engineering helps commercial and industrial teams plan technical work, manage delivery, and improve energy performance with straightforward guidance.</p>
