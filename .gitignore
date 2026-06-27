@@ -19,6 +19,9 @@ knowledge_uploads/**
 # Generated documents not needed for static deployment
 outputs/*.docx
 
+# ENERCON DOE BD Nightly Watch generated reports + SQLite dedup state
+bd_outputs/
+
 # OS/editor noise
 Thumbs.db
 .DS_Store

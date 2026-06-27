@@ -1,0 +1,81 @@
+name: ENERCON DOE BD Nightly Watch
+
+on:
+  schedule:
+    # ~7:00 AM Eastern. GitHub cron runs in UTC.
+    # 11:00 UTC = 7:00 AM EDT (summer) / 6:00 AM EST (winter).
+    - cron: "0 11 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: enercon-doe-bd-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Verify SAM_API_KEY
+        env:
+          SAM_API_KEY: ${{ secrets.SAM_API_KEY }}
+        run: |
+          if [ -z "${SAM_API_KEY}" ]; then
+            echo "::error title=Missing SAM_API_KEY::Add the SAM_API_KEY repository secret under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      # Persist the SQLite dedup state across nightly runs so leads are correctly
+      # marked NEW / UPDATED / SEEN. A unique per-run key always saves a fresh
+      # cache while restore-keys restores the most recent prior state.
+      - name: Restore BD state cache
+        uses: actions/cache@v4
+        with:
+          path: bd_outputs/enercon_doe_bd_state.sqlite
+          key: enercon-doe-bd-state-${{ github.run_id }}
+          restore-keys: |
+            enercon-doe-bd-state-
+
+      - name: Run ENERCON DOE BD watch
+        env:
+          SAM_API_KEY: ${{ secrets.SAM_API_KEY }}
+          # Optional market-intelligence CSV imports (repository variables).
+          EDGEWINS_CSV_GLOB: ${{ vars.EDGEWINS_CSV_GLOB }}
+          GOVWIN_CSV_GLOB: ${{ vars.GOVWIN_CSV_GLOB }}
+          HIGHERGOV_CSV_GLOB: ${{ vars.HIGHERGOV_CSV_GLOB }}
+          # Optional email delivery (repository secrets). If any is missing the
+          # script prints a skip message instead of failing the run.
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+        run: |
+          uv run python scripts/enercon_doe_bd_watch.py \
+            --days-back 7 \
+            --min-score 45 \
+            --output-dir bd_outputs \
+            --state-db bd_outputs/enercon_doe_bd_state.sqlite
+
+      - name: Upload BD outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enercon-doe-bd-outputs
+          path: bd_outputs
+          if-no-files-found: warn
+          retention-days: 30
