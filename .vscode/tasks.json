@@ -1,0 +1,20 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "ENERCON DOE BD Nightly Watch",
+      "detail": "Search SAM.gov (and optional CSV imports) for DOE-centric BD leads, score them, and write reports to bd_outputs/.",
+      "type": "shell",
+      "command": "uv run python scripts/enercon_doe_bd_watch.py --days-back 7 --min-score 45 --output-dir bd_outputs --state-db bd_outputs/enercon_doe_bd_state.sqlite",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

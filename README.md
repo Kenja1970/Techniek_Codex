@@ -150,3 +150,138 @@ Apply classification:
 ```powershell
 python tools/classify_knowledge_uploads.py --apply
 ```
+
+## ENERCON DOE BD Nightly Watch
+
+### Purpose
+
+`scripts/enercon_doe_bd_watch.py` is a dependency-light (standard library only)
+nightly business-development watcher for **ENERCON Federal Services**. It surfaces
+DOE-centric procurement and market leads relevant to ENERCON's full-discipline
+architectural, engineering, master planning, project/construction management,
+facility assessment, remediation, and technical-support services for DOE, NNSA,
+DOE-EM, the national laboratories, and first-tier M&O operators.
+
+It:
+
+- Queries the **SAM.gov Opportunities API (v2)** with date-bounded nightly windows
+  for active opportunities, by NAICS code and by site/program title (NNSS/MSTS,
+  Pantex, ORNL, Y-12/Oak Ridge, Paducah, Portsmouth, and more).
+- Optionally ingests CSV exports from **EdgeWins, GovWin, or HigherGov**.
+- **Scores each lead 0–100** based on target-site match, DOE/NNSA/nuclear context,
+  NAICS fit (541330 primary plus associated codes), A/E + planning + PM/CM +
+  facility + infrastructure + remediation/D&D capability fit, design-build /
+  progressive design-build signals, and early-stage notice type (sources sought,
+  RFI, presolicitation, draft RFP, special notice, industry day).
+- Deduplicates against a local **SQLite** state database and marks each lead as
+  **NEW, UPDATED, SEEN, or LOW FIT**.
+- Writes `latest.md`, `latest.csv`, `latest.json`, and dated archive copies, and
+  can email the report when SMTP is configured.
+
+The scoring weights, keyword/site lists, NAICS lists, and SAM title queries all
+live in a single clearly marked `CONFIG` block near the top of the script and are
+intended to be edited directly.
+
+### Setup
+
+Python 3.12 (stdlib only — no third-party packages required). Using `uv` is
+recommended so the interpreter is managed consistently:
+
+```bash
+export SAM_API_KEY="your-sam-gov-api-key"     # required for live SAM.gov runs
+uv run python scripts/enercon_doe_bd_watch.py --dry-run   # config check, no network
+uv run python scripts/enercon_doe_bd_watch.py             # full run
+```
+
+Plain Python also works if `uv` is unavailable:
+
+```bash
+python scripts/enercon_doe_bd_watch.py --dry-run
+```
+
+Useful flags: `--days-back N`, `--min-score N`, `--report-all-active`,
+`--skip-sam` (CSV-only run), `--no-email`, `--output-dir`, `--state-db`,
+`--limit`, `--max-pages`, `--max-requests`. Exit codes: `0` success,
+`1` unexpected runtime failure, `2` configuration error.
+
+### Required environment variables
+
+| Variable      | Required | Purpose                                                       |
+| ------------- | -------- | ------------------------------------------------------------- |
+| `SAM_API_KEY` | Yes      | SAM.gov Opportunities API key (omit only with `--skip-sam`).  |
+
+### Optional CSV import variables
+
+Point these at glob patterns for exported CSVs; the script maps common column
+names automatically and skips malformed rows.
+
+| Variable             | Purpose                              |
+| -------------------- | ------------------------------------ |
+| `EDGEWINS_CSV_GLOB`  | Glob for The EdgeWins CSV export(s). |
+| `GOVWIN_CSV_GLOB`    | Glob for GovWin CSV export(s).       |
+| `HIGHERGOV_CSV_GLOB` | Glob for HigherGov CSV export(s).    |
+
+Example:
+
+```bash
+export GOVWIN_CSV_GLOB="$HOME/Downloads/govwin-*.csv"
+```
+
+### Cursor task command
+
+A Cursor/VS Code task named **ENERCON DOE BD Nightly Watch** is defined in
+`.vscode/tasks.json` (run it from the command palette → *Run Task*). It executes:
+
+```bash
+uv run python scripts/enercon_doe_bd_watch.py --days-back 7 --min-score 45 --output-dir bd_outputs --state-db bd_outputs/enercon_doe_bd_state.sqlite
+```
+
+### GitHub Actions setup
+
+`.github/workflows/enercon-doe-bd-watch.yml` runs the watcher nightly at
+**~7:00 AM Eastern** (`cron: "0 11 * * *"` UTC) and on manual
+`workflow_dispatch`. It installs Python + `uv`, persists the SQLite dedup state
+across runs via `actions/cache`, runs the automation, and uploads `bd_outputs`
+as a build artifact. Email is delivered from within the script when the SMTP
+secrets below are present. The optional CSV globs can be supplied as repository
+**variables** (`EDGEWINS_CSV_GLOB`, `GOVWIN_CSV_GLOB`, `HIGHERGOV_CSV_GLOB`).
+
+### How to add the SAM.gov API key as a repository secret
+
+1. Get a key from your SAM.gov **Account Details** page (Workspace → profile →
+   *API Key*). A roled/registered key has a 1,000 requests/day limit.
+2. In GitHub: **Settings → Secrets and variables → Actions → New repository
+   secret**.
+3. Name it `SAM_API_KEY` and paste the key value. Save.
+
+The workflow fails fast with a clear error if `SAM_API_KEY` is missing.
+
+### How to configure SMTP secrets (email delivery)
+
+Add these as repository **secrets** (same Actions secrets page). Email is sent to
+`gregory.leon.brown@gmail.com` with subject `ENERCON DOE BD Nightly Watch – YYYY-MM-DD`,
+the Markdown report as the body, and `latest.csv` + `latest.json` attached.
+
+| Secret          | Example / notes                                   |
+| --------------- | ------------------------------------------------- |
+| `SMTP_HOST`     | e.g. `smtp.gmail.com`                              |
+| `SMTP_PORT`     | `587` (STARTTLS) or `465` (SSL)                   |
+| `SMTP_USER`     | SMTP login user                                   |
+| `SMTP_PASSWORD` | SMTP password / app password                      |
+| `EMAIL_FROM`    | From address (e.g. a sending mailbox)             |
+
+If **any** of these is missing the run still succeeds and prints:
+`Email skipped because SMTP environment variables are not fully configured.`
+Override the recipient with `EMAIL_TO` or `--email-to`; disable email with
+`--no-email`.
+
+### Where outputs are written
+
+Into the `--output-dir` (default `bd_outputs/`, git-ignored):
+
+- `bd_outputs/latest.md` — Markdown report (overwritten each run).
+- `bd_outputs/latest.csv` — CSV of reported leads (overwritten each run).
+- `bd_outputs/latest.json` — JSON of reported leads + run metadata (overwritten each run).
+- `bd_outputs/YYYY-MM-DD/enercon_doe_bd_<timestamp>.{md,csv,json}` — timestamped
+  dated archives (never overwritten).
+- `bd_outputs/enercon_doe_bd_state.sqlite` — SQLite dedup/state database.
