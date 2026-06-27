@@ -442,6 +442,51 @@
       gap: 12px;
     }
 
+    .lead-magnet {
+      display: grid;
+      gap: 12px;
+    }
+
+    .lead-badge {
+      justify-self: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 0 11px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--green), var(--yellow));
+      color: var(--charcoal);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .lead-magnet h2 {
+      margin: 0;
+      font-size: 1.45rem;
+      line-height: 1.2;
+    }
+
+    .lead-form {
+      display: grid;
+      gap: 10px;
+    }
+
+    .lead-optional {
+      color: #6b7280;
+      font-weight: 400;
+    }
+
+    .lead-download {
+      margin: 0;
+      padding: 12px 14px;
+      border-left: 4px solid var(--green);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      background: var(--panel);
+      font-weight: 700;
+    }
+
     label {
       font-weight: 700;
       color: var(--ink);
@@ -1336,8 +1381,29 @@
             </div>
           </div>
 
-          <aside class="signup-panel" id="contact" aria-labelledby="signup-title">
-            <h2 id="signup-title">Start a project conversation</h2>
+          <aside class="signup-panel" id="contact" aria-labelledby="lead-magnet-title">
+            <div class="lead-magnet" aria-labelledby="lead-magnet-title">
+              <span class="lead-badge">Free PDF guide</span>
+              <h2 id="lead-magnet-title">Get the Project Readiness Guide</h2>
+              <p class="contact-intro">Know exactly what to bring to your first engineering conversation: a document checklist by discipline (mechanical, civil, project controls, energy), plus how to frame the decision. Tell us where to send it.</p>
+              <form class="lead-form" id="lead-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST" novalidate>
+                <label for="lead-name">First name</label>
+                <input id="lead-name" name="firstName" type="text" autocomplete="given-name" required>
+                <label for="lead-email">Email address</label>
+                <input id="lead-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+                <label for="lead-phone">Phone <span class="lead-optional">(optional)</span></label>
+                <input id="lead-phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional">
+                <input type="hidden" name="_subject" value="Project Readiness Guide request">
+                <button class="button" type="submit">Email me the guide</button>
+                <p class="form-message" id="lead-message" role="status" aria-live="polite"></p>
+              </form>
+              <p class="lead-download" id="lead-download" hidden>
+                <a class="text-link" href="assets/techniek-project-readiness-guide.pdf" download>Download the Project Readiness Guide (PDF)</a>
+              </p>
+              <p class="signup-helper">We use your details only to send the guide and follow up about your project. Prefer email? Write to <a class="text-link" href="mailto:gregory@techniekengineering.com">gregory@techniekengineering.com</a>.</p>
+            </div>
+            <div class="contact-divider" aria-hidden="true"></div>
+            <h3 id="signup-title">Start a project conversation</h3>
             <p class="contact-intro">Choose the faster path for a scoped first discussion, then subscribe separately if ongoing brief updates are useful.</p>
             <div class="contact-start" aria-labelledby="contact-start-title">
               <h3 id="contact-start-title">Project scoping</h3>
@@ -1349,7 +1415,7 @@
               </ul>
               <div class="contact-actions">
                 <a class="button" href="support-finder.html">Use the Support Finder</a>
-                <a class="text-link" href="tools/index.html">Review engineering tools</a>
+                <a class="text-link" href="mailto:gregory@techniekengineering.com">gregory@techniekengineering.com</a>
               </div>
             </div>
             <div class="contact-divider" aria-hidden="true"></div>
@@ -1528,6 +1594,7 @@
     <footer class="site-footer">
       <div class="container footer-inner">
         <span>&copy; 2026 Techniek Engineering. All rights reserved.</span>
+        <span><a class="text-link" href="mailto:gregory@techniekengineering.com">gregory@techniekengineering.com</a></span>
         <span>Engineering | Project Management | Energy Management</span>
       </div>
     </footer>
@@ -1656,6 +1723,46 @@
       message.textContent = "Thank you. Techniek Engineering will be in touch.";
       form.reset();
     });
+
+    const leadForm = document.querySelector("#lead-form");
+    const leadMessage = document.querySelector("#lead-message");
+    const leadDownload = document.querySelector("#lead-download");
+
+    function revealGuide(note) {
+      if (leadDownload) leadDownload.hidden = false;
+      if (leadMessage) leadMessage.textContent = note;
+    }
+
+    if (leadForm) {
+      leadForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!leadForm.checkValidity()) {
+          leadForm.reportValidity();
+          return;
+        }
+        const endpoint = leadForm.getAttribute("action") || "";
+        // Until a real Formspree/Getform endpoint is configured, deliver the
+        // guide client-side instead of posting to the placeholder URL.
+        if (!endpoint || endpoint.includes("REPLACE_WITH_YOUR_FORM_ID")) {
+          revealGuide("Thanks! Your guide is ready below. (Lead delivery isn't configured yet.)");
+          leadForm.reset();
+          return;
+        }
+        leadMessage.textContent = "Sending…";
+        try {
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            body: new FormData(leadForm)
+          });
+          if (!response.ok) throw new Error("Request failed");
+          revealGuide("Thank you! Check your inbox — and download your guide below.");
+          leadForm.reset();
+        } catch (error) {
+          revealGuide("We couldn't send just now, but your guide is ready below. You can also email gregory@techniekengineering.com.");
+        }
+      });
+    }
 
     function formatBriefDate(dateValue) {
       return dateFormatter.format(new Date(`${dateValue}T12:00:00`));
