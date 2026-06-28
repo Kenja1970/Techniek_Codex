@@ -16,7 +16,9 @@ Shipped full static apps (zero npm build; Leaflet CDN for maps only):
 
 Tests: `blueledger-georgia/tests/smoke.test.mjs`, `precisionflow/tests/smoke.test.mjs` added to root `npm test`. `npm run lint` covers all new JS.
 
-Still open: lead magnet Formspree URL; TwinSim **source** commit in `%TEMP%\twinsim-dev`; merge/deploy to `main`.
+Still open: lead magnet Formspree URL; merge/deploy to `main`.
+
+TwinSim **source** committed + pushed: `Kenja1970/Techniek-TwinSimStudio@feat/session-engine-ui-enhancements` (`4bd73c3`) — code-split, off-shift bucket, keyboard zoom, snap-to-grid, cost/compare/export. Published build already in Codex `a9ad273`/`00925f2`.
 
 **Branch:** `feat/flange-profile-diagram` (Techniek_Codex). **Nothing merged to `main`, nothing deployed.**
 
