@@ -121,7 +121,27 @@ REGION_SITE_TERMS = {
     "Y-12": ["y-12", "y12", "y 12 national security"],
     "Oak Ridge": ["oak ridge reservation", "oak ridge", "ettp", "east tennessee technology park"],
     "Paducah": ["paducah", "pgdp"],
-    "Portsmouth": ["portsmouth", "piketon", "pordp"],
+    "Portsmouth": ["portsmouth", "piketon", "pordp", "ports gdp", "x-326", "x-330", "x-333"],
+}
+
+# Optional per-site disambiguation. Some site names are ambiguous: the DOE
+# Portsmouth Gaseous Diffusion Plant is in Piketon, OH, but "Portsmouth" also
+# names Norfolk Naval Shipyard (Portsmouth, VA) and Portsmouth Naval Shipyard
+# (Kittery, ME) — both Navy sites unrelated to DOE. A region only counts as a
+# match when one of its REGION_SITE_TERMS is present AND none of its exclude
+# terms are. Sites omitted here have no exclusions. Easy to extend per site.
+REGION_EXCLUDE_TERMS = {
+    "Portsmouth": [
+        "portsmouth, va",
+        "portsmouth va",
+        "portsmouth, virginia",
+        "portsmouth, nh",
+        "portsmouth nh",
+        "portsmouth, new hampshire",
+        "norfolk naval",
+        "naval shipyard",
+        "nnsy",
+    ],
 }
 
 # DOE / NNSA / nuclear / M&O / national-lab context terms.
@@ -707,11 +727,16 @@ def score_lead(lead: dict, min_score: int) -> dict:
     breakdown = {}
     reasons = []
 
-    # 1) Region / site match.
-    matched_sites = [
-        site for site, terms in REGION_SITE_TERMS.items()
-        if any(term in blob for term in terms)
-    ]
+    # 1) Region / site match. An ambiguous site name (see REGION_EXCLUDE_TERMS)
+    # only counts when no known non-DOE context term is also present.
+    matched_sites = []
+    for site, terms in REGION_SITE_TERMS.items():
+        if not any(term in blob for term in terms):
+            continue
+        excludes = REGION_EXCLUDE_TERMS.get(site, ())
+        if excludes and any(bad in blob for bad in excludes):
+            continue
+        matched_sites.append(site)
     if matched_sites:
         breakdown["region_site"] = SCORE_WEIGHTS["region_site"]
         reasons.append("Region match: " + ", ".join(matched_sites))
