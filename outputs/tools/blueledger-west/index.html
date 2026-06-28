@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlueLedger West | Techniek Engineering</title>
+  <meta name="description" content="Western US water intelligence: storage, snowpack, ET, compact placeholders, and traceable evidence ledger.">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="../_shared/blueledger.css">
+  <style>
+    body.bl-app { background: radial-gradient(1200px 600px at 90% -10%, #2a1f3d 0%, #070b12 55%); }
+    :root { --bl-accent: #7fd4ff; --bl-accent-2: #ffd166; }
+    .bl-marker-lake { background: #3a86c6; }
+    .bl-marker-snow { background: #e8f4ff; color: #123; }
+  </style>
+</head>
+<body class="bl-app">
+  <header class="bl-topbar">
+    <div class="bl-brand">
+      <h1>BlueLedger West</h1>
+      <p>The evidence ledger for Western water.</p>
+    </div>
+    <nav class="bl-nav" aria-label="Tool navigation">
+      <a href="../../index.html">Techniek Home</a>
+      <a href="../index.html">All Tools</a>
+      <a href="../blueledger-georgia/index.html">BlueLedger Georgia</a>
+    </nav>
+  </header>
+
+  <div id="app"></div>
+  <p class="bl-disclaimer" data-bl-disclaimer></p>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="../_shared/blueledger-core.js"></script>
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

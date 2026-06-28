@@ -2,6 +2,8 @@ const APP_VERSION = "0.6.0-evidence-traceability";
 const MATERIALS = window.MATERIAL_STRESS_DATA ?? [];
 const BOLT_MATERIALS = window.BOLT_STRESS_DATA ?? [];
 const COMPACT_FLANGES = window.COMPACT_FLANGE_DATA ?? [];
+const ASME_NOMINAL = window.ASME_NOMINAL_FLANGE_DATA ?? { rows: [] };
+const { exact: exactNominalRow } = window.ASME_NOMINAL_LOOKUP ?? { exact: () => null };
 const {
   classOptionsFor,
   closestOption,
@@ -149,72 +151,77 @@ const INTELLECTUAL_PROPERTY_NOTICE = {
 const EVIDENCE_STORAGE_KEY = "flangeQualificationEvidence.v2";
 const LEGACY_EVIDENCE_STORAGE_KEY = "flangeQualificationEvidence.v1";
 
+const hasDomEnvironment =
+  typeof document !== "undefined" &&
+  typeof document.getElementById === "function";
+const byId = (id) => (hasDomEnvironment ? document.getElementById(id) : null);
+
 const controls = {
-  nps: document.getElementById("nps"),
-  ratingClass: document.getElementById("ratingClass"),
-  pressurePct: document.getElementById("pressurePct"),
-  temperature: document.getElementById("temperature"),
-  temperatureUnit: document.getElementById("temperatureUnit"),
-  materialFilter: document.getElementById("materialFilter"),
-  material: document.getElementById("material"),
-  boltMaterialFilter: document.getElementById("boltMaterialFilter"),
-  boltMaterial: document.getElementById("boltMaterial"),
-  axial: document.getElementById("axial"),
-  moment: document.getElementById("moment"),
-  edition: document.getElementById("edition"),
-  family: document.getElementById("family"),
-  projectName: document.getElementById("projectName"),
-  calcId: document.getElementById("calcId"),
-  preparedBy: document.getElementById("preparedBy"),
-  reviewer: document.getElementById("reviewer"),
-  downloadCalcSet: document.getElementById("downloadCalcSet"),
-  openCalcSet: document.getElementById("openCalcSet"),
-  downloadEvidence: document.getElementById("downloadEvidence"),
-  downloadAgentSnapshot: document.getElementById("downloadAgentSnapshot"),
-  lineAsme: document.getElementById("lineAsme"),
-  lineCompact: document.getElementById("lineCompact"),
+  nps: byId("nps"),
+  ratingClass: byId("ratingClass"),
+  pressurePct: byId("pressurePct"),
+  temperature: byId("temperature"),
+  temperatureUnit: byId("temperatureUnit"),
+  materialFilter: byId("materialFilter"),
+  material: byId("material"),
+  boltMaterialFilter: byId("boltMaterialFilter"),
+  boltMaterial: byId("boltMaterial"),
+  axial: byId("axial"),
+  moment: byId("moment"),
+  edition: byId("edition"),
+  family: byId("family"),
+  projectName: byId("projectName"),
+  calcId: byId("calcId"),
+  preparedBy: byId("preparedBy"),
+  reviewer: byId("reviewer"),
+  downloadCalcSet: byId("downloadCalcSet"),
+  openCalcSet: byId("openCalcSet"),
+  downloadEvidence: byId("downloadEvidence"),
+  downloadAgentSnapshot: byId("downloadAgentSnapshot"),
+  lineAsme: byId("lineAsme"),
+  lineCompact: byId("lineCompact"),
 };
 
 const els = {
-  selectedFlange: document.getElementById("selectedFlange"),
-  npsOut: document.getElementById("npsOut"),
-  classOut: document.getElementById("classOut"),
-  pressureOut: document.getElementById("pressureOut"),
-  temperatureOut: document.getElementById("temperatureOut"),
-  axialOut: document.getElementById("axialOut"),
-  momentOut: document.getElementById("momentOut"),
-  scopeStatus: document.getElementById("scopeStatus"),
-  utilizationLabel: document.getElementById("utilizationLabel"),
-  meterFill: document.getElementById("meterFill"),
-  ratingPsi: document.getElementById("ratingPsi"),
-  operatingPsi: document.getElementById("operatingPsi"),
-  materialAllowable: document.getElementById("materialAllowable"),
-  boltAllowable: document.getElementById("boltAllowable"),
-  pressureCapacity: document.getElementById("pressureCapacity"),
-  axialCapacity: document.getElementById("axialCapacity"),
-  momentCapacity: document.getElementById("momentCapacity"),
-  stressStatus: document.getElementById("stressStatus"),
-  stressState: document.getElementById("stressState"),
-  dimensionsSummary: document.getElementById("dimensionsSummary"),
-  diagramA: document.getElementById("diagramA"),
-  diagramC: document.getElementById("diagramC"),
-  classChart: document.getElementById("classChart"),
-  chartCaption: document.getElementById("chartCaption"),
-  editionTitle: document.getElementById("editionTitle"),
-  editionNote: document.getElementById("editionNote"),
-  editionBullets: document.getElementById("editionBullets"),
-  lineControlTitle: document.getElementById("lineControlTitle"),
-  lineDescription: document.getElementById("lineDescription"),
-  familyControl: document.getElementById("familyControl"),
-  configurationScopeNote: document.getElementById("configurationScopeNote"),
-  qualificationStatus: document.getElementById("qualificationStatus"),
-  qualificationSummary: document.getElementById("qualificationSummary"),
-  readinessStatus: document.getElementById("readinessStatus"),
-  readinessBar: document.getElementById("readinessBar"),
-  readinessCount: document.getElementById("readinessCount"),
-  evidenceChecklist: document.getElementById("evidenceChecklist"),
-  agentCalculationState: document.getElementById("agentCalculationState"),
-  canvas: document.getElementById("interactionCanvas"),
+  selectedFlange: byId("selectedFlange"),
+  npsOut: byId("npsOut"),
+  classOut: byId("classOut"),
+  pressureOut: byId("pressureOut"),
+  temperatureOut: byId("temperatureOut"),
+  axialOut: byId("axialOut"),
+  momentOut: byId("momentOut"),
+  scopeStatus: byId("scopeStatus"),
+  utilizationLabel: byId("utilizationLabel"),
+  meterFill: byId("meterFill"),
+  ratingPsi: byId("ratingPsi"),
+  operatingPsi: byId("operatingPsi"),
+  materialAllowable: byId("materialAllowable"),
+  boltAllowable: byId("boltAllowable"),
+  pressureCapacity: byId("pressureCapacity"),
+  axialCapacity: byId("axialCapacity"),
+  momentCapacity: byId("momentCapacity"),
+  stressStatus: byId("stressStatus"),
+  stressState: byId("stressState"),
+  dimensionsSummary: byId("dimensionsSummary"),
+  diagramA: byId("diagramA"),
+  diagramC: byId("diagramC"),
+  classChart: byId("classChart"),
+  chartCaption: byId("chartCaption"),
+  editionTitle: byId("editionTitle"),
+  editionNote: byId("editionNote"),
+  editionBullets: byId("editionBullets"),
+  lineControlTitle: byId("lineControlTitle"),
+  lineDescription: byId("lineDescription"),
+  familyControl: byId("familyControl"),
+  configurationScopeNote: byId("configurationScopeNote"),
+  qualificationStatus: byId("qualificationStatus"),
+  qualificationSummary: byId("qualificationSummary"),
+  readinessStatus: byId("readinessStatus"),
+  readinessBar: byId("readinessBar"),
+  readinessCount: byId("readinessCount"),
+  evidenceChecklist: byId("evidenceChecklist"),
+  agentCalculationState: byId("agentCalculationState"),
+  canvas: byId("interactionCanvas"),
 };
 
 function formatNumber(value, digits = 0) {
@@ -514,6 +521,45 @@ function roundToEighth(value) {
 
 function flangeDimensions({ nps, ratingClass, family }) {
   const bore = (PIPE_OD[nps] ?? nps) + 0.18;
+  const published = exactNominalRow({
+    family,
+    nps,
+    ratingClass,
+    rows: ASME_NOMINAL.rows,
+  });
+  if (published) {
+    const hubLength = Math.max(0.95, published.thickness * 2.4);
+    const hubDiameter = Math.min(published.outsideDiameter * 0.74, bore + 1.25 + published.thickness);
+    const boltLength = Math.max(2.25, 2 * published.thickness + 2.5 * published.boltDiameter + 0.5);
+    const annulusVolume =
+      (Math.PI / 4) * (published.outsideDiameter ** 2 - bore ** 2) * published.thickness;
+    const hubVolume =
+      (Math.PI / 4) * Math.max(0, hubDiameter ** 2 - bore ** 2) * hubLength * 0.62;
+    const flangeWeightEach = (annulusVolume + hubVolume) * 0.283;
+    const boltSteelVolume = (Math.PI / 4) * published.boltDiameter ** 2 * boltLength;
+    const nutWasherVolume = 0.92 * published.boltDiameter ** 3;
+    const boltWeightEach = (boltSteelVolume + nutWasherVolume) * 0.283;
+    const boltSetWeight = boltWeightEach * published.boltCount;
+    return {
+      bore,
+      outsideDiameter: published.outsideDiameter,
+      boltCircle: published.boltCircle,
+      thickness: published.thickness,
+      hubLength,
+      hubDiameter,
+      boltCount: published.boltCount,
+      boltDiameter: published.boltDiameter,
+      boltLength,
+      flangeWeightEach,
+      boltWeightEach,
+      boltSetWeight,
+      assemblyWeight: flangeWeightEach * 2 + boltSetWeight,
+      matchType: "published-nominal",
+      provenanceId: ASME_NOMINAL.provenance?.standard,
+      source: `Published nominal dimensions (${ASME_NOMINAL.provenance?.standard}); verify against an authorized controlled edition.`,
+    };
+  }
+
   const classScale = Math.sqrt(ratingClass / 150);
   const familyScale = family === "B16.47A" ? 1.12 : family === "B16.47B" ? 1.06 : 1;
   const outsideDiameter = Math.max(
@@ -554,6 +600,7 @@ function flangeDimensions({ nps, ratingClass, family }) {
     boltWeightEach,
     boltSetWeight,
     assemblyWeight: flangeWeightEach * 2 + boltSetWeight,
+    matchType: "generated-screening",
     source: "Generated ASME-style screening dimensions; verify against controlled B16.5/B16.47 tables.",
   };
 }
@@ -675,6 +722,52 @@ function stressState(result) {
     boltAreaIn2: boltArea,
     boltStressKsi,
     boltUtilization,
+  };
+}
+
+function viii2Workflow(result) {
+  return {
+    reference: "BPVC VIII-2 §4.16 screening checklist (not a Code calculation)",
+    checks: [
+      {
+        id: "gasket-load",
+        label: "Combined gasket / external load utilization",
+        value: result.utilization,
+        limit: 1,
+        pass: result.utilization <= 1,
+      },
+      {
+        id: "flange-stress",
+        label: "Flange section combined stress",
+        value: result.stress.flangeUtilization,
+        limit: 1,
+        pass: result.stress.flangeUtilization <= 1,
+      },
+      {
+        id: "bolt-stress",
+        label: "Bolt tensile stress",
+        value: result.stress.boltUtilization,
+        limit: 1,
+        pass: result.stress.boltUtilization <= 1,
+      },
+    ],
+    overallPass: numericalScreeningPasses(result),
+  };
+}
+
+function iso27509Workflow(result) {
+  if (result.productLine !== "compact") {
+    return { applicable: false, reference: "ISO 27509:2020 compact path not selected." };
+  }
+  return {
+    applicable: true,
+    reference: "ISO 27509:2020 compact-flange context (vendor conformity not established)",
+    sealPreloadTarget: result.targetSealPreload,
+    residualSealForce: result.sealReserveForce,
+    sealCompressionPass: result.sealReserveForce >= 0,
+    boltPreloadBasis: "70% of bolt allowable at temperature",
+    overallPass:
+      numericalScreeningPasses(result) && result.sealReserveForce >= 0,
   };
 }
 
@@ -816,6 +909,8 @@ function calculate(state) {
   return {
     ...result,
     qualification: qualificationBasis(result),
+    viii2Workflow: viii2Workflow(result),
+    iso27509Workflow: iso27509Workflow(result),
   };
 }
 
@@ -1828,14 +1923,14 @@ function dimArrowV(x, yA, yB, label) {
 // Draws the selected flange as a standard-vs-compact cross-section comparison,
 // to a common scale, so the dimensional differences are directly visible.
 function renderProfileComparison(result) {
-  const svg = document.getElementById("profileDiagram");
+  const svg = byId("profileDiagram");
   if (!svg) return;
-  const deltaEl = document.getElementById("profileDelta");
-  const captionEl = document.getElementById("profileCaption");
+  const deltaEl = byId("profileDelta");
+  const captionEl = byId("profileCaption");
 
   const nps = result.nps;
   const ratingClass = result.ratingClass;
-  const familyEl = document.getElementById("family");
+  const familyEl = byId("family");
   const family = result.family || (familyEl ? familyEl.value : "B16.5") || "B16.5";
 
   let standard = null;
@@ -2213,39 +2308,41 @@ function populateMaterialControls() {
   });
 }
 
-Object.values(controls).forEach((control) => {
-  if (control instanceof HTMLInputElement || control instanceof HTMLSelectElement) {
-    control.addEventListener("input", update);
-    control.addEventListener("change", update);
-  }
-});
-
-controls.downloadCalcSet.addEventListener("click", downloadCalculationSet);
-controls.openCalcSet.addEventListener("click", openCalculationSet);
-controls.downloadEvidence.addEventListener("click", downloadEvidenceJson);
-controls.downloadAgentSnapshot.addEventListener("click", downloadAgentSnapshot);
-controls.lineAsme.addEventListener("click", () => setProductLine("asme"));
-controls.lineCompact.addEventListener("click", () => setProductLine("compact"));
-controls.materialFilter.addEventListener("input", () => {
-  populateMaterialSelect({
-    data: MATERIALS,
-    select: controls.material,
-    filter: controls.materialFilter,
-    defaultId: DEFAULT_MATERIAL_ID,
+if (hasDomEnvironment) {
+  Object.values(controls).forEach((control) => {
+    if (control instanceof HTMLInputElement || control instanceof HTMLSelectElement) {
+      control.addEventListener("input", update);
+      control.addEventListener("change", update);
+    }
   });
-  update();
-});
-controls.boltMaterialFilter.addEventListener("input", () => {
-  populateMaterialSelect({
-    data: BOLT_MATERIALS,
-    select: controls.boltMaterial,
-    filter: controls.boltMaterialFilter,
-    defaultId: DEFAULT_BOLT_MATERIAL_ID,
-  });
-  update();
-});
 
-window.flangeApp = {
+  controls.downloadCalcSet.addEventListener("click", downloadCalculationSet);
+  controls.openCalcSet.addEventListener("click", openCalculationSet);
+  controls.downloadEvidence.addEventListener("click", downloadEvidenceJson);
+  controls.downloadAgentSnapshot.addEventListener("click", downloadAgentSnapshot);
+  controls.lineAsme.addEventListener("click", () => setProductLine("asme"));
+  controls.lineCompact.addEventListener("click", () => setProductLine("compact"));
+  controls.materialFilter.addEventListener("input", () => {
+    populateMaterialSelect({
+      data: MATERIALS,
+      select: controls.material,
+      filter: controls.materialFilter,
+      defaultId: DEFAULT_MATERIAL_ID,
+    });
+    update();
+  });
+  controls.boltMaterialFilter.addEventListener("input", () => {
+    populateMaterialSelect({
+      data: BOLT_MATERIALS,
+      select: controls.boltMaterial,
+      filter: controls.boltMaterialFilter,
+      defaultId: DEFAULT_BOLT_MATERIAL_ID,
+    });
+    update();
+  });
+}
+
+const flangeAppApi = {
   version: APP_VERSION,
   calculate,
   configurationOptions,
@@ -2255,6 +2352,12 @@ window.flangeApp = {
   buildCalculationHtml,
 };
 
-populateMaterialControls();
-window.addEventListener("resize", update);
-update();
+if (typeof window !== "undefined") {
+  window.flangeApp = flangeAppApi;
+}
+
+if (hasDomEnvironment) {
+  populateMaterialControls();
+  window.addEventListener("resize", update);
+  update();
+}
