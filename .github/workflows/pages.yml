@@ -94,6 +94,8 @@ jobs:
           test -f dist/tools/techniek-opsboard/index.html
           test -f dist/tools/techniek-opsboard/app.js
           test -f dist/tools/techniek-twinsim-studio/index.html
+          test -f dist/tools/precisionflow/index.html
+          test -n "$(find dist/tools/precisionflow/assets -name 'index-*.js' -print -quit)"
 
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
