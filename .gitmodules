@@ -4,3 +4,6 @@
 [submodule "tools/Techniek-OpsBoard"]
 	path = tools/Techniek-OpsBoard
 	url = https://github.com/Kenja1970/Techniek-OpsBoard-Pro.git
+[submodule "tools/Techniek-PrecisionFlow"]
+	path = tools/Techniek-PrecisionFlow
+	url = https://github.com/Kenja1970/Techniek-PrecisionFlow.git
