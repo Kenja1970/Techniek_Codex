@@ -257,9 +257,17 @@ EARLY_STAGE_TERMS = [
 ]
 
 # Title queries sent to SAM.gov to catch relevant work that lives OUTSIDE our
-# NAICS list (e.g., a Pantex notice filed under an unexpected NAICS). Keep this
-# list focused on distinctive site/program names to conserve API calls.
-SAM_TITLE_QUERIES = [
+# NAICS list (e.g., a Pantex notice filed under an unexpected NAICS).
+#
+# These are split into two priority tiers because SAM.gov throttles aggressively
+# (especially shared/un-roled keys) and a nightly run can be cut off partway
+# through. The gather() order is: distinctive TARGET-SITE titles first, then the
+# NAICS sweep, then the broader THEME titles last. Target-site titles are what
+# surface region-matched notices — the highest-value (28-pt) signal and the
+# user's #1 scoring priority — so they must run before the request budget is
+# spent on the broad NAICS/theme queries. Add new distinctive site/program
+# names to SAM_SITE_QUERIES and broader thematic terms to SAM_THEME_QUERIES.
+SAM_SITE_QUERIES = [
     "Pantex",
     "Oak Ridge",
     "ORNL",
@@ -268,6 +276,9 @@ SAM_TITLE_QUERIES = [
     "Mission Support and Test Services",
     "Paducah",
     "Portsmouth",
+]
+
+SAM_THEME_QUERIES = [
     "Environmental Management",
     "decontamination and decommissioning",
     "progressive design-build",
@@ -275,6 +286,10 @@ SAM_TITLE_QUERIES = [
     "facility modification",
     "master planning",
 ]
+
+# Combined list (site names first, then themes). Retained for reporting and the
+# dry-run search-plan count; gather() runs the two tiers in prioritized phases.
+SAM_TITLE_QUERIES = SAM_SITE_QUERIES + SAM_THEME_QUERIES
 
 # Scoring weights. Adjust these to retune prioritization; the maximum possible
 # raw total is 100 (region 28 + DOE 22 + NAICS 16 + capability 16 + DB 10 +
@@ -541,17 +556,29 @@ class SamClient:
                 seen_ids.add(key)
                 results.append(rec)
 
+        # Phase 1 — distinctive target-site/program titles FIRST. SAM.gov
+        # throttling frequently cuts a run short, so we capture the highest-value
+        # region matches (the user's #1 priority) before spending the request
+        # budget on the broader NAICS sweep and thematic titles below.
+        print("Querying SAM.gov by target-site/program title ...")
+        for term in SAM_SITE_QUERIES:
+            if self.rate_limited:
+                break
+            absorb(self.search({"title": term}, f"site title '{term}'"))
+
+        # Phase 2 — NAICS sweep (primary 541330 first, then associated codes).
         print("Querying SAM.gov by NAICS code ...")
         for code in ALL_NAICS:
             if self.rate_limited:
                 break
             absorb(self.search({"ncode": code}, f"NAICS {code}"))
 
-        print("Querying SAM.gov by site/program title ...")
-        for term in SAM_TITLE_QUERIES:
+        # Phase 3 — broader thematic titles last (lower precision, higher volume).
+        print("Querying SAM.gov by thematic title ...")
+        for term in SAM_THEME_QUERIES:
             if self.rate_limited:
                 break
-            absorb(self.search({"title": term}, f"title '{term}'"))
+            absorb(self.search({"title": term}, f"theme title '{term}'"))
 
         if self.rate_limited:
             print("  ! SAM.gov throttling/limit reached; proceeding with partial results.")
