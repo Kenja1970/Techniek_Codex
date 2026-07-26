@@ -55,6 +55,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://kenja1970.github.io/Techniek_Codex/tools/greg-brown-site/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://kenja1970.github.io/Techniek_Codex/briefs.json</loc>
     <lastmod>2026-06-21</lastmod>
     <changefreq>daily</changefreq>
