@@ -8,7 +8,6 @@
       name="description"
       content="Techniek Engineering provides professional engineering, project management, and energy management support for commercial and industrial clients."
     >
-    <meta http-equiv="refresh" content="0; url=outputs/index.html">
     <link rel="canonical" href="outputs/index.html">
     <style>
       :root {
@@ -61,7 +60,14 @@
         margin: 0 0 18px;
       }
 
-      a {
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      a.button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -74,9 +80,27 @@
         text-decoration: none;
       }
 
-      a:focus-visible {
+      a.button.secondary {
+        background: #ffffff;
+        color: var(--techniek-blue);
+        border: 1px solid var(--techniek-blue);
+      }
+
+      a.button:focus-visible {
         outline: 3px solid var(--techniek-green);
         outline-offset: 3px;
+      }
+
+      .tool-link {
+        display: block;
+        margin-top: 18px;
+        color: var(--techniek-blue);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .tool-link:hover {
+        text-decoration: underline;
       }
     </style>
   </head>
@@ -84,11 +108,12 @@
     <main>
       <img src="outputs/assets/logo.png" alt="Techniek Engineering logo">
       <h1>Techniek Engineering</h1>
-      <p>Opening the Techniek Engineering site.</p>
-      <a href="outputs/index.html">Continue to the site</a>
+      <p>Practical engineering, project delivery, and energy performance support.</p>
+      <div class="actions">
+        <a class="button" href="outputs/index.html">Open the main site</a>
+        <a class="button secondary" href="tools/greg-brown-site/index.html">Greg Brown — Career &amp; Digital Twin</a>
+      </div>
+      <a class="tool-link" href="outputs/tools/index.html">Browse all engineering tools</a>
     </main>
-    <script>
-      window.location.replace("outputs/index.html");
-    </script>
   </body>
 </html>
