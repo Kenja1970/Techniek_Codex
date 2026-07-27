@@ -42,9 +42,14 @@ jobs:
           node --check app.js
           node --check tests/qa.js
           for f in index.html styles.css app.js README.md CHANGELOG.md LICENSE .nojekyll \
-                   tests/qa.html tests/qa.js docs/qa/QA-REPORT.md; do
+                   tests/qa.html tests/qa.js docs/qa/QA-REPORT.md \
+                   assets/knowledge-corpus.js; do
             test -f "$f" || { echo "::error::missing $f"; exit 1; }
           done
+          # V2 loads the PM knowledge corpus as a <script> (fetch is blocked on
+          # file://). Without it the app still boots but Procedure Q&A silently
+          # returns nothing, so fail loudly instead.
+          grep -q 'knowledge-corpus.js' index.html || { echo "::error::index.html does not load the knowledge corpus"; exit 1; }
           grep -q 'styles.css?v=' index.html || { echo "::error::index.html missing versioned styles.css"; exit 1; }
           grep -q 'app.js?v='    index.html || { echo "::error::index.html missing versioned app.js"; exit 1; }
           if grep -Eq 'src="/src/|/node_modules/' index.html; then
@@ -93,6 +98,7 @@ jobs:
           test -f dist/tools/flange-capacity/agent-manifest.json
           test -f dist/tools/techniek-opsboard/index.html
           test -f dist/tools/techniek-opsboard/app.js
+          test -f dist/tools/techniek-opsboard/assets/knowledge-corpus.js
           test -f dist/tools/techniek-twinsim-studio/index.html
           test -f dist/tools/precisionflow/index.html
           test -n "$(find dist/tools/precisionflow/assets -name 'index-*.js' -print -quit)"

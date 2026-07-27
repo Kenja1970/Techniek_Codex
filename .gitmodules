@@ -1,9 +1,9 @@
 [submodule "outputs/tools/techniek-opsboard"]
 	path = outputs/tools/techniek-opsboard
-	url = https://github.com/Kenja1970/Techniek-OpsBoard-Pro.git
+	url = https://github.com/Kenja1970/Techniek-OpsBoard-Pro-V2.git
 [submodule "tools/Techniek-OpsBoard"]
 	path = tools/Techniek-OpsBoard
-	url = https://github.com/Kenja1970/Techniek-OpsBoard-Pro.git
+	url = https://github.com/Kenja1970/Techniek-OpsBoard-Pro-V2.git
 [submodule "tools/Techniek-PrecisionFlow"]
 	path = tools/Techniek-PrecisionFlow
 	url = https://github.com/Kenja1970/Techniek-PrecisionFlow.git

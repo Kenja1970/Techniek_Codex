@@ -27,7 +27,7 @@ named after its subdirectory, for independent maintenance/upgrade. The `Techniek
 the **published build** of each tool plus the site shell. We review/upgrade tools one at a time.
 
 ### Landing-page card order (by maturity) — DONE
-1. **Techniek OpsBoard Pro** (`techniek-opsboard/`)
+1. **Techniek OpsBoard Pro V2** (`techniek-opsboard/`)
 2. **Techniek TwinSim Studio** (`techniek-twinsim-studio/`)
 3. **Flange Capacity Explorer** (`flange-capacity/`)
 
@@ -36,7 +36,7 @@ Order is reflected in both `outputs/index.html` and `outputs/tools/index.html`.
 ### Tool status
 | Tool | Published dir | Source repo | State |
 |------|---------------|-------------|-------|
-| OpsBoard Pro | `techniek-opsboard/` | `Kenja1970/Techniek-OpsBoard-Pro` (submodule) | Integrated, live |
+| OpsBoard Pro **V2** | `techniek-opsboard/` | `Kenja1970/Techniek-OpsBoard-Pro-V2` (submodule) | Integrated, live — **v5.2.0** |
 | TwinSim Studio | `techniek-twinsim-studio/` | `Kenja1970/Techniek-TwinSimStudio` (committed build, not submodule) | **v0.2 engine live** |
 | Flange Capacity | `flange-capacity/` | (in-repo) | Mature, has tests |
 | BlueLedger-GA / -West, PrecisionFlow | (specs only) | TBD | Not yet built |
@@ -101,6 +101,10 @@ cd Techniek-TwinSimStudio && npm install && npx vite build
   `outputs/briefs.xml`; classifier word-boundary regex in `tools/classify_knowledge_uploads.py`;
   pinned GH Action versions; deploy excludes tool tests/changelogs.
 - OpsBoard consolidated as submodule (`outputs/tools/techniek-opsboard` + working `tools/Techniek-OpsBoard`).
+- **2026-07-27:** both OpsBoard submodules repointed from `Techniek-OpsBoard-Pro` (v1, v2.5.0) to
+  `Techniek-OpsBoard-Pro-V2` (v5.2.0). The published path stays `techniek-opsboard/` on purpose —
+  renaming it would break every existing `/tools/techniek-opsboard/` link. V1 is slated for
+  retirement; the site no longer depends on it.
 
 ## 5. Pending / next candidates
 - Build out spec-only tools (BlueLedger-GA, BlueLedger-West, PrecisionFlow), each with its own repo.
