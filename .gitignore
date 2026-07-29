@@ -22,6 +22,9 @@ outputs/*.docx
 # ENERCON DOE BD Nightly Watch generated reports + SQLite dedup state
 bd_outputs/
 
+# Local Cloudflare Pages dev cache (wrangler pages dev)
+.wrangler/
+
 # OS/editor noise
 Thumbs.db
 .DS_Store
