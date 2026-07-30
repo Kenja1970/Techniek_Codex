@@ -1,0 +1,15 @@
+# Cloudflare Pages configuration for the techniek-codex project.
+#
+# This file is the source of truth: the matching dashboard fields become
+# read-only once a deployment includes it. Set the project's deploy command to
+# `npx wrangler pages deploy` — the output directory is read from here.
+#
+# Without pages_build_output_dir, Cloudflare fell back to the repository root,
+# which served internal repo files, put the career page at the wrong URL, and
+# broke the build by trying to upload node_modules as static assets.
+name = "techniek-codex"
+pages_build_output_dir = "./outputs"
+
+# Pinned deliberately. Letting Wrangler default to "today" produces a date the
+# bundled workerd in local dev does not yet support.
+compatibility_date = "2026-07-29"

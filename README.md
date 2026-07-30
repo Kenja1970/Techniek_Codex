@@ -73,6 +73,39 @@ artifact checks before GitHub Pages deployment. The standard update cycle is:
 4. Commit and push the scoped files.
 5. Confirm the Pages workflow succeeds and smoke-test the public URL.
 
+### Cloudflare Pages
+
+The same `outputs/` tree is also served by Cloudflare Pages at
+`https://techniek-codex.pages.dev/`, so both hosts expose identical paths.
+
+`wrangler.toml` is the source of truth for that project. It sets
+`pages_build_output_dir = "./outputs"`; the matching dashboard fields become
+read-only once a deployment includes the file. The project's deploy command must
+be:
+
+```text
+npx wrangler pages deploy
+```
+
+Do not use `npx wrangler deploy`. That is the Workers command: it ignores the
+`functions/` directory, defaults the asset directory to the repository root, and
+fails the build by trying to upload `node_modules/` as static assets.
+
+`functions/` stays at the repository root, not inside `outputs/`. Cloudflare
+compiles it into a Worker rather than serving it as a file. It currently holds
+one route, `tools/greg-brown-site/api/chat`, backing the Digital Twin on the Greg
+Brown career page. That route needs an encrypted `OPENROUTER_API_KEY` variable on
+the Pages project (Settings → Variables and Secrets → Add → Encrypt). Secrets
+only reach deployments created after they are set, so add the key before
+deploying. GitHub Pages has no Functions runtime, so the chat is offline there by
+design and the page falls back to a contact prompt.
+
+Preview the Cloudflare layout locally, including the Function:
+
+```bash
+npx wrangler pages dev --binding OPENROUTER_API_KEY=<key>
+```
+
 ## Industry Brief Refresh
 
 `tools/refresh_industry_brief.py` prepends one new dated item to `outputs/briefs.json`

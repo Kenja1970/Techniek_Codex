@@ -25,6 +25,12 @@ bd_outputs/
 # Local Cloudflare Pages dev cache (wrangler pages dev)
 .wrangler/
 
+# Created by `npx wrangler` during Cloudflare builds; never a site asset
+node_modules/
+
+# Local-only secrets for `wrangler pages dev`
+.dev.vars
+
 # OS/editor noise
 Thumbs.db
 .DS_Store
