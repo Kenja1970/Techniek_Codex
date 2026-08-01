@@ -1,0 +1,8 @@
+# Cloudflare Pages redirect rules. Consumed at deploy time, never served.
+#
+# Cloudflare publishes outputs/ as the site root, so live URLs carry no
+# /outputs/ prefix. Deployments before wrangler.toml served the repository root
+# instead, so links shared back then still include it. Unmatched paths fall
+# through to the homepage with a 200, which hides the breakage rather than
+# fixing it, so map the old prefix away permanently.
+/outputs/* /:splat 301
