@@ -472,25 +472,34 @@
         </div>
       </section>
 
-      <section class="te-section te-section-muted" aria-labelledby="document-backed-support">
+      <section class="te-section te-section-muted" aria-labelledby="practical-tools">
         <div class="te-container">
           <div class="te-section-heading">
-            <p class="te-eyebrow">Document-backed support</p>
-            <h2 id="document-backed-support">Sharper answers as the project-history library grows.</h2>
-            <p>Techniek can maintain a private owner-reviewed document library behind the public website. Approved lessons from that library can improve recommendations without exposing raw files, FCI, CUI, export-controlled material, or client-confidential details to site visitors.</p>
+            <p class="te-eyebrow">Engineering Tools</p>
+            <h2 id="practical-tools">Try a practical tool before your first review.</h2>
+            <p>Our browser-based screening and management tools produce working evidence to support your technical decisions. Explore them to get a defensible starting point.</p>
           </div>
           <div class="option-cards">
             <article class="option-card">
-              <h3>Mechanical</h3>
-              <p>Equipment reviews, commissioning notes, maintenance issues, inspection photos, operating trends, and mechanical-system lessons.</p>
+              <h3>Flange Capacity Explorer</h3>
+              <p>Screen standard-rated and compact flanges under pressure, axial load, and bending moment, and download calculation evidence.</p>
+              <div class="te-actions" style="margin-top: 16px;">
+                <a class="te-button" href="tools/flange-capacity/index.html">Try the Explorer</a>
+              </div>
             </article>
             <article class="option-card">
-              <h3>Civil and PM</h3>
-              <p>Facility condition notes, site constraints, schedules, RFIs, submittals, action logs, risk registers, and closeout summaries.</p>
+              <h3>Techniek OpsBoard Pro</h3>
+              <p>Control center for project delivery: Kanban with WIP limits, resource utilization, earned value metrics, and integrated change control.</p>
+              <div class="te-actions" style="margin-top: 16px;">
+                <a class="te-button" href="tools/techniek-opsboard/index.html">View OpsBoard</a>
+              </div>
             </article>
             <article class="option-card">
-              <h3>Energy</h3>
-              <p>Utility bills, BAS trends, interval data, operating schedules, energy audits, measurement notes, and savings follow-up checks.</p>
+              <h3>Digital Twin Studio</h3>
+              <p>Model production lines, run replicated simulations, and review throughput and bottlenecks before committing capital.</p>
+              <div class="te-actions" style="margin-top: 16px;">
+                <a class="te-button" href="tools/techniek-twinsim-studio/index.html">Open TwinSim</a>
+              </div>
             </article>
           </div>
         </div>
@@ -516,8 +525,7 @@
       "options": [
         { "value": "technical-review", "label": "Engineering review or second opinion" },
         { "value": "project-control", "label": "Project coordination or risk control" },
-        { "value": "energy-performance", "label": "Energy performance or operating cost review" },
-        { "value": "ai-workflow", "label": "AI, data, or workflow readiness" }
+        { "value": "energy-performance", "label": "Energy performance or operating cost review" }
       ]
     },
     {
@@ -570,7 +578,6 @@
         "stage": ["planning", "active", "stuck"],
         "outcome": ["memo", "action-list"]
       },
-      "relatedBriefCategories": ["AI governance", "Digital twins"],
       "referenceLinks": [
         { "label": "Engineering support", "url": "engineering-support.html" }
       ],
@@ -616,7 +623,6 @@
         "stage": ["active", "stuck"],
         "outcome": ["risk-view", "action-list", "memo"]
       },
-      "relatedBriefCategories": ["Project controls", "AI governance"],
       "referenceLinks": [
         { "label": "Project management", "url": "project-management.html" }
       ],
@@ -662,7 +668,6 @@
         "stage": ["active", "improve", "planning"],
         "outcome": ["action-list", "data-plan", "memo"]
       },
-      "relatedBriefCategories": ["Energy operations", "Building controls"],
       "referenceLinks": [
         { "label": "Energy management", "url": "energy-management.html" }
       ],
@@ -679,62 +684,11 @@
         "operating waste"
       ],
       "cta": "Collect utility bills, interval data, BAS trends, operating schedules, occupancy patterns, and known comfort or production limits."
-    },
-    {
-      "id": "ai-workflow-readiness-review",
-      "title": "AI Workflow Readiness Review",
-      "service": "Engineering Support",
-      "url": "engineering-support.html",
-      "summary": "A practical review of an AI use case before it is added to engineering, project, maintenance, or energy workflows.",
-      "bestFor": [
-        "A team wants to use AI but has not defined the decision it will support.",
-        "A workflow needs data-quality checks, human review points, and safe boundaries.",
-        "A public or internal tool needs to avoid exposing FCI, CUI, export-controlled data, credentials, or private files."
-      ],
-      "outputs": [
-        "AI use-case scorecard",
-        "Data and source map",
-        "Human review workflow",
-        "CMMC-aware public/private content boundary"
-      ],
-      "prepChecklist": [
-        "Decision the workflow should support",
-        "Source documents or systems",
-        "Who reviews AI output",
-        "Information that must remain restricted, sanitized, or owner-approved"
-      ],
-      "match": {
-        "issue": ["ai-workflow"],
-        "stage": ["planning", "improve", "stuck"],
-        "outcome": ["data-plan", "memo", "risk-view"]
-      },
-      "relatedBriefCategories": ["AI governance", "Building controls", "Project controls"],
-      "referenceLinks": [
-        { "label": "Engineering support", "url": "engineering-support.html" }
-      ],
-      "keywordTriggers": [
-        "ai",
-        "automation",
-        "agent",
-        "workflow",
-        "data",
-        "knowledge",
-        "google drive",
-        "documents",
-        "private",
-        "cmmc",
-        "cui",
-        "fci",
-        "controlled",
-        "prompt"
-      ],
-      "cta": "Describe the decision, users, source documents, review owner, and whether any information may be FCI, CUI, export-controlled, credentialed, or client-confidential."
     }
   ],
   "publicSafety": {
     "allowed": [
       "Approved service descriptions",
-      "Public AI Engineering Brief content",
       "Generalized project situations",
       "Public process descriptions",
       "Non-confidential example outputs"
@@ -791,7 +745,6 @@
       "technical-review": "For a technical issue, proposal, design question, or second opinion.",
       "project-control": "For scattered risks, open decisions, schedules, RFIs, or stakeholder reporting.",
       "energy-performance": "For utility cost, demand, BAS trends, operating schedules, or savings checks.",
-      "ai-workflow": "For document workflows, measurement plans, automation readiness, or knowledge capture.",
       "planning": "Before scope, budget, schedule, or procurement is locked in.",
       "active": "When the project or facility issue is underway and decisions are needed.",
       "stuck": "When ownership, risk, information, or next steps are unclear.",

@@ -8,8 +8,7 @@
       "options": [
         { "value": "technical-review", "label": "Engineering review or second opinion" },
         { "value": "project-control", "label": "Project coordination or risk control" },
-        { "value": "energy-performance", "label": "Energy performance or operating cost review" },
-        { "value": "ai-workflow", "label": "AI, data, or workflow readiness" }
+        { "value": "energy-performance", "label": "Energy performance or operating cost review" }
       ]
     },
     {
@@ -168,55 +167,6 @@
         "operating waste"
       ],
       "cta": "Collect utility bills, interval data, BAS trends, operating schedules, occupancy patterns, and known comfort or production limits."
-    },
-    {
-      "id": "ai-workflow-readiness-review",
-      "title": "AI Workflow Readiness Review",
-      "service": "Engineering Support",
-      "url": "engineering-support.html",
-      "summary": "A practical review of an AI use case before it is added to engineering, project, maintenance, or energy workflows.",
-      "bestFor": [
-        "A team wants to use AI but has not defined the decision it will support.",
-        "A workflow needs data-quality checks, human review points, and safe boundaries.",
-        "A public or internal tool needs to avoid exposing FCI, CUI, export-controlled data, credentials, or private files."
-      ],
-      "outputs": [
-        "AI use-case scorecard",
-        "Data and source map",
-        "Human review workflow",
-        "CMMC-aware public/private content boundary"
-      ],
-      "prepChecklist": [
-        "Decision the workflow should support",
-        "Source documents or systems",
-        "Who reviews AI output",
-        "Information that must remain restricted, sanitized, or owner-approved"
-      ],
-      "match": {
-        "issue": ["ai-workflow"],
-        "stage": ["planning", "improve", "stuck"],
-        "outcome": ["data-plan", "memo", "risk-view"]
-      },
-      "referenceLinks": [
-        { "label": "Engineering support", "url": "engineering-support.html" }
-      ],
-      "keywordTriggers": [
-        "ai",
-        "automation",
-        "agent",
-        "workflow",
-        "data",
-        "knowledge",
-        "google drive",
-        "documents",
-        "private",
-        "cmmc",
-        "cui",
-        "fci",
-        "controlled",
-        "prompt"
-      ],
-      "cta": "Describe the decision, users, source documents, review owner, and whether any information may be FCI, CUI, export-controlled, credentialed, or client-confidential."
     }
   ],
   "publicSafety": {
