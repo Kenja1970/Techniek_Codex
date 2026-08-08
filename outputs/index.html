@@ -9,7 +9,6 @@
   <meta property="og:title" content="Techniek Engineering">
   <meta property="og:description" content="Engineering support for safer, cleaner, better-managed commercial and industrial projects.">
   <meta property="og:type" content="website">
-  <link rel="alternate" type="application/rss+xml" title="Techniek Engineering Industry Brief" href="briefs.xml">
   <style>
     :root {
       --blue: #0060e0;
@@ -290,14 +289,8 @@
     }
 
     .contact-intro {
-      margin: 0;
+      margin: 0 0 16px;
       color: #5f6874;
-    }
-
-    .signup-helper {
-      margin: 0;
-      color: #6b7280;
-      font-size: 0.9rem;
     }
 
     .contact-divider {
@@ -339,22 +332,6 @@
 
     .contact-actions .text-link {
       font-weight: 700;
-    }
-
-    .signup-section {
-      display: grid;
-      gap: 12px;
-    }
-
-    .signup-section h3 {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.3;
-      color: var(--charcoal);
-    }
-
-    .signup-section p {
-      margin: 0;
     }
 
     .contact-list {
@@ -430,92 +407,6 @@
       border-color: rgba(0, 96, 224, 0.38);
       background: rgba(0, 96, 224, 0.08);
       color: var(--blue-dark);
-    }
-
-    .signup-links {
-      margin: -4px 0 2px;
-      font-size: 0.92rem;
-    }
-
-    .signup-form {
-      display: grid;
-      gap: 12px;
-    }
-
-    .lead-magnet {
-      display: grid;
-      gap: 12px;
-    }
-
-    .lead-badge {
-      justify-self: start;
-      display: inline-flex;
-      align-items: center;
-      min-height: 26px;
-      padding: 0 11px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--green), var(--yellow));
-      color: var(--charcoal);
-      font-size: 0.74rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-    }
-
-    .lead-magnet h2 {
-      margin: 0;
-      font-size: 1.45rem;
-      line-height: 1.2;
-    }
-
-    .lead-form {
-      display: grid;
-      gap: 10px;
-    }
-
-    .lead-optional {
-      color: #6b7280;
-      font-weight: 400;
-    }
-
-    .lead-download {
-      margin: 0;
-      padding: 12px 14px;
-      border-left: 4px solid var(--green);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      background: var(--panel);
-      font-weight: 700;
-    }
-
-    label {
-      font-weight: 700;
-      color: var(--ink);
-      font-size: 0.94rem;
-    }
-
-    input[type="email"] {
-      width: 100%;
-      min-height: 52px;
-      border: 1px solid #cfd6df;
-      border-radius: var(--radius);
-      padding: 0 15px;
-      color: var(--charcoal);
-      font: inherit;
-      background: var(--white);
-    }
-
-    input[type="email"]:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 4px rgba(0, 96, 224, 0.14);
-      outline: none;
-    }
-
-    .form-message {
-      min-height: 22px;
-      margin: 2px 0 0;
-      color: var(--blue-dark);
-      font-size: 0.93rem;
-      font-weight: 700;
     }
 
     .features {
@@ -594,67 +485,51 @@
       font-size: 0.95rem;
     }
 
-    .proof-library {
-      scroll-margin-top: 96px;
-      padding: 56px 0;
-      background:
-        linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-      border-top: 1px solid var(--soft-silver);
+    .feature-more {
+      margin: 32px 0 0;
+      font-size: 1.05rem;
     }
 
-    .proof-grid {
+    .tools-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
     }
 
-    .proof-card {
-      display: grid;
-      gap: 10px;
-      padding: 18px;
+    .tool-link-card {
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
       border: 1px solid var(--soft-silver);
       border-radius: var(--radius);
-      background: var(--white);
+      background: #ffffff;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
     }
 
-    .proof-card h3 {
-      margin: 0;
-      font-size: 1.02rem;
-      line-height: 1.25;
+    .tool-link-card:hover,
+    .tool-link-card:focus-visible {
+      border-color: var(--blue);
+      box-shadow: 0 12px 24px rgba(0, 96, 224, 0.08);
+      transform: translateY(-2px);
+      outline: none;
     }
 
-    .proof-card p {
+    .tool-link-card h3 {
+      margin: 0 0 10px;
+      color: var(--blue-dark);
+      font-size: 1.15rem;
+    }
+
+    .tool-link-card p {
       margin: 0;
       color: #56616c;
       font-size: 0.96rem;
     }
 
-    .security-note {
-      margin-top: 18px;
-      padding: 16px 18px;
-      border-left: 5px solid var(--blue);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      background: var(--white);
-      color: #4b5563;
-      font-size: 0.95rem;
-    }
-
-    .security-note strong {
-      color: var(--charcoal);
-    }
-
-    .proof-label {
-      display: inline-flex;
-      width: fit-content;
-      min-height: 28px;
-      align-items: center;
-      padding: 0 10px;
-      border-radius: 999px;
-      background: rgba(0, 96, 224, 0.1);
-      color: var(--blue-dark);
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
+    .tool-link-card .feature-fit {
+      margin-top: auto;
     }
 
     .knowledge-prompts {
@@ -1193,7 +1068,7 @@
 
       .hero-grid,
       .feature-grid,
-      .proof-grid,
+      .tools-grid,
       .prompt-console,
       .brief-grid,
       .cta-inner {
@@ -1360,9 +1235,6 @@
         <div class="jump-menu-links">
           <a href="#services">Services</a>
           <a href="#tools">Tools</a>
-          <a href="#project-prep">Project Prep</a>
-          <a href="#knowledge-prompts">Project Experience</a>
-          <a href="#brief">Industry Brief</a>
           <a href="#contact">Contact</a>
         </div>
       </div>
@@ -1381,33 +1253,12 @@
             </div>
           </div>
 
-          <aside class="signup-panel" id="contact" aria-labelledby="lead-magnet-title">
-            <div class="lead-magnet" aria-labelledby="lead-magnet-title">
-              <span class="lead-badge">Free PDF guide</span>
-              <h2 id="lead-magnet-title">Get the Project Readiness Guide</h2>
-              <p class="contact-intro">Know exactly what to bring to your first engineering conversation: a document checklist by discipline (mechanical, civil, project controls, energy), plus how to frame the decision. Tell us where to send it.</p>
-              <form class="lead-form" id="lead-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST" novalidate>
-                <label for="lead-name">First name</label>
-                <input id="lead-name" name="firstName" type="text" autocomplete="given-name" required>
-                <label for="lead-email">Email address</label>
-                <input id="lead-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
-                <label for="lead-phone">Phone <span class="lead-optional">(optional)</span></label>
-                <input id="lead-phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional">
-                <input type="hidden" name="_subject" value="Project Readiness Guide request">
-                <button class="button" type="submit">Email me the guide</button>
-                <p class="form-message" id="lead-message" role="status" aria-live="polite"></p>
-              </form>
-              <p class="lead-download" id="lead-download" hidden>
-                <a class="text-link" href="assets/techniek-project-readiness-guide.pdf" download>Download the Project Readiness Guide (PDF)</a>
-              </p>
-              <p class="signup-helper">We use your details only to send the guide and follow up about your project. Prefer email? Write to <a class="text-link" href="mailto:gregory@techniekengineering.com">gregory@techniekengineering.com</a>.</p>
-            </div>
-            <div class="contact-divider" aria-hidden="true"></div>
-            <h3 id="signup-title">Start a project conversation</h3>
-            <p class="contact-intro">Choose the faster path for a scoped first discussion, then subscribe separately if ongoing brief updates are useful.</p>
-            <div class="contact-start" aria-labelledby="contact-start-title">
-              <h3 id="contact-start-title">Project scoping</h3>
-              <p>Use the support finder to frame the issue, the likely service, and what to prepare before the first conversation.</p>
+          <aside class="signup-panel" id="contact" aria-labelledby="contact-start-title">
+            <h2 id="contact-start-title">Start a project conversation</h2>
+            <p class="contact-intro">Let's scope the issue, the likely service, and what to prepare before the first conversation.</p>
+            
+            <div class="contact-start">
+              <h3 id="project-scoping-title">Project scoping</h3>
               <ul class="contact-list">
                 <li>Name the asset, facility, or project phase involved.</li>
                 <li>State the decision, blocker, or deadline that matters.</li>
@@ -1417,19 +1268,6 @@
                 <a class="button" href="support-finder.html">Use the Support Finder</a>
                 <a class="text-link" href="mailto:gregory@techniekengineering.com">gregory@techniekengineering.com</a>
               </div>
-            </div>
-            <div class="contact-divider" aria-hidden="true"></div>
-            <div class="signup-section" aria-labelledby="brief-signup-title">
-              <h3 id="brief-signup-title">Industry Brief subscription</h3>
-              <p>Receive practical engineering, project management, and energy management lessons.</p>
-              <form class="signup-form" id="signup-form">
-                <label for="email">Email address</label>
-                <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" aria-describedby="signup-help form-message" required>
-                <p class="signup-helper" id="signup-help">For brief subscriptions only. Project scoping starts in the support finder above.</p>
-                <p class="signup-links"><a class="text-link" href="briefs.xml" target="_blank" rel="noopener">Subscribe to the Industry Brief RSS</a></p>
-                <button class="button" type="submit">Subscribe</button>
-                <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
-              </form>
             </div>
           </aside>
         </div>
@@ -1472,123 +1310,39 @@
             <p>Browser-based screening and management tools. Each produces working evidence to support the next level of review, not certification or Code compliance.</p>
           </div>
 
-          <div class="feature-grid">
-            <article class="feature-card">
-              <h3><a class="text-link" href="tools/techniek-opsboard/index.html">Techniek OpsBoard Pro V2</a></h3>
-              <p>Local-first project delivery control center: Kanban with WIP limits, resource utilization, PMI/PMBOK earned value (CPI/SPI/EAC) at project and program level, Gantt with critical path, integrated change control, and role-gated manager and client reports. Adds a deterministic PM Advisor that grades portfolio health and a PM Agent that can act on the board through the same governance a manual change passes.</p>
-              <p class="feature-fit"><strong>Useful when:</strong> engineering operations need planning, cost, and schedule control in one browser workspace — and an inspection that says what to fix first.</p>
-            </article>
+          <div class="tools-grid">
+            <a href="tools/techniek-opsboard/index.html" class="tool-link-card">
+              <h3>Techniek OpsBoard Pro V2</h3>
+              <p>Local-first project delivery control center: Kanban with WIP limits, resource utilization, PMI/PMBOK earned value (CPI/SPI/EAC) at project and program level, Gantt with critical path, integrated change control, and role-gated manager and client reports.</p>
+              <div class="feature-fit"><strong>Useful when:</strong> engineering operations need planning, cost, and schedule control in one browser workspace.</div>
+            </a>
 
-            <article class="feature-card">
-              <h3><a class="text-link" href="tools/techniek-twinsim-studio/index.html">Techniek TwinSim Studio</a></h3>
+            <a href="tools/techniek-twinsim-studio/index.html" class="tool-link-card">
+              <h3>Techniek TwinSim Studio</h3>
               <p>Local-first digital-twin and discrete-event simulation studio: model a production line on a canvas, run replicated simulations, and review throughput, bottlenecks, and what-if scenarios with confidence ranges.</p>
-              <p class="feature-fit"><strong>Useful when:</strong> a process or production queue needs to be tested before committing layout, staffing, or capital.</p>
-            </article>
+              <div class="feature-fit"><strong>Useful when:</strong> a process or production queue needs to be tested before committing capital.</div>
+            </a>
 
-            <article class="feature-card">
-              <h3><a class="text-link" href="tools/flange-capacity/index.html">Flange Capacity Explorer</a></h3>
+            <a href="tools/flange-capacity/index.html" class="tool-link-card">
+              <h3>Flange Capacity Explorer</h3>
               <p>Screen standard-rated and compact flanges under pressure, axial load, and bending moment, with material and bolting selection and downloadable calculation evidence.</p>
-              <p class="feature-fit"><strong>Useful when:</strong> a flange configuration needs a defensible starting point before engineer-of-record review.</p>
-            </article>
+              <div class="feature-fit"><strong>Useful when:</strong> a flange configuration needs a defensible starting point before review.</div>
+            </a>
 
-            <article class="feature-card">
-              <h3><a class="text-link" href="tools/precisionflow/index.html">Techniek PrecisionFlow</a></h3>
-              <p>Hazardous-material dosing digital twin with facility layout, preheat trace heating, SCADA-style tags, per-liquid SPC/Cpk, and batch records. Graco PD2K&ndash;reference simulation only.</p>
-              <p class="feature-fit"><strong>Useful when:</strong> a multi-liquid dosing line needs process capability, safety interlock, and consumption screening before detailed design.</p>
-            </article>
+            <a href="tools/precisionflow/index.html" class="tool-link-card">
+              <h3>Techniek PrecisionFlow</h3>
+              <p>Hazardous-material dosing digital twin with facility layout, preheat trace heating, SCADA-style tags, per-liquid SPC/Cpk, and batch records.</p>
+              <div class="feature-fit"><strong>Useful when:</strong> a dosing line needs process capability and consumption screening.</div>
+            </a>
 
-            <article class="feature-card">
-              <h3><a class="text-link" href="tools/greg-brown-site/index.html">Greg Brown — Career &amp; Digital Twin</a></h3>
+            <a href="tools/greg-brown-site/index.html" class="tool-link-card">
+              <h3>Greg Brown — Career &amp; Digital Twin</h3>
               <p>Client-facing career page for Greg Brown, PE, PMP: credentials, federal BD and modernization journey, and an AI Digital Twin grounded in professional experience.</p>
-              <p class="feature-fit"><strong>Useful when:</strong> you want a concise professional overview or to ask career-grounded questions before a conversation.</p>
-            </article>
+              <div class="feature-fit"><strong>Useful when:</strong> you want a professional overview or to ask career-grounded questions.</div>
+            </a>
           </div>
 
           <p class="feature-more"><a class="text-link" href="tools/index.html">See all engineering tools</a></p>
-        </div>
-      </section>
-
-      <section class="proof-library" id="project-prep" aria-labelledby="proof-title">
-        <div class="container">
-          <div class="section-heading">
-            <p class="eyebrow">Project readiness</p>
-            <h2 id="proof-title">Bring the right evidence to the first conversation.</h2>
-            <p>A short document set helps Techniek move quickly from the issue to a practical recommendation.</p>
-          </div>
-
-          <div class="proof-grid">
-            <article class="proof-card">
-              <span class="proof-label">Mechanical</span>
-              <h3>Equipment issue</h3>
-              <p>Drawings, photos, trend data, reports, and maintenance history.</p>
-            </article>
-
-            <article class="proof-card">
-              <span class="proof-label">Civil</span>
-              <h3>Facility question</h3>
-              <p>Condition notes, site photos, inspection records, utility maps, and constraints.</p>
-            </article>
-
-            <article class="proof-card">
-              <span class="proof-label">PM</span>
-              <h3>Project control</h3>
-              <p>Schedules, logs, meeting notes, decision history, and current blockers.</p>
-            </article>
-
-            <article class="proof-card">
-              <span class="proof-label">Energy</span>
-              <h3>Energy action</h3>
-              <p>Bills, interval data, BAS exports, occupancy, schedules, and operating limits.</p>
-            </article>
-          </div>
-          <p class="security-note"><strong>Secure document intake:</strong> Public pages are for general inquiries only. Do not submit FCI, CUI, export-controlled technical data, credentials, pricing, or client-confidential records through the public site. Controlled project artifacts should use an owner-approved secure intake path and be reviewed before any public summary is created.</p>
-        </div>
-      </section>
-
-      <section class="knowledge-prompts" id="knowledge-prompts" aria-labelledby="knowledge-prompts-title">
-        <div class="container prompt-console">
-          <article class="prompt-workspace" aria-live="polite">
-            <p class="eyebrow" id="active-prompt-eyebrow">Client question</p>
-            <h2 id="knowledge-prompts-title">Explore Techniek's Project Experience.</h2>
-            <p class="prompt-note" id="prompt-source-status">Loading project-history topics.</p>
-            <div class="prompt-input" id="active-prompt-text"></div>
-            <div class="prompt-answer" id="active-prompt-answer"></div>
-            <ul class="prompt-actions" id="active-prompt-actions"></ul>
-            <div class="prompt-chip-row" id="active-prompt-tags" aria-label="Prompt topics and links"></div>
-            <p class="prompt-note"><a class="text-link" href="support-finder.html">Use the support finder</a> for a faster service recommendation.</p>
-          </article>
-
-          <aside class="prompt-card-stack" id="prompt-card-stack" aria-label="Specialty deep-dive prompts"></aside>
-        </div>
-      </section>
-
-      <section class="brief" id="brief" aria-labelledby="brief-title">
-        <div class="container">
-          <div class="brief-header">
-            <div class="section-heading">
-              <h2 id="brief-title">Industry Brief</h2>
-              <p>Concise engineering, project, energy, and market signals for commercial and industrial decision-makers.</p>
-            </div>
-            <div class="brief-header-actions">
-              <div class="brief-date" id="brief-date">Loading latest brief</div>
-              <a class="text-link" href="archive.html">View full archive</a>
-            </div>
-          </div>
-
-          <div class="brief-grid">
-            <p class="brief-status" id="brief-status">Loading the latest brief.</p>
-            <article class="brief-card" id="current-brief" aria-live="polite"></article>
-            <aside class="budget-brief-card" aria-labelledby="budget-brief-title">
-              <h3 id="budget-brief-title">DOE lab budget signal</h3>
-              <p id="budget-brief-note">Loading FY 2026 and FY 2027 laboratory budget comparison.</p>
-              <div class="budget-mini-legend" aria-label="Budget chart legend">
-                <span><i aria-hidden="true"></i>FY 2026</span>
-                <span class="future"><i aria-hidden="true"></i>FY 2027</span>
-              </div>
-              <div class="budget-mini-chart" id="budget-mini-chart" aria-live="polite"></div>
-              <div class="budget-mini-links" id="budget-mini-links" aria-label="DOE budget source links"></div>
-            </aside>
-          </div>
         </div>
       </section>
 
@@ -1614,8 +1368,6 @@
   </div>
 
   <script>
-    const form = document.querySelector("#signup-form");
-    const message = document.querySelector("#form-message");
     const briefDate = document.querySelector("#brief-date");
     const briefStatus = document.querySelector("#brief-status");
     const currentBrief = document.querySelector("#current-brief");
@@ -1723,59 +1475,6 @@
         ]
       }
     ]};
-
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      if (!form.checkValidity()) {
-        message.textContent = "Please enter a valid email address.";
-        form.reportValidity();
-        return;
-      }
-
-      message.textContent = "Thank you. Techniek Engineering will be in touch.";
-      form.reset();
-    });
-
-    const leadForm = document.querySelector("#lead-form");
-    const leadMessage = document.querySelector("#lead-message");
-    const leadDownload = document.querySelector("#lead-download");
-
-    function revealGuide(note) {
-      if (leadDownload) leadDownload.hidden = false;
-      if (leadMessage) leadMessage.textContent = note;
-    }
-
-    if (leadForm) {
-      leadForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        if (!leadForm.checkValidity()) {
-          leadForm.reportValidity();
-          return;
-        }
-        const endpoint = leadForm.getAttribute("action") || "";
-        // Until a real Formspree/Getform endpoint is configured, deliver the
-        // guide client-side instead of posting to the placeholder URL.
-        if (!endpoint || endpoint.includes("REPLACE_WITH_YOUR_FORM_ID")) {
-          revealGuide("Thanks! Your guide is ready below. (Lead delivery isn't configured yet.)");
-          leadForm.reset();
-          return;
-        }
-        leadMessage.textContent = "Sending…";
-        try {
-          const response = await fetch(endpoint, {
-            method: "POST",
-            headers: { Accept: "application/json" },
-            body: new FormData(leadForm)
-          });
-          if (!response.ok) throw new Error("Request failed");
-          revealGuide("Thank you! Check your inbox — and download your guide below.");
-          leadForm.reset();
-        } catch (error) {
-          revealGuide("We couldn't send just now, but your guide is ready below. You can also email gregory@techniekengineering.com.");
-        }
-      });
-    }
 
     function formatBriefDate(dateValue) {
       return dateFormatter.format(new Date(`${dateValue}T12:00:00`));
@@ -1951,9 +1650,6 @@
       }
     }
 
-    loadPromptData();
-    loadBriefs();
-    loadBudgetBrief();
   </script>
 </body>
 </html>
