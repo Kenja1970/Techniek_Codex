@@ -106,26 +106,6 @@ Preview the Cloudflare layout locally, including the Function:
 npx wrangler pages dev --binding OPENROUTER_API_KEY=<key>
 ```
 
-## Industry Brief Refresh
-
-`tools/refresh_industry_brief.py` prepends one new dated item to `outputs/briefs.json`
-and regenerates `outputs/briefs.xml`. It runs daily via the
-`refresh-industry-brief.yml` workflow and can be run locally:
-
-```powershell
-$env:OPENAI_API_KEY = "sk-..."   # required
-$env:OPENAI_MODEL = "gpt-5.4-mini" # optional, this is the default
-python tools/refresh_industry_brief.py
-```
-
-Environment variables:
-
-- `OPENAI_API_KEY` (required) — the script exits if it is missing.
-- `OPENAI_MODEL` (optional) — defaults to `gpt-5.4-mini`.
-
-The script is idempotent for a given day: if the latest brief already matches the
-current America/New_York date, it makes no changes.
-
 ## Engineering Tools
 
 Public engineering tools are grouped under:

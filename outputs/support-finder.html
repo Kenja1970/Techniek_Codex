@@ -401,8 +401,6 @@
           <a href="index.html#services">Services</a>
           <a href="support-finder.html" aria-current="page">Find Support</a>
           <a href="tools/index.html">Tools</a>
-          <a href="index.html#knowledge-prompts">Project Experience</a>
-          <a href="index.html#brief">Industry Brief</a>
           <a href="index.html#contact">Contact</a>
         </nav>
         <a class="te-button" href="index.html#contact">Request Consultation</a>
@@ -574,8 +572,7 @@
       },
       "relatedBriefCategories": ["AI governance", "Digital twins"],
       "referenceLinks": [
-        { "label": "Engineering support", "url": "engineering-support.html" },
-        { "label": "Project experience", "url": "index.html#knowledge-prompts" }
+        { "label": "Engineering support", "url": "engineering-support.html" }
       ],
       "keywordTriggers": [
         "design",
@@ -621,8 +618,7 @@
       },
       "relatedBriefCategories": ["Project controls", "AI governance"],
       "referenceLinks": [
-        { "label": "Project management", "url": "project-management.html" },
-        { "label": "Industry Brief archive", "url": "archive.html" }
+        { "label": "Project management", "url": "project-management.html" }
       ],
       "keywordTriggers": [
         "schedule",
@@ -668,8 +664,7 @@
       },
       "relatedBriefCategories": ["Energy operations", "Building controls"],
       "referenceLinks": [
-        { "label": "Energy management", "url": "energy-management.html" },
-        { "label": "Industry Brief", "url": "index.html#brief" }
+        { "label": "Energy management", "url": "energy-management.html" }
       ],
       "keywordTriggers": [
         "utility",
@@ -715,8 +710,7 @@
       },
       "relatedBriefCategories": ["AI governance", "Building controls", "Project controls"],
       "referenceLinks": [
-        { "label": "Industry Brief archive", "url": "archive.html" },
-        { "label": "Project experience", "url": "index.html#knowledge-prompts" }
+        { "label": "Engineering support", "url": "engineering-support.html" }
       ],
       "keywordTriggers": [
         "ai",
@@ -943,7 +937,6 @@
             `).join("")}
           </div>
         </div>
-        <p><strong>Related brief topics:</strong> ${escapeHtml((top.relatedBriefCategories || []).join(", "))}</p>
         <p><strong>Suggested next step:</strong> ${escapeHtml(top.cta)}</p>
         <h3>Contact-ready summary</h3>
         <textarea class="summary-box" id="contact-summary" readonly>${escapeHtml(summary)}</textarea>

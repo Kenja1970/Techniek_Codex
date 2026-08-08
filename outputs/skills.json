@@ -62,10 +62,8 @@
         "stage": ["planning", "active", "stuck"],
         "outcome": ["memo", "action-list"]
       },
-      "relatedBriefCategories": ["AI governance", "Digital twins"],
       "referenceLinks": [
-        { "label": "Engineering support", "url": "engineering-support.html" },
-        { "label": "Project experience", "url": "index.html#knowledge-prompts" }
+        { "label": "Engineering support", "url": "engineering-support.html" }
       ],
       "keywordTriggers": [
         "design",
@@ -109,10 +107,8 @@
         "stage": ["active", "stuck"],
         "outcome": ["risk-view", "action-list", "memo"]
       },
-      "relatedBriefCategories": ["Project controls", "AI governance"],
       "referenceLinks": [
-        { "label": "Project management", "url": "project-management.html" },
-        { "label": "Industry Brief archive", "url": "archive.html" }
+        { "label": "Project management", "url": "project-management.html" }
       ],
       "keywordTriggers": [
         "schedule",
@@ -156,10 +152,8 @@
         "stage": ["active", "improve", "planning"],
         "outcome": ["action-list", "data-plan", "memo"]
       },
-      "relatedBriefCategories": ["Energy operations", "Building controls"],
       "referenceLinks": [
-        { "label": "Energy management", "url": "energy-management.html" },
-        { "label": "Industry Brief", "url": "index.html#brief" }
+        { "label": "Energy management", "url": "energy-management.html" }
       ],
       "keywordTriggers": [
         "utility",
@@ -203,10 +197,8 @@
         "stage": ["planning", "improve", "stuck"],
         "outcome": ["data-plan", "memo", "risk-view"]
       },
-      "relatedBriefCategories": ["AI governance", "Building controls", "Project controls"],
       "referenceLinks": [
-        { "label": "Industry Brief archive", "url": "archive.html" },
-        { "label": "Project experience", "url": "index.html#knowledge-prompts" }
+        { "label": "Engineering support", "url": "engineering-support.html" }
       ],
       "keywordTriggers": [
         "ai",
@@ -230,7 +222,6 @@
   "publicSafety": {
     "allowed": [
       "Approved service descriptions",
-      "Public AI Engineering Brief content",
       "Generalized project situations",
       "Public process descriptions",
       "Non-confidential example outputs"
