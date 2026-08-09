@@ -2,62 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kenja1970.github.io/Techniek_Codex/</loc>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://kenja1970.github.io/Techniek_Codex/engineering-support.html</loc>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kenja1970.github.io/Techniek_Codex/project-management.html</loc>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kenja1970.github.io/Techniek_Codex/energy-management.html</loc>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kenja1970.github.io/Techniek_Codex/support-finder.html</loc>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kenja1970.github.io/Techniek_Codex/tools/</loc>
-    <lastmod>2026-06-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kenja1970.github.io/Techniek_Codex/tools/techniek-opsboard/</loc>
+  </url>
+  <url>
+    <loc>https://kenja1970.github.io/Techniek_Codex/tools/techniek-twinsim-studio/</loc>
   </url>
   <url>
     <loc>https://kenja1970.github.io/Techniek_Codex/tools/flange-capacity/</loc>
-    <lastmod>2026-06-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kenja1970.github.io/Techniek_Codex/tools/blueledger-georgia/</loc>
+  </url>
+  <url>
+    <loc>https://kenja1970.github.io/Techniek_Codex/tools/blueledger-west/</loc>
   </url>
   <url>
     <loc>https://kenja1970.github.io/Techniek_Codex/tools/precisionflow/</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kenja1970.github.io/Techniek_Codex/tools/greg-brown-site/</loc>
-    <lastmod>2026-07-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kenja1970.github.io/Techniek_Codex/skills.json</loc>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.4</priority>
   </url>
 </urlset>

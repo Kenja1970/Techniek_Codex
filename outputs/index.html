@@ -6,9 +6,16 @@
   <title>Techniek Engineering</title>
   <meta name="description" content="Techniek Engineering provides professional engineering support, project management, and energy management guidance for commercial and industrial teams.">
   <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://kenja1970.github.io/Techniek_Codex/">
+  <meta property="og:site_name" content="Techniek Engineering">
   <meta property="og:title" content="Techniek Engineering">
-  <meta property="og:description" content="Engineering support for safer, cleaner, better-managed commercial and industrial projects.">
+  <meta property="og:description" content="Techniek Engineering provides professional engineering support, project management, and energy management guidance for commercial and industrial teams.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kenja1970.github.io/Techniek_Codex/">
+  <meta property="og:image" content="https://kenja1970.github.io/Techniek_Codex/assets/logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Techniek Engineering">
+  <meta name="twitter:description" content="Techniek Engineering provides professional engineering support, project management, and energy management guidance for commercial and industrial teams.">
   <style>
     :root {
       --blue: #0060e0;
@@ -46,8 +53,7 @@
     h3,
     p,
     li,
-    a,
-    button {
+    a {
       overflow-wrap: break-word;
     }
 
@@ -56,9 +62,7 @@
       text-decoration: none;
     }
 
-    a:focus-visible,
-    button:focus-visible,
-    input:focus-visible {
+    a:focus-visible {
       outline: 3px solid rgba(0, 96, 224, 0.35);
       outline-offset: 3px;
     }
@@ -211,7 +215,6 @@
 
     .hero-grid > *,
     .feature-grid > *,
-    .brief-grid > *,
     .cta-inner > * {
       min-width: 0;
     }
@@ -291,12 +294,6 @@
     .contact-intro {
       margin: 0 0 16px;
       color: #5f6874;
-    }
-
-    .contact-divider {
-      height: 1px;
-      margin: 20px 0 18px;
-      background: var(--soft-silver);
     }
 
     .contact-start {
@@ -532,490 +529,11 @@
       margin-top: auto;
     }
 
-    .knowledge-prompts {
-      scroll-margin-top: 96px;
-      padding: 64px 0;
-      background: var(--white);
-      border-top: 1px solid var(--soft-silver);
-    }
-
-    .prompt-console {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(270px, 0.34fr);
-      gap: 28px;
-      align-items: start;
-    }
-
-    .prompt-card-stack {
-      display: grid;
-      gap: 14px;
-    }
-
-    .prompt-card,
-    .prompt-workspace {
-      padding: 22px;
-      border: 1px solid var(--soft-silver);
-      border-radius: var(--radius);
-      background: var(--white);
-    }
-
-    .prompt-card h3 {
-      margin: 0 0 8px;
-      font-size: 1.1rem;
-      line-height: 1.25;
-    }
-
-    .prompt-card p {
-      margin: 0 0 12px;
-      color: #56616c;
-    }
-
-    .prompt-workspace {
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .prompt-workspace::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto;
-      height: 5px;
-      background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow));
-    }
-
-    .prompt-workspace h2 {
-      margin: 0 0 12px;
-      font-size: clamp(1.65rem, 3vw, 2.6rem);
-      line-height: 1.12;
-      letter-spacing: 0;
-    }
-
-    .prompt-input {
-      margin: 18px 0;
-      padding: 18px;
-      border: 1px solid #cfd6df;
-      border-radius: var(--radius);
-      background: var(--panel);
-      color: var(--charcoal);
-      font-size: 1rem;
-      line-height: 1.55;
-    }
-
-    .prompt-answer {
-      padding: 20px;
-      border-left: 5px solid var(--blue);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      background: #ffffff;
-      color: #3f4954;
-    }
-
-    .prompt-actions {
-      display: grid;
-      gap: 10px;
-      margin: 18px 0 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .prompt-actions li {
-      padding: 12px 14px;
-      border-left: 4px solid var(--green);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      background: var(--panel);
-      color: #3f4954;
-    }
-
-    .prompt-card {
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      padding-right: 92px;
-      text-align: left;
-      cursor: pointer;
-      font: inherit;
-      transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
-    }
-
-    .prompt-card::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 5px;
-      background: var(--blue);
-      opacity: 0.78;
-    }
-
-    .prompt-card:nth-child(2)::before {
-      background: var(--green);
-    }
-
-    .prompt-card:nth-child(3)::before {
-      background: var(--yellow);
-    }
-
-    .prompt-card[aria-pressed="true"]::after {
-      content: "Selected";
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      min-height: 26px;
-      display: inline-flex;
-      align-items: center;
-      padding: 0 9px;
-      border-radius: 999px;
-      background: var(--blue);
-      color: var(--white);
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
-
-    .prompt-card:hover,
-    .prompt-card:focus-visible,
-    .prompt-card[aria-pressed="true"] {
-      border-color: var(--blue);
-      background: rgba(0, 96, 224, 0.07);
-    }
-
-    .prompt-card:hover,
-    .prompt-card:focus-visible {
-      transform: translateY(-1px);
-    }
-
-    .prompt-chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
-    .prompt-chip {
-      display: inline-flex;
-      align-items: center;
-      min-height: 30px;
-      padding: 0 10px;
-      border-radius: 999px;
-      background: rgba(0, 96, 224, 0.1);
-      color: var(--blue-dark);
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-
-    a.prompt-chip {
-      text-decoration: none;
-    }
-
-    a.prompt-chip:hover,
-    a.prompt-chip:focus-visible {
-      outline: 2px solid rgba(0, 96, 224, 0.32);
-      outline-offset: 2px;
-    }
-
-    .prompt-note {
-      margin: 18px 0 0;
-      padding: 16px;
-      border-left: 5px solid var(--yellow);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      background: var(--panel);
-      color: #4b5563;
-      font-size: 0.94rem;
-    }
-
-    .brief {
-      scroll-margin-top: 96px;
-      padding: 68px 0;
-      background:
-        linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-      border-top: 1px solid var(--soft-silver);
-    }
-
-    .brief-header {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 28px;
-      margin-bottom: 34px;
-    }
-
-    .brief-header .section-heading {
-      margin-bottom: 0;
-    }
-
-    .brief-date {
-      min-width: 190px;
-      padding: 14px 16px;
-      border: 1px solid var(--soft-silver);
-      border-left: 5px solid var(--blue);
-      border-radius: var(--radius);
-      background: var(--white);
-      color: #5f6874;
-      font-size: 0.95rem;
-      font-weight: 700;
-    }
-
-    .brief-header-actions {
-      display: grid;
-      gap: 12px;
-      justify-items: end;
-    }
-
     .text-link {
       color: var(--blue-dark);
       font-weight: 700;
       text-decoration: underline;
       text-underline-offset: 3px;
-    }
-
-    .brief-status {
-      grid-column: 1 / -1;
-      margin: 0 0 18px;
-      color: #6b7280;
-      font-size: 0.92rem;
-    }
-
-    .brief-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.42fr);
-      gap: 24px;
-      align-items: start;
-    }
-
-    .budget-brief-card {
-      padding: 24px;
-      border: 1px solid var(--soft-silver);
-      border-radius: var(--radius);
-      background: var(--white);
-      box-shadow: var(--shadow);
-    }
-
-    .budget-brief-card h3 {
-      margin: 0;
-      font-size: 1.18rem;
-      line-height: 1.25;
-    }
-
-    .budget-brief-card p {
-      margin: 10px 0 0;
-      color: #56616c;
-      font-size: 0.94rem;
-    }
-
-    .budget-mini-chart {
-      display: grid;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .budget-mini-row {
-      display: grid;
-      grid-template-columns: 82px minmax(0, 1fr);
-      gap: 10px;
-      align-items: center;
-      font-size: 0.86rem;
-      color: #4b5563;
-      font-weight: 700;
-    }
-
-    .budget-mini-bars {
-      display: grid;
-      gap: 5px;
-    }
-
-    .budget-mini-bar {
-      min-width: 2px;
-      height: 9px;
-      border-radius: 999px;
-      background: var(--blue);
-    }
-
-    .budget-mini-bar.future {
-      background: var(--green);
-    }
-
-    .budget-mini-legend {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-      color: #4b5563;
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-
-    .budget-mini-legend span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .budget-mini-legend i {
-      width: 16px;
-      height: 9px;
-      border-radius: 999px;
-      background: var(--blue);
-    }
-
-    .budget-mini-legend .future i {
-      background: var(--green);
-    }
-
-    .budget-mini-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
-    .budget-mini-links a {
-      color: var(--blue-dark);
-      font-size: 0.84rem;
-      font-weight: 700;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .brief-card,
-    .archive-card {
-      border: 1px solid var(--soft-silver);
-      border-radius: var(--radius);
-      background: var(--white);
-    }
-
-    .brief-card {
-      padding: 30px;
-      box-shadow: var(--shadow);
-    }
-
-    .brief-card h3,
-    .archive-card h3 {
-      margin: 0;
-      line-height: 1.25;
-      letter-spacing: 0;
-    }
-
-    .brief-card h3 {
-      font-size: 1.5rem;
-    }
-
-    .brief-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 0 0 14px;
-    }
-
-    .brief-pill {
-      display: inline-flex;
-      align-items: center;
-      min-height: 30px;
-      padding: 0 10px;
-      border-radius: 999px;
-      background: rgba(0, 96, 224, 0.1);
-      color: var(--blue-dark);
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-
-    .brief-summary {
-      margin: 16px 0 24px;
-      color: #56616c;
-      font-size: 1.04rem;
-    }
-
-    .lesson-list {
-      display: grid;
-      gap: 12px;
-      margin: 0 0 24px;
-      padding: 0;
-      list-style: none;
-    }
-
-    .lesson-list li {
-      position: relative;
-      padding: 14px 16px 14px 18px;
-      border-left: 4px solid var(--green);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      background: var(--panel);
-      color: #3f4954;
-    }
-
-    .lesson-list li:nth-child(even) {
-      border-left-color: var(--blue);
-    }
-
-    .source-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 8px;
-    }
-
-    .source-heading {
-      margin: 22px 0 0;
-      color: #4b5563;
-      font-size: 0.92rem;
-      font-weight: 700;
-    }
-
-    .source-links a {
-      display: inline-flex;
-      align-items: center;
-      min-height: 36px;
-      padding: 0 12px;
-      border: 1px solid #cfd6df;
-      border-radius: var(--radius);
-      color: var(--blue-dark);
-      font-size: 0.9rem;
-      font-weight: 700;
-      background: #ffffff;
-    }
-
-    .source-links a:hover,
-    .archive-card a:hover {
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .archive-stack {
-      display: grid;
-      gap: 14px;
-    }
-
-    .archive-card {
-      padding: 20px;
-    }
-
-    .archive-card time {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--blue-dark);
-      font-size: 0.84rem;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .archive-card h3 {
-      font-size: 1.05rem;
-    }
-
-    .archive-card p {
-      margin: 10px 0 0;
-      color: #5f6874;
-      font-size: 0.95rem;
-    }
-
-    .archive-card a {
-      display: inline-flex;
-      margin-top: 12px;
-      color: var(--blue-dark);
-      font-size: 0.9rem;
-      font-weight: 700;
-    }
-
-    .automation-note {
-      margin: 22px 0 0;
-      color: #6b7280;
-      font-size: 0.92rem;
     }
 
     .cta {
@@ -1069,8 +587,6 @@
       .hero-grid,
       .feature-grid,
       .tools-grid,
-      .prompt-console,
-      .brief-grid,
       .cta-inner {
         grid-template-columns: 1fr;
       }
@@ -1080,21 +596,6 @@
         position: static;
         top: auto;
         padding-bottom: 0;
-      }
-
-      .brief-header {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .brief-date {
-        min-width: 0;
-        width: 100%;
-      }
-
-      .brief-header-actions {
-        width: 100%;
-        justify-items: start;
       }
 
       .cta-inner {
@@ -1143,7 +644,6 @@
       .nav .button,
       .hero-actions .button,
       .contact-actions .button,
-      .signup-form .button,
       .cta .button {
         width: 100%;
         white-space: normal;
@@ -1199,14 +699,23 @@
       }
 
       .features,
-      .knowledge-prompts,
-      .brief,
       .cta {
         padding: 54px 0;
       }
+    }
 
-      .brief-card {
-        padding: 22px;
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
@@ -1217,7 +726,7 @@
     <header class="site-header">
       <div class="container nav">
         <a href="#" aria-label="Techniek Engineering home">
-          <img class="logo" src="assets/logo.png" alt="Techniek Engineering logo">
+          <img class="logo" src="assets/logo.png" alt="Techniek Engineering logo" width="294" height="99">
         </a>
         <nav class="nav-links" aria-label="Main navigation">
           <a href="#services">Services</a>
@@ -1367,289 +876,5 @@
     </footer>
   </div>
 
-  <script>
-    const briefDate = document.querySelector("#brief-date");
-    const briefStatus = document.querySelector("#brief-status");
-    const currentBrief = document.querySelector("#current-brief");
-    const budgetBriefNote = document.querySelector("#budget-brief-note");
-    const budgetMiniChart = document.querySelector("#budget-mini-chart");
-    const budgetMiniLinks = document.querySelector("#budget-mini-links");
-    const promptSourceStatus = document.querySelector("#prompt-source-status");
-    const activePromptEyebrow = document.querySelector("#active-prompt-eyebrow");
-    const activePromptTitle = document.querySelector("#knowledge-prompts-title");
-    const activePromptText = document.querySelector("#active-prompt-text");
-    const activePromptAnswer = document.querySelector("#active-prompt-answer");
-    const activePromptActions = document.querySelector("#active-prompt-actions");
-    const activePromptTags = document.querySelector("#active-prompt-tags");
-    const promptCardStack = document.querySelector("#prompt-card-stack");
-    const dateFormatter = new Intl.DateTimeFormat("en", {
-      month: "long",
-      day: "numeric",
-      year: "numeric"
-    });
-
-    const fallbackBriefData = {
-      updated: "2026-05-30",
-      items: [
-      {
-        date: "2026-05-30",
-        audience: "All disciplines",
-        category: "AI governance",
-        headline: "Define the decision before choosing the AI tool.",
-        summary: "The strongest commercial and industrial AI use cases are narrow enough to measure: a pump failure mode, an HVAC optimization target, an RFI risk category, or a document review task. Start with the decision AI will support, then select the model, data, and review process.",
-        lessons: [
-          "Mechanical: Pick one asset class and compare AI alerts against vibration, temperature, and maintenance history before changing work orders.",
-          "Civil and construction: Use AI to sort RFIs, submittals, site photos, and issue logs into risk categories, then keep a project manager accountable for final priority calls.",
-          "Energy: Let AI identify patterns in metering, weather, occupancy, and building automation data, but require operating limits for comfort, safety, and equipment protection.",
-          "Project management: Track one before-and-after metric such as review time, avoided downtime, energy intensity, rework, or open-risk aging."
-        ],
-        sources: [
-          { name: "DOE AI for Energy", url: "https://www.energy.gov/cet/articles/ai-energy" },
-          { name: "NIST AI RMF", url: "https://airc.nist.gov/" },
-          { name: "Autodesk AI in Construction", url: "https://www.construction.autodesk.com/workflows/artificial-intelligence-construction/" },
-          { name: "AI in Utilities Video", url: "https://www.csemag.com/video/video-importance-of-ai-in-the-utility-and-facility-management-industries/" }
-        ]
-      },
-      {
-        date: "2026-05-29",
-        audience: "Mechanical engineering",
-        category: "Predictive maintenance",
-        headline: "Make predictive maintenance explainable before automating work orders.",
-        summary: "Recent condition-monitoring work shows the value of vibration and current signals for industrial motors, but the practical lesson is governance: every alert should show the signal that changed, the likely failure mode, and the inspection step a technician can verify.",
-        lessons: [
-          "Start with one failure mode such as bearing wear, imbalance, misalignment, or overheating.",
-          "Keep a short alert card with asset ID, sensor trend, severity, recommended inspection, and confidence level.",
-          "Do not auto-create corrective work orders until maintenance teams have reviewed false positives and missed failures for several cycles."
-        ],
-        sources: [
-          { name: "Scientific Reports motor monitoring", url: "https://www.nature.com/articles/s41598-026-46550-6" },
-          { name: "Springer TinyML vibration detection", url: "https://link.springer.com/article/10.1007/s43926-025-00142-4" }
-        ]
-      },
-      {
-        date: "2026-05-28",
-        audience: "Energy management",
-        category: "Energy operations",
-        headline: "Use AI to find energy drift, then turn it into an operator action.",
-        summary: "AI can flag load shifts, abnormal schedules, simultaneous heating and cooling, and demand spikes. The useful version is not just a dashboard. It is a daily action with an owner, an expected savings range, and a follow-up check.",
-        lessons: [
-          "Compare meter data against weather, occupancy, production, and operating schedules before calling an event waste.",
-          "Write comfort, safety, and production constraints before AI recommends setpoint or sequence changes.",
-          "Review the top three anomalies each week and close the loop with measured savings or a documented reason for no action."
-        ],
-        sources: [
-          { name: "DOE AI for Energy", url: "https://www.energy.gov/cet/articles/ai-energy" },
-          { name: "NIST AI RMF", url: "https://airc.nist.gov/" }
-        ]
-      },
-      {
-        date: "2026-05-27",
-        audience: "Civil engineering",
-        category: "Digital twins",
-        headline: "Treat digital twins as focused decision views, not perfect replicas.",
-        summary: "Digital twin research points toward combining sensor, inspection, asset, and financial data for infrastructure decisions. For owners and engineers, the first win is a focused view that answers one question about risk, maintenance, or capital planning.",
-        lessons: [
-          "Choose one asset group, such as bridges, pavement, roofs, pumps, or building systems.",
-          "Combine at least two data sources so the model is not driven by a single incomplete signal.",
-          "Publish the uncertainty alongside the recommendation so engineers know when field verification is required."
-        ],
-        sources: [
-          { name: "MDPI digital twin framework", url: "https://www.mdpi.com/2075-5309/13/11/2725" },
-          { name: "Digital twin structures paper", url: "https://arxiv.org/abs/2308.01445" }
-        ]
-      },
-      {
-        date: "2026-05-26",
-        audience: "Project management",
-        category: "Project controls",
-        headline: "Use AI to surface RFI risk, not just speed up paperwork.",
-        summary: "Construction AI is most helpful when it turns messy project records into risk signals. RFIs, submittals, meeting notes, and change logs can be grouped by discipline, age, root cause, and cost or schedule exposure.",
-        lessons: [
-          "Tag RFIs by discipline, contract section, responsible party, age, and schedule impact.",
-          "Use AI summaries for triage, but keep the official response in the project record.",
-          "Review repeated RFI themes at coordination meetings so the team fixes causes rather than answering the same question faster."
-        ],
-        sources: [
-          { name: "IAARC RFI automation paper", url: "https://www.iaarc.org/publications/csce_crc_2025/enhancing_request_for_information_rfi_process_in_construction_through_digitalization_and_automation.html" },
-          { name: "Autodesk AI in Construction", url: "https://www.construction.autodesk.com/workflows/artificial-intelligence-construction/" }
-        ]
-      }
-    ]};
-
-    function formatBriefDate(dateValue) {
-      return dateFormatter.format(new Date(`${dateValue}T12:00:00`));
-    }
-
-    function escapeHtml(value) {
-      return String(value ?? "").replace(/[&<>"']/g, (character) => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        "\"": "&quot;",
-        "'": "&#39;"
-      })[character]);
-    }
-
-    function renderSourceLinks(sources = []) {
-      return sources.map(({ name, url }) => (
-        `<a href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(name)}</a>`
-      )).join("");
-    }
-
-    function toMillions(thousands) {
-      return Number(thousands || 0) / 1000;
-    }
-
-    function formatMillions(value) {
-      return `$${value.toLocaleString("en-US", {
-        maximumFractionDigits: 0
-      })}M`;
-    }
-
-    function renderPrompt(prompt, selectedId) {
-      activePromptEyebrow.textContent = prompt.eyebrow || prompt.discipline || "Prompt";
-      activePromptTitle.textContent = prompt.title;
-      activePromptText.textContent = prompt.prompt;
-      activePromptAnswer.textContent = prompt.answer;
-      activePromptActions.innerHTML = (prompt.actions || []).map((action) => `<li>${escapeHtml(action)}</li>`).join("");
-      const tagMarkup = (prompt.sourceTags || []).map((tag) => `<span class="prompt-chip">${escapeHtml(tag)}</span>`).join("");
-      const linkMarkup = (prompt.ideaLinks || []).map(({ name, url }) => (
-        `<a class="prompt-chip" href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(name)}</a>`
-      )).join("");
-      activePromptTags.innerHTML = `${tagMarkup}${linkMarkup}`;
-      document.querySelectorAll("[data-prompt-id]").forEach((button) => {
-        button.setAttribute("aria-pressed", String(button.dataset.promptId === selectedId));
-      });
-    }
-
-    function renderPromptCards(data) {
-      const prompts = [data.centerPrompt, ...(data.deepDivePrompts || [])];
-      promptCardStack.innerHTML = prompts.slice(1).map((prompt) => `
-        <button class="prompt-card" type="button" data-prompt-id="${escapeHtml(prompt.id)}" aria-pressed="false">
-          <h3>${escapeHtml(prompt.discipline || prompt.title)}</h3>
-          <p>${escapeHtml(prompt.title)}</p>
-          <span class="text-link">${escapeHtml(prompt.cardCta || "Explore this area")}</span>
-        </button>
-      `).join("");
-
-      promptCardStack.insertAdjacentHTML("afterbegin", `
-        <button class="prompt-card" type="button" data-prompt-id="${escapeHtml(data.centerPrompt.id)}" aria-pressed="true">
-          <h3>Project experience</h3>
-          <p>${escapeHtml(data.centerPrompt.title)}</p>
-          <span class="text-link">${escapeHtml(data.centerPrompt.cardCta || "Explore experience")}</span>
-        </button>
-      `);
-
-      promptCardStack.querySelectorAll("[data-prompt-id]").forEach((button) => {
-        button.addEventListener("click", () => {
-          const prompt = prompts.find((item) => item.id === button.dataset.promptId);
-          if (prompt) renderPrompt(prompt, prompt.id);
-        });
-      });
-    }
-
-    function renderPromptData(data) {
-      promptSourceStatus.textContent = `Loaded ${1 + (data.deepDivePrompts || []).length} project-history topics. Reviewed ${data.updated}.`;
-      renderPromptCards(data);
-      renderPrompt(data.centerPrompt, data.centerPrompt.id);
-    }
-
-    function renderBriefs(items, sourceLabel) {
-      const [latest] = items;
-
-      briefDate.textContent = `Updated ${formatBriefDate(latest.date)}`;
-      briefStatus.textContent = sourceLabel;
-      currentBrief.innerHTML = `
-        <div class="brief-meta">
-          <span class="brief-pill">${formatBriefDate(latest.date)}</span>
-          <span class="brief-pill">${escapeHtml(latest.audience)}</span>
-          <span class="brief-pill">${escapeHtml(latest.category || "Practical AI")}</span>
-        </div>
-        <h3>${escapeHtml(latest.headline)}</h3>
-        <p class="brief-summary">${escapeHtml(latest.summary)}</p>
-        <ul class="lesson-list">
-          ${(latest.lessons || []).map((lesson) => `<li>${escapeHtml(lesson)}</li>`).join("")}
-        </ul>
-        <p class="source-heading">Sources for this brief</p>
-        <div class="source-links" aria-label="Sources for today's brief">
-          ${renderSourceLinks(latest.sources)}
-        </div>
-        <p class="automation-note">New briefs are added as current industry signals are reviewed.</p>
-      `;
-
-    }
-
-    function renderBudgetBrief(data) {
-      const rows = (data.labs || []).map((lab) => ({
-        shortName: lab.shortName,
-        fy2026: toMillions(lab.fy2026Thousands),
-        fy2027: toMillions(lab.fy2027Thousands)
-      })).sort((a, b) => b.fy2027 - a.fy2027).slice(0, 7);
-
-      const maxValue = Math.max(...rows.flatMap((item) => [item.fy2026, item.fy2027]), 1);
-
-      budgetBriefNote.textContent = `Largest tracked DOE laboratory budget rows, shown in millions. Updated ${data.updated}.`;
-      budgetMiniChart.innerHTML = rows.map((item) => `
-        <div class="budget-mini-row">
-          <span>${escapeHtml(item.shortName)}</span>
-          <div class="budget-mini-bars" aria-label="${escapeHtml(item.shortName)} ${formatMillions(item.fy2026)} in FY 2026 and ${formatMillions(item.fy2027)} in FY 2027">
-            <div class="budget-mini-bar" style="width: ${Math.max(2, (item.fy2026 / maxValue) * 100).toFixed(1)}%"></div>
-            <div class="budget-mini-bar future" style="width: ${Math.max(2, (item.fy2027 / maxValue) * 100).toFixed(1)}%"></div>
-          </div>
-        </div>
-      `).join("");
-      budgetMiniLinks.innerHTML = (data.sources || []).map((source) => (
-        `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener">${escapeHtml(source.label)}</a>`
-      )).join("");
-    }
-
-    async function loadBriefs() {
-      try {
-        const response = await fetch("briefs.json", { cache: "no-store" });
-        if (!response.ok) {
-          throw new Error("Brief feed unavailable");
-        }
-        const data = await response.json();
-        renderBriefs(data.items, "Latest brief loaded.");
-      } catch (error) {
-        renderBriefs(fallbackBriefData.items, "Showing the built-in brief archive until the live feed is available.");
-      }
-    }
-
-    async function loadBudgetBrief() {
-      try {
-        const response = await fetch("doe-lab-budgets.json", { cache: "no-store" });
-        if (!response.ok) {
-          throw new Error("Budget feed unavailable");
-        }
-        const data = await response.json();
-        renderBudgetBrief(data);
-      } catch (error) {
-        budgetBriefNote.textContent = "DOE budget signal is temporarily unavailable.";
-        budgetMiniChart.innerHTML = "";
-        budgetMiniLinks.innerHTML = "";
-      }
-    }
-
-    async function loadPromptData() {
-      try {
-        const response = await fetch("weekly-knowledge-prompts.json", { cache: "no-store" });
-        if (!response.ok) {
-          throw new Error("Prompt file unavailable");
-        }
-        const data = await response.json();
-        renderPromptData(data);
-      } catch (error) {
-        promptSourceStatus.textContent = "Project-history topics are temporarily unavailable.";
-        activePromptTitle.textContent = "Project topics unavailable.";
-        activePromptText.textContent = "";
-        activePromptAnswer.textContent = "Please use the support finder or contact Techniek while this section is refreshed.";
-        activePromptActions.innerHTML = "";
-        activePromptTags.innerHTML = "";
-        promptCardStack.innerHTML = "";
-      }
-    }
-
-  </script>
 </body>
 </html>

@@ -5,8 +5,9 @@
 
 ## 1. What this repo is
 
-`Techniek_Codex` is a **static site** (no app server) deployed to **GitHub Pages** from the
-`outputs/` directory via `.github/workflows/pages.yml`. Repo: `Kenja1970/Techniek_Codex`.
+`Techniek_Codex` is a **static site** (no app server) deployed to **GitHub Pages** and
+**Cloudflare Pages** from the shared `dist/` artifact built from `outputs/`. Repo:
+`Kenja1970/Techniek_Codex`.
 
 - Stack: HTML/CSS/vanilla JS for the marketing site; per-tool apps live under `outputs/tools/`.
 - Python 3.12 (stdlib) utility scripts in `tools/` (e.g. `refresh_industry_brief.py`).
@@ -17,8 +18,10 @@
 ### Key paths
 - `outputs/index.html` — homepage (has a Tools section with cards).
 - `outputs/tools/index.html` — Tools landing page (card grid).
-- `outputs/tools/<tool>/` — published (built/static) output for each tool. **This is what deploys.**
-- `tools/<Working-Copy>/` — local working copies / submodules for maintenance. **Untracked / not deployed.**
+- `outputs/tools/<tool>/` — published source for each tool.
+- `dist/` — generated deploy artifact; never committed.
+- `outputs/tools/techniek-opsboard` — published OpsBoard submodule.
+- `tools/Techniek-PrecisionFlow` — source submodule used by the PrecisionFlow publish script.
 
 ## 2. Tools strategy
 
@@ -100,9 +103,10 @@ cd Techniek-TwinSimStudio && npm install && npx vite build
 - Repo audit fixes: RSS `example.com` → real base URL in `tools/refresh_industry_brief.py` +
   `outputs/briefs.xml`; classifier word-boundary regex in `tools/classify_knowledge_uploads.py`;
   pinned GH Action versions; deploy excludes tool tests/changelogs.
-- OpsBoard consolidated as submodule (`outputs/tools/techniek-opsboard` + working `tools/Techniek-OpsBoard`).
-- **2026-07-27:** both OpsBoard submodules repointed from `Techniek-OpsBoard-Pro` (v1, v2.5.0) to
-  `Techniek-OpsBoard-Pro-V2` (v5.2.0). The published path stays `techniek-opsboard/` on purpose —
+- OpsBoard is published from the single `outputs/tools/techniek-opsboard` submodule.
+- **2026-07-27:** the OpsBoard published submodule was repointed from
+  `Techniek-OpsBoard-Pro` (v1, v2.5.0) to `Techniek-OpsBoard-Pro-V2` (v5.2.0).
+  The published path stays `techniek-opsboard/` on purpose —
   renaming it would break every existing `/tools/techniek-opsboard/` link. V1 is slated for
   retirement; the site no longer depends on it.
 
@@ -115,6 +119,6 @@ cd Techniek-TwinSimStudio && npm install && npx vite build
 ## 6. Gotchas
 - Shell is **PowerShell**: no heredocs. Use `git commit -F <file>` for multi-line messages.
 - Pushing to `main` (protected) requires explicit approval.
-- Do **not** commit `tools/*` local working copies; only `outputs/` + site files deploy.
+- Initialize required sources with `git submodule update --init --recursive`; only `dist/` deploys.
 - `git push` prints to stderr; PowerShell renders it as a red "error" block — check exit code / the
   `old..new ref` line for actual success.

@@ -6,6 +6,16 @@
   <title>Engineering Tools | Techniek Engineering</title>
   <meta name="description" content="Practical Techniek Engineering tools for early technical screening, project preparation, and engineering decision support.">
   <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://kenja1970.github.io/Techniek_Codex/tools/">
+  <meta property="og:site_name" content="Techniek Engineering">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Engineering Tools | Techniek Engineering">
+  <meta property="og:description" content="Practical tools for engineering screening, project controls, and process simulation.">
+  <meta property="og:url" content="https://kenja1970.github.io/Techniek_Codex/tools/">
+  <meta property="og:image" content="https://kenja1970.github.io/Techniek_Codex/assets/logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Engineering Tools | Techniek Engineering">
+  <meta name="twitter:description" content="Practical tools for engineering screening, project controls, and process simulation.">
   <link rel="stylesheet" href="../assets/css/design-system.css">
 </head>
 <body>
@@ -14,7 +24,7 @@
     <header class="te-header">
       <div class="te-container te-nav">
         <a href="../index.html" aria-label="Techniek Engineering home">
-          <img class="te-logo" src="../assets/logo.png" alt="Techniek Engineering logo">
+          <img class="te-logo" src="../assets/logo.png" alt="Techniek Engineering logo" width="294" height="99">
         </a>
         <nav class="te-nav-links" aria-label="Main navigation">
           <a href="../index.html#services">Services</a>
@@ -46,63 +56,92 @@
         <div class="te-container">
           <div class="te-section-heading">
             <h2 id="available-tools">Available tools</h2>
-            <p>Built for engineers who need a defensible starting point without hunting through disconnected inputs and spreadsheets.</p>
+            <p>Choose by task and check the maturity label before using a result. Demonstrators and prototypes require independent verification.</p>
           </div>
+
+          <h3 class="te-group-heading">Engineering screening</h3>
           <div class="te-card-grid">
             <article class="te-card te-card-white">
+              <div class="te-badge-row">
+                <span class="te-badge">Engineering screening</span>
+                <span class="te-badge te-badge-status">Tested screening release</span>
+              </div>
+              <span class="te-accent"></span>
+              <h3>Flange Capacity Explorer</h3>
+              <p>Compare standard-rated and compact flanges under combined loading and download calculation evidence. Assumptions and missing qualification evidence remain visible for engineering review.</p>
+              <p class="te-card-divider"><a class="te-text-link" href="flange-capacity/index.html">Open the flange tool</a></p>
+            </article>
+          </div>
+
+          <h3 class="te-group-heading">Project controls and simulation</h3>
+          <div class="te-card-grid">
+            <article class="te-card te-card-white">
+              <div class="te-badge-row">
+                <span class="te-badge">Project controls</span>
+                <span class="te-badge te-badge-status">Published application</span>
+              </div>
               <span class="te-accent"></span>
               <h3>Techniek OpsBoard Pro V2</h3>
-              <p>Local-first project delivery control center for engineering operations: editable columns with WIP limits, resource utilization, PMI/PMBOK earned value (CPI/SPI/EAC) at project and program level, Gantt with critical path, risk register, integrated change control, and role-gated manager and client reports. A deterministic PM Advisor grades portfolio health and returns ranked findings with the numbers behind them; a PM Agent can apply fixes through the same governance a manual change passes. Runs entirely in your browser — no account, no API key.</p>
+              <p>Local-first workspace for Kanban, WIP limits, resource utilization, earned value, critical path, risks, changes, and role-based reporting. Runs in the browser without an account or API key.</p>
               <p class="te-card-divider"><a class="te-text-link" href="techniek-opsboard/index.html">Open the OpsBoard</a></p>
             </article>
             <article class="te-card te-card-white">
+              <div class="te-badge-row">
+                <span class="te-badge">Discrete-event simulation</span>
+                <span class="te-badge te-badge-status">Published workbench</span>
+              </div>
               <span class="te-accent"></span>
               <h3>Techniek TwinSim Studio</h3>
-              <p>Local-first digital-twin and token-based discrete-event simulation studio for manufacturing, logistics, and engineering production queues. Build a line on the canvas, run replicated simulations, and review throughput, bottlenecks, and what-if scenarios with confidence ranges.</p>
+              <p>Build a production line, run replicated simulations, and review throughput, bottlenecks, and what-if scenarios with confidence ranges.</p>
               <p class="te-card-divider"><a class="te-text-link" href="techniek-twinsim-studio/index.html">Open the simulation studio</a></p>
             </article>
             <article class="te-card te-card-white">
+              <div class="te-badge-row">
+                <span class="te-badge">Process simulation</span>
+                <span class="te-badge te-badge-status">Simulation demonstrator</span>
+              </div>
               <span class="te-accent"></span>
-              <h3>Flange Capacity Explorer</h3>
-              <p>Compare standard-rated and compact flanges under pressure, tensile axial load, and bending moment. Select flange and bolt materials, review stress and seal-contact screening, and download calculation evidence.</p>
-              <p class="te-card-divider"><a class="te-text-link" href="flange-capacity/index.html">Open the flange tool</a></p>
+              <h3>Techniek PrecisionFlow</h3>
+              <p>Dosing-process simulation with facility layout, trace heating, SCADA-style monitoring, SPC/Cpk, consumption tracking, and batch export. Simulation only—not plant equipment.</p>
+              <p class="te-card-divider"><a class="te-text-link" href="precisionflow/index.html">Open PrecisionFlow</a> &middot; <a class="te-text-link" href="https://github.com/Kenja1970/Techniek-PrecisionFlow" rel="noopener noreferrer">Source repo</a></p>
             </article>
+          </div>
+
+          <h3 class="te-group-heading">Data prototypes and professional profile</h3>
+          <div class="te-card-grid">
             <article class="te-card">
+              <div class="te-badge-row">
+                <span class="te-badge">Water-data demonstrator</span>
+                <span class="te-badge">Generated-data prototype</span>
+              </div>
               <span class="te-accent te-accent-green"></span>
               <h3>BlueLedger Georgia</h3>
-              <p>Map-first Georgia water intelligence with Leaflet hydrography, time slider, linked charts, evidence ledger, and legal/administrative placeholders — every value traceable to open-government sources.</p>
+              <p>Map-first water-intelligence prototype using generated time series, agency source links, provenance fields, and legal placeholders. Verify decisions against official records.</p>
               <p class="te-card-divider"><a class="te-text-link" href="blueledger-georgia/index.html">Open BlueLedger Georgia</a></p>
             </article>
             <article class="te-card">
+              <div class="te-badge-row">
+                <span class="te-badge">Water-data demonstrator</span>
+                <span class="te-badge">Generated-data prototype</span>
+              </div>
               <span class="te-accent te-accent-green"></span>
               <h3>BlueLedger West</h3>
-              <p>Western water ledger: storage, snowpack SWE, modeled ET, compact placeholders, and basin-linked charts with full provenance and exportable evidence packages.</p>
+              <p>Western water prototype covering storage, snowpack, modeled ET, compact placeholders, and basin-linked charts. Verify decisions against official records.</p>
               <p class="te-card-divider"><a class="te-text-link" href="blueledger-west/index.html">Open BlueLedger West</a></p>
             </article>
             <article class="te-card te-card-white">
-              <span class="te-accent"></span>
-              <h3>Techniek PrecisionFlow</h3>
-              <p>Graco PD2K&ndash;style hazardous-material dosing digital twin: partitionable facility layout, three-liquid batch sequence, preheat trace heating with Wh metering, SCADA tag monitor, per-liquid SPC/Cpk, material consumption, and batch record export. Simulation only &mdash; not plant equipment.</p>
-              <p class="te-card-divider"><a class="te-text-link" href="precisionflow/index.html">Open PrecisionFlow</a> &middot; <a class="te-text-link" href="https://github.com/Kenja1970/Techniek-PrecisionFlow" rel="noopener noreferrer">Source repo</a></p>
-            </article>
-            <article class="te-card te-card-white">
+              <div class="te-badge-row">
+                <span class="te-badge">Professional profile</span>
+                <span class="te-badge te-badge-status">Published profile</span>
+              </div>
               <span class="te-accent"></span>
               <h3>Greg Brown — Career &amp; Digital Twin</h3>
-              <p>Professional career page for Greg Brown, PE, PMP: federal BD and engineering strategy experience, credentials, and an AI Digital Twin for career-grounded questions.</p>
+              <p>Credentials, engineering and program-leadership experience, and a hosted AI feature for career-grounded questions. The AI chat requires the Cloudflare-hosted function.</p>
               <p class="te-card-divider"><a class="te-text-link" href="greg-brown-site/index.html">Open the career page</a></p>
             </article>
-            <article class="te-card">
-              <span class="te-accent te-accent-green"></span>
-              <h3>Qualification workflow</h3>
-              <p>The flange tool separates numerical screening from project evidence and identifies missing inputs required before engineer-of-record or third-party review.</p>
-            </article>
-            <article class="te-card">
-              <span class="te-accent te-accent-yellow"></span>
-              <h3>Need a scoped review?</h3>
-              <p>Use the support finder when the calculation needs controlled drawings, seal data, fatigue or thermal evaluation, FEA, proof testing, or certification planning.</p>
-              <p class="te-card-divider"><a class="te-text-link" href="../support-finder.html">Find the right support</a></p>
-            </article>
           </div>
+
+          <p class="te-note te-group-footnote">Need controlled drawings, fatigue or thermal evaluation, FEA, proof testing, or certification planning? <a class="te-text-link" href="../support-finder.html">Find the right support</a>.</p>
         </div>
       </section>
     </main>

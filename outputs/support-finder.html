@@ -6,6 +6,16 @@
   <title>Find the Right Support | Techniek Engineering</title>
   <meta name="description" content="Answer a few practical questions and get a recommended Techniek Engineering service, likely deliverables, useful reading, and a clear next step.">
   <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://kenja1970.github.io/Techniek_Codex/support-finder.html">
+  <meta property="og:site_name" content="Techniek Engineering">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Find the Right Support | Techniek Engineering">
+  <meta property="og:description" content="Answer three practical questions and prepare a contact-ready engineering support summary.">
+  <meta property="og:url" content="https://kenja1970.github.io/Techniek_Codex/support-finder.html">
+  <meta property="og:image" content="https://kenja1970.github.io/Techniek_Codex/assets/logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Find the Right Support | Techniek Engineering">
+  <meta name="twitter:description" content="Prepare a practical, contact-ready engineering support summary.">
   <link rel="stylesheet" href="assets/css/design-system.css">
   <style>
     .finder-layout {
@@ -395,7 +405,7 @@
     <header class="te-header">
       <div class="te-container te-nav">
         <a href="index.html" aria-label="Techniek Engineering home">
-          <img class="te-logo" src="assets/logo.png" alt="Techniek Engineering logo">
+          <img class="te-logo" src="assets/logo.png" alt="Techniek Engineering logo" width="294" height="99">
         </a>
         <nav class="te-nav-links" aria-label="Main navigation">
           <a href="index.html#services">Services</a>
@@ -772,7 +782,7 @@
         `Likely outputs: ${(top.outputs || []).join("; ")}`,
         `Recommended preparation: ${(top.prepChecklist || []).join("; ")}`,
         `Suggested next step: ${top.cta}`
-      ].join("\\n");
+      ].join("\n");
     }
 
     function scoreRecommendation(recommendation, answers) {
@@ -857,6 +867,7 @@
       const matches = keywordMatches(top, answers.situation);
       const matchedText = matches.length ? matches.slice(0, 5).join(", ") : "question choices";
       const summary = buildContactSummary(top, answers, matchedText);
+      const mailtoHref = `mailto:gregory@techniekengineering.com?subject=${encodeURIComponent(`Techniek support inquiry: ${top.service}`)}&body=${encodeURIComponent(summary)}`;
 
       resultCard.innerHTML = `
         <div class="result-meta">
@@ -895,7 +906,7 @@
         <textarea class="summary-box" id="contact-summary" readonly>${escapeHtml(summary)}</textarea>
         <div class="te-actions">
           <button class="te-button" type="button" data-copy-summary>Copy Summary</button>
-          <a class="te-text-link" href="index.html#contact">Send to Techniek</a>
+          <a class="te-text-link" href="${escapeHtml(mailtoHref)}">Email this summary to Techniek</a>
         </div>
         <p><strong>Useful reading:</strong></p>
         <div class="te-actions">

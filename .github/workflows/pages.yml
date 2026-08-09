@@ -26,14 +26,11 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Verify flange calculator
-        run: |
-          node --check outputs/tools/flange-capacity/app.js
-          node --check outputs/tools/flange-capacity/configuration.js
-          node --check outputs/tools/flange-capacity/qualification.js
-          node outputs/tools/flange-capacity/tests/configuration.test.mjs
-          node outputs/tools/flange-capacity/tests/qualification.test.mjs
-          node outputs/tools/flange-capacity/tests/publishing.test.mjs
+      - name: Install PrecisionFlow dependencies
+        run: npm ci --prefix tools/Techniek-PrecisionFlow
+
+      - name: Verify site and engineering tools
+        run: npm run check
 
       - name: Verify Techniek OpsBoard
         working-directory: outputs/tools/techniek-opsboard
@@ -65,25 +62,6 @@ jobs:
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
-
-      - name: Build deploy folder
-        run: |
-          mkdir -p dist
-          cp outputs/index.html dist/
-          cp outputs/engineering-support.html dist/
-          cp outputs/project-management.html dist/
-          cp outputs/energy-management.html dist/
-          cp outputs/support-finder.html dist/
-          cp -R outputs/tools dist/tools
-          rm -rf dist/tools/flange-capacity/tests
-          rm -f dist/tools/flange-capacity/CHANGELOG.md
-          rm -f dist/tools/flange-capacity/qualification-packages-compact-4in-600.md
-          rm -rf dist/tools/techniek-opsboard/.git dist/tools/techniek-opsboard/.github
-          cp outputs/robots.txt dist/
-          cp outputs/sitemap.xml dist/
-          cp outputs/skills.json dist/
-          cp outputs/.nojekyll dist/
-          cp -R outputs/assets dist/assets
 
       - name: Verify deploy artifact
         run: |

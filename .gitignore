@@ -27,6 +27,7 @@ bd_outputs/
 
 # Created by `npx wrangler` during Cloudflare builds; never a site asset
 node_modules/
+dist/
 
 # Local-only secrets for `wrangler pages dev`
 .dev.vars

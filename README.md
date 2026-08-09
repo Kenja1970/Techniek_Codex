@@ -8,6 +8,7 @@ Static landing page and client support tools for Techniek Engineering.
   Microsoft Store alias shim instead of a real interpreter; if so, use `uv run python`
   or invoke a full interpreter path.
 - Node.js (any current LTS) for the flange calculator syntax checks and tests.
+- Git submodules initialized with `git submodule update --init --recursive`.
 
 ## Convenience Scripts
 
@@ -16,8 +17,10 @@ A dependency-free `package.json` wraps the native commands:
 ```powershell
 npm run dev     # serve outputs/ at http://127.0.0.1:8127 (uses uv run python)
 npm run lint    # node --check on the flange calculator scripts
-npm test        # run the flange calculator test suite
-npm run build   # no-op: outputs/ deploys as-is
+npm test        # run all engineering-tool test suites
+npm run build   # create the shared deployable artifact in dist/
+npm run validate # build and validate metadata, links, fragments, and sitemap routes
+npm run check   # run lint, tests, build, and site validation
 ```
 
 ## Preview Locally
@@ -37,20 +40,18 @@ http://127.0.0.1:8127/index.html
 
 ## Tests
 
-Run the flange calculator checks locally (the same checks the Pages workflow runs):
+Initialize submodules once, then run the complete local check used by Pages:
 
 ```powershell
-node --check outputs/tools/flange-capacity/app.js
-node --check outputs/tools/flange-capacity/configuration.js
-node --check outputs/tools/flange-capacity/qualification.js
-node outputs/tools/flange-capacity/tests/configuration.test.mjs
-node outputs/tools/flange-capacity/tests/qualification.test.mjs
-node outputs/tools/flange-capacity/tests/publishing.test.mjs
+git submodule update --init --recursive
+npm ci --prefix tools/Techniek-PrecisionFlow
+npm run check
 ```
 
 ## Deployment
 
-The working static site lives in `outputs/`. The included GitHub Actions workflow publishes only deployable website files from that folder:
+The working static site lives in `outputs/`. `npm run build` creates the curated
+`dist/` artifact used by both GitHub Pages and Cloudflare Pages:
 
 - HTML pages
 - Public JSON/XML feeds used by the pages
@@ -75,16 +76,22 @@ artifact checks before GitHub Pages deployment. The standard update cycle is:
 
 ### Cloudflare Pages
 
-The same `outputs/` tree is also served by Cloudflare Pages at
+The same `dist/` artifact is also served by Cloudflare Pages at
 `https://techniek-codex.pages.dev/`, so both hosts expose identical paths.
 
 `wrangler.toml` is the source of truth for that project. It sets
-`pages_build_output_dir = "./outputs"`; the matching dashboard fields become
+`pages_build_output_dir = "./dist"`; the matching dashboard fields become
 read-only once a deployment includes the file. The project's deploy command must
 be:
 
 ```text
 npx wrangler pages deploy
+```
+
+The Cloudflare build command must initialize submodules and build the artifact:
+
+```text
+git submodule update --init --recursive && npm run build
 ```
 
 Do not use `npx wrangler deploy`. That is the Workers command: it ignores the

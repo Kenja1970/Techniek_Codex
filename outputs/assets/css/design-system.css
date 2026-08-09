@@ -352,6 +352,44 @@ textarea:focus-visible {
   font-size: 0.95rem;
 }
 
+.te-group-heading {
+  margin: 40px 0 18px;
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+
+.te-group-heading:first-of-type {
+  margin-top: 0;
+}
+
+.te-group-footnote {
+  margin: 32px 0 0;
+}
+
+.te-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.te-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(0, 96, 224, 0.1);
+  color: var(--te-blue-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.te-badge-status {
+  background: rgba(96, 208, 64, 0.16);
+  color: #2f6b20;
+}
+
 .te-two-column {
   display: grid;
   grid-template-columns: minmax(0, 0.72fr) minmax(280px, 0.38fr);
@@ -655,5 +693,19 @@ textarea:focus-visible {
   .te-panel,
   .te-card {
     padding: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

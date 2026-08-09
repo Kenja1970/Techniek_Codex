@@ -8,7 +8,7 @@
 # which served internal repo files, put the career page at the wrong URL, and
 # broke the build by trying to upload node_modules as static assets.
 name = "techniek-codex"
-pages_build_output_dir = "./outputs"
+pages_build_output_dir = "./dist"
 
 # Pinned deliberately. Letting Wrangler default to "today" produces a date the
 # bundled workerd in local dev does not yet support.
