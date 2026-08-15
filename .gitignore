@@ -27,7 +27,11 @@ bd_outputs/
 
 # Created by `npx wrangler` during Cloudflare builds; never a site asset
 node_modules/
-dist/
+
+# dist/ is intentionally committed. It is the exact artifact Cloudflare serves, so the
+# deploy needs no build step and what is reviewed locally is what goes live byte for byte.
+# Regenerate with `npm run build`; CI fails if it is stale.
+!dist/
 
 # Local-only secrets for `wrangler pages dev`
 .dev.vars
