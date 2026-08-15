@@ -27,13 +27,21 @@ assert.ok(
   "copying must not be styled as the primary action"
 );
 
-// The embedded fallback knowledge must stay aligned with the published skills.json contract.
-for (const recommendation of skills.recommendations) {
-  assert.ok(
-    finderHtml.includes(`"${recommendation.id}"`),
-    `support finder fallback is missing recommendation ${recommendation.id}`
-  );
-}
+// The page embeds a copy of skills.json for the offline path. The two are edited by hand, so
+// compare them in full rather than spot-checking ids.
+const fallbackSource = finderHtml.match(/const fallbackKnowledge = (\{[\s\S]*?\r?\n\});\r?\n/)?.[1];
+assert.ok(fallbackSource, "support finder must embed fallbackKnowledge");
+
+let fallback;
+assert.doesNotThrow(() => {
+  fallback = JSON.parse(fallbackSource);
+}, "embedded fallbackKnowledge must be valid JSON");
+
+assert.deepEqual(
+  fallback,
+  skills,
+  "embedded fallbackKnowledge has drifted from outputs/skills.json"
+);
 
 const issueQuestion = skills.questions.find((question) => question.id === "issue");
 const offeredIssues = issueQuestion.options.map((option) => option.value);
