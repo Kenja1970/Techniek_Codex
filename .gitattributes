@@ -1,3 +1,8 @@
+# dist/ is a committed build artifact served verbatim by Cloudflare. EOL normalization
+# would rewrite it on checkout, so the committed bytes would no longer match a fresh
+# build and the CI staleness check would fail spuriously. Store and check it out as-is.
+dist/** -text
+
 # Treat binary assets as binary so git never applies EOL normalization.
 *.pdf binary
 *.png binary
