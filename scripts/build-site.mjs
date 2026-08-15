@@ -20,17 +20,19 @@ const rootFiles = [
 ];
 
 const excludedNames = new Set(["README.md", "CHANGELOG.md"]);
-const excludedRelativePaths = new Set([
-  "tools/flange-capacity/qualification-packages-compact-4in-600.md"
-]);
+
+// Retained in the repository for later development, but not published to the live site.
+const unpublishedTools = [
+  "tools/flange-capacity",
+  "tools/blueledger-georgia",
+  "tools/blueledger-west",
+  "tools/_shared"
+];
 
 const canonicalOrigin = "https://kenja1970.github.io/Techniek_Codex";
 const toolRoutes = new Map([
   ["tools/techniek-opsboard/index.html", "/tools/techniek-opsboard/"],
   ["tools/techniek-twinsim-studio/index.html", "/tools/techniek-twinsim-studio/"],
-  ["tools/flange-capacity/index.html", "/tools/flange-capacity/"],
-  ["tools/blueledger-georgia/index.html", "/tools/blueledger-georgia/"],
-  ["tools/blueledger-west/index.html", "/tools/blueledger-west/"],
   ["tools/precisionflow/index.html", "/tools/precisionflow/"],
   ["tools/greg-brown-site/index.html", "/tools/greg-brown-site/"]
 ]);
@@ -47,11 +49,11 @@ function shouldCopy(sourcePath) {
     return false;
   }
 
-  if (excludedNames.has(path.basename(sourcePath))) {
+  if (unpublishedTools.some((tool) => relativePath === tool || relativePath.startsWith(`${tool}/`))) {
     return false;
   }
 
-  return !excludedRelativePaths.has(relativePath);
+  return !excludedNames.has(path.basename(sourcePath));
 }
 
 await rm(destination, { recursive: true, force: true });

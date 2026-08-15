@@ -39,8 +39,14 @@ longer lists individual tools; it links to this page once so services stay the p
 |------|---------------|-------------|-------|
 | OpsBoard Pro **V2** | `techniek-opsboard/` | `Kenja1970/Techniek-OpsBoard-Pro-V2` (submodule) | Integrated, live — **v5.2.0** |
 | TwinSim Studio | `techniek-twinsim-studio/` | `Kenja1970/Techniek-TwinSimStudio` (committed build, not submodule) | **v0.2 engine live** |
-| Flange Capacity | `flange-capacity/` | (in-repo) | Mature, has tests |
-| BlueLedger-GA / -West, PrecisionFlow | (specs only) | TBD | Not yet built |
+| PrecisionFlow | `precisionflow/` | `Kenja1970/Techniek-PrecisionFlow` (submodule) | Published demonstrator |
+| Flange Capacity | `flange-capacity/` | (in-repo) | **Unpublished** — mature, has tests |
+| BlueLedger-GA / -West | `blueledger-georgia/`, `blueledger-west/` | (in-repo) | **Unpublished** — generated-data prototypes |
+
+> **Unpublished tools** stay in `outputs/tools/` and keep running under `npm run lint` and
+> `npm test`, but `scripts/build-site.mjs` excludes them from `dist/` (see `unpublishedTools`) and
+> they are absent from `outputs/sitemap.xml` and the tools page. To republish one, drop it from that
+> list and restore its card and sitemap entry.
 
 > Note: TwinSim is intentionally a **committed static build** (not a submodule) so the local
 > preview and production serve identical files. Submodule source serving the unbuilt `/src/main.jsx`
@@ -109,7 +115,8 @@ cd Techniek-TwinSimStudio && npm install && npx vite build
   retirement; the site no longer depends on it.
 
 ## 5. Pending / next candidates
-- Build out spec-only tools (BlueLedger-GA, BlueLedger-West, PrecisionFlow), each with its own repo.
+- Decide whether the unpublished tools (Flange Capacity, BlueLedger-GA, BlueLedger-West) get
+  further development and republishing, or retirement.
 - Optional TwinSim follow-ups: code-split the 735 kB bundle (manualChunks); empirical/fitted
   distributions; cost modeling; saved-scenario comparison; executive report export.
 - Figma → consider Penpot (open-source) for GUI design; tokens via Style Dictionary if needed.

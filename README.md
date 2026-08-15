@@ -57,7 +57,7 @@ The working static site lives in `outputs/`. `npm run build` creates the curated
 - Public JSON/XML feeds used by the pages
 - `robots.txt` and `sitemap.xml`
 - `outputs/assets`
-- `outputs/tools`, including the Flange Capacity Explorer
+- `outputs/tools`, excluding the tools listed as unpublished in `scripts/build-site.mjs`
 
 Public site:
 
@@ -121,16 +121,12 @@ Public engineering tools are grouped under:
 outputs/tools/
 ```
 
-The flange screening and qualification-preparation tool is available at:
+Published tools are OpsBoard Pro V2, TwinSim Studio, PrecisionFlow, and the career page.
 
-```text
-https://kenja1970.github.io/Techniek_Codex/tools/flange-capacity/
-```
-
-It supports standard-rated and compact flange screening, material and bolting
-selection, coupled pressure/axial/moment interaction, qualification-readiness
-tracking, and downloadable objective evidence. Results remain screening
-evidence until reviewed against controlled publications and project records.
+The Flange Capacity Explorer and both BlueLedger prototypes are **retained but unpublished**:
+their source stays under `outputs/tools/` and their tests still run in `npm test`, but
+`scripts/build-site.mjs` excludes them from `dist/` so they are not deployed or indexed. Remove the
+directory from `unpublishedTools` to bring one back.
 
 Owner notes, screenshots, generated documents, Figma handoff files, and private knowledge uploads are not part of the Pages artifact.
 

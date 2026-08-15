@@ -67,8 +67,6 @@ jobs:
         run: |
           test -f dist/index.html
           test -f dist/sitemap.xml
-          test -f dist/tools/flange-capacity/index.html
-          test -f dist/tools/flange-capacity/agent-manifest.json
           test -f dist/tools/techniek-opsboard/index.html
           test -f dist/tools/techniek-opsboard/app.js
           test -f dist/tools/techniek-opsboard/assets/knowledge-corpus.js
@@ -76,6 +74,12 @@ jobs:
           test -f dist/tools/precisionflow/index.html
           test -n "$(find dist/tools/precisionflow/assets -name 'index-*.js' -print -quit)"
           test -f dist/tools/greg-brown-site/index.html
+          # Tools retained in the repo for later work must stay out of the artifact.
+          for unpublished in flange-capacity blueledger-georgia blueledger-west _shared; do
+            if [ -e "dist/tools/$unpublished" ]; then
+              echo "::error::unpublished tool $unpublished leaked into dist"; exit 1
+            fi
+          done
           # Career site must use relative asset paths so it serves from both
           # kenja1970.github.io/Techniek_Codex/... and the Cloudflare domain.
           if grep -q '"/Techniek_Codex/' dist/tools/greg-brown-site/index.html; then

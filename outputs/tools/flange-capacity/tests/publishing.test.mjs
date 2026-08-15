@@ -70,14 +70,27 @@ assert.equal(schema.properties.schemaVersion.const, "1.2.0");
 
 const sitemap = read("outputs", "sitemap.xml");
 assert.equal(sitemap.includes("https://example.com"), false);
+
+// The tool is retained for later development but is not published, so it must stay out of
+// the sitemap and out of the deploy artifact. Republishing means reverting this assertion,
+// restoring the tools-page card, and dropping the directory from unpublishedTools.
+assert.equal(
+  sitemap.includes(`${publicBase}tools/flange-capacity/`),
+  false,
+  "unpublished flange tool must not appear in the sitemap"
+);
+
+const buildScript = read("scripts", "build-site.mjs");
 assert.match(
-  sitemap,
-  new RegExp(`${escapeRegExp(publicBase)}tools/flange-capacity/`)
+  buildScript,
+  /unpublishedTools\s*=\s*\[[^\]]*"tools\/flange-capacity"/,
+  "unpublished flange tool must be excluded from the deploy artifact"
 );
 
 const robots = read("outputs", "robots.txt");
 assert.match(robots, new RegExp(`${escapeRegExp(publicBase)}sitemap\\.xml`));
 
+// The source is kept in the tree so development can resume without recovering it from history.
 for (const requiredPath of [
   "index.html",
   "sitemap.xml",
@@ -87,7 +100,7 @@ for (const requiredPath of [
   assert.equal(
     fs.existsSync(path.join(outputsDirectory, requiredPath)),
     true,
-    `${requiredPath} must exist in the publishable outputs tree`
+    `${requiredPath} must exist in the outputs tree`
   );
 }
 
