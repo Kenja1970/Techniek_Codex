@@ -10,17 +10,17 @@ const skills = JSON.parse(await readFile(path.join(root, "outputs", "skills.json
 // The generated summary must use real newlines so copied and emailed text stays readable.
 assert.ok(!finderHtml.includes('.join("\\\\n")'), "contact summary must join with real newlines");
 
-// The primary handoff must transmit the generated summary, not just link to the homepage.
-assert.ok(finderHtml.includes("const mailtoHref = `mailto:"), "result card must build a mailto link");
+// The primary handoff must transmit the generated summary to the backend API.
+assert.ok(finderHtml.includes('fetch("/api/intake"'), "result card must submit to the intake API");
 assert.ok(
-  finderHtml.includes("encodeURIComponent(summary)"),
-  "mailto link must carry the generated summary"
+  finderHtml.includes('body: JSON.stringify(payload)'),
+  "intake submission must carry the generated summary payload"
 );
 
-// Emailing the summary is the conversion action, so it must outrank copying it.
+// Form submission is the conversion action, so it must outrank copying it.
 assert.ok(
-  finderHtml.includes('<a class="te-button" href="${escapeHtml(mailtoHref)}">'),
-  "the email action must be the primary button in the result card"
+  finderHtml.includes('<button type="submit" id="intake-submit" class="te-button">Submit Inquiry</button>'),
+  "the submit action must be the primary button in the result card"
 );
 assert.ok(
   !finderHtml.includes('<button class="te-button" type="button" data-copy-summary>'),
