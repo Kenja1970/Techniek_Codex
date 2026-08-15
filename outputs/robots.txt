@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kenja1970.github.io/Techniek_Codex/sitemap.xml
+Sitemap: https://techniekengineering.com/sitemap.xml

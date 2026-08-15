@@ -1,24 +1,22 @@
-name: Deploy static site to GitHub Pages
+# Deployment lives on Cloudflare Pages (see wrangler.toml). This workflow only
+# verifies the build; it publishes nothing.
+name: Verify site and engineering tools
 
 on:
   push:
     branches: ["main"]
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  verify:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -60,9 +58,6 @@ jobs:
           fi
           echo "OpsBoard guardrails passed"
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
       - name: Verify deploy artifact
         run: |
           test -f dist/index.html
@@ -74,23 +69,18 @@ jobs:
           test -f dist/tools/precisionflow/index.html
           test -n "$(find dist/tools/precisionflow/assets -name 'index-*.js' -print -quit)"
           test -f dist/tools/greg-brown-site/index.html
+          # The Digital Twin chat is a Cloudflare Pages Function. If this is ever
+          # missing the career page still loads but the chat reports itself offline.
+          test -f functions/tools/greg-brown-site/api/chat.js
+          test -f functions-lib/twin-knowledge.js
           # Tools retained in the repo for later work must stay out of the artifact.
           for unpublished in flange-capacity blueledger-georgia blueledger-west _shared; do
             if [ -e "dist/tools/$unpublished" ]; then
               echo "::error::unpublished tool $unpublished leaked into dist"; exit 1
             fi
           done
-          # Career site must use relative asset paths so it serves from both
-          # kenja1970.github.io/Techniek_Codex/... and the Cloudflare domain.
+          # Career site must use relative asset paths so it serves from the
+          # apex domain and from Cloudflare preview deployments alike.
           if grep -q '"/Techniek_Codex/' dist/tools/greg-brown-site/index.html; then
             echo "::error::greg-brown-site has host-specific absolute asset paths"; exit 1
           fi
-
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4

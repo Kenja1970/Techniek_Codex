@@ -29,7 +29,7 @@ const unpublishedTools = [
   "tools/_shared"
 ];
 
-const canonicalOrigin = "https://kenja1970.github.io/Techniek_Codex";
+const canonicalOrigin = "https://techniekengineering.com";
 const toolRoutes = new Map([
   ["tools/techniek-opsboard/index.html", "/tools/techniek-opsboard/"],
   ["tools/techniek-twinsim-studio/index.html", "/tools/techniek-twinsim-studio/"],

@@ -51,7 +51,7 @@ npm run check
 ## Deployment
 
 The working static site lives in `outputs/`. `npm run build` creates the curated
-`dist/` artifact used by both GitHub Pages and Cloudflare Pages:
+`dist/` artifact that Cloudflare Pages serves:
 
 - HTML pages
 - Public JSON/XML feeds used by the pages
@@ -62,22 +62,26 @@ The working static site lives in `outputs/`. `npm run build` creates the curated
 Public site:
 
 ```text
-https://kenja1970.github.io/Techniek_Codex/
+https://techniekengineering.com/
 ```
 
-Every push to `main` runs syntax, exact-configuration, publishing-contract, and
-artifact checks before GitHub Pages deployment. The standard update cycle is:
+Cloudflare Pages is the only deployment. GitHub Pages was retired because it
+cannot run the `functions/` runtime, which left the Digital Twin chat returning
+`405` on every request while the same page worked on Cloudflare. Canonical tags,
+`og:url`, and `sitemap.xml` all point at the apex domain; `scripts/validate-site.mjs`
+enforces that.
+
+`.github/workflows/ci.yml` runs syntax, exact-configuration, publishing-contract,
+and artifact checks on every push and pull request, but publishes nothing. The
+standard update cycle is:
 
 1. Preserve unrelated worktree changes and edit only the intended site files.
-2. Run the flange calculator checks locally.
+2. Run `npm run check` locally.
 3. Update the tool changelog or source register when engineering behavior changes.
 4. Commit and push the scoped files.
-5. Confirm the Pages workflow succeeds and smoke-test the public URL.
+5. Confirm CI passes and smoke-test the public URL.
 
 ### Cloudflare Pages
-
-The same `dist/` artifact is also served by Cloudflare Pages at
-`https://techniek-codex.pages.dev/`, so both hosts expose identical paths.
 
 `wrangler.toml` is the source of truth for that project. It sets
 `pages_build_output_dir = "./dist"`; the matching dashboard fields become
@@ -104,8 +108,9 @@ one route, `tools/greg-brown-site/api/chat`, backing the Digital Twin on the Gre
 Brown career page. That route needs an encrypted `OPENROUTER_API_KEY` variable on
 the Pages project (Settings → Variables and Secrets → Add → Encrypt). Secrets
 only reach deployments created after they are set, so add the key before
-deploying. GitHub Pages has no Functions runtime, so the chat is offline there by
-design and the page falls back to a contact prompt.
+deploying. Without the key the route returns `503` and the page falls back to a
+contact prompt; any static host without a Functions runtime returns `405` and
+produces the same fallback.
 
 Preview the Cloudflare layout locally, including the Function:
 

@@ -7,7 +7,7 @@ const testDirectory = path.dirname(fileURLToPath(import.meta.url));
 const toolDirectory = path.resolve(testDirectory, "..");
 const repositoryDirectory = path.resolve(toolDirectory, "../../..");
 const outputsDirectory = path.join(repositoryDirectory, "outputs");
-const publicBase = "https://kenja1970.github.io/Techniek_Codex/";
+const publicBase = "https://techniekengineering.com/";
 const escapeRegExp = (value) =>
   value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const read = (...parts) =>

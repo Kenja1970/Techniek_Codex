@@ -5,15 +5,16 @@
 
 ## 1. What this repo is
 
-`Techniek_Codex` is a **static site** (no app server) deployed to **GitHub Pages** and
-**Cloudflare Pages** from the shared `dist/` artifact built from `outputs/`. Repo:
-`Kenja1970/Techniek_Codex`.
+`Techniek_Codex` is a **static site** deployed to **Cloudflare Pages** from the `dist/`
+artifact built from `outputs/`. Repo: `Kenja1970/Techniek_Codex`. Cloudflare also runs the
+`functions/` routes, which is why it is the only host: GitHub Pages was retired because it
+cannot serve the Digital Twin chat.
 
 - Stack: HTML/CSS/vanilla JS for the marketing site; per-tool apps live under `outputs/tools/`.
 - Python 3.12 (stdlib) utility scripts in `tools/` (e.g. `refresh_industry_brief.py`).
 - Convenience `package.json` (zero runtime deps) wraps native commands:
   `npm run dev | build | lint | test` (dev uses `uv run python -m http.server ... --directory outputs`).
-- Live base URL: `https://kenja1970.github.io/Techniek_Codex/`.
+- Live base URL: `https://techniekengineering.com/`.
 
 ### Key paths
 - `outputs/index.html` — homepage; services lead, and tools are one link to the tools page.

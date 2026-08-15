@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
-const canonicalOrigin = "https://kenja1970.github.io/Techniek_Codex";
+const canonicalOrigin = "https://techniekengineering.com";
 const contactEmail = "gregory@techniekengineering.com";
 const primaryCtaLabel = "Start a Project";
 const navLabels = ["Services", "Tools", "Support Finder", "Contact"];
@@ -73,11 +73,15 @@ function resolveLocalReference(htmlFile, reference) {
   let target = rawTarget.split("?", 1)[0];
 
   if (!target) return { file: htmlFile, fragment };
-  if (target.startsWith("/Techniek_Codex/")) target = target.slice("/Techniek_Codex/".length);
-  else if (target.startsWith("/")) target = target.slice(1);
 
-  let resolved = path.resolve(path.dirname(htmlFile), decodeURIComponent(target));
-  if (target.endsWith("/")) resolved = path.join(resolved, "index.html");
+  // The site is served from the domain root, so a leading slash resolves from dist
+  // rather than from the directory of the page doing the linking.
+  const isRootAbsolute = target.startsWith("/");
+  const base = isRootAbsolute ? dist : path.dirname(htmlFile);
+  if (isRootAbsolute) target = target.slice(1);
+
+  let resolved = path.resolve(base, decodeURIComponent(target));
+  if (!target || target.endsWith("/")) resolved = path.join(resolved, "index.html");
   return { file: resolved, fragment };
 }
 
@@ -134,7 +138,7 @@ const sitemap = await readFile(path.join(dist, "sitemap.xml"), "utf8");
 for (const match of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
   const sitemapUrl = match[1];
   const publicUrl = new URL(sitemapUrl);
-  let relativePath = publicUrl.pathname.replace(/^\/Techniek_Codex\/?/, "");
+  let relativePath = publicUrl.pathname.replace(/^\//, "");
   if (!relativePath || relativePath.endsWith("/")) relativePath += "index.html";
   const sitemapTarget = path.join(dist, relativePath);
   if (!await exists(sitemapTarget)) {
