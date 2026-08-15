@@ -1,0 +1,189 @@
+{
+  "updated": "2026-05-31",
+  "purpose": "Public-safe recommendation knowledge for the Techniek Engineering client support finder.",
+  "questions": [
+    {
+      "id": "issue",
+      "label": "What kind of support do you need first?",
+      "options": [
+        { "value": "technical-review", "label": "Engineering review or second opinion" },
+        { "value": "project-control", "label": "Project coordination or risk control" },
+        { "value": "energy-performance", "label": "Energy performance or operating cost review" }
+      ]
+    },
+    {
+      "id": "stage",
+      "label": "Where is the work right now?",
+      "options": [
+        { "value": "planning", "label": "Early planning or scoping" },
+        { "value": "active", "label": "Active project or facility issue" },
+        { "value": "stuck", "label": "Delayed, unclear, or blocked" },
+        { "value": "improve", "label": "Improving an existing process" }
+      ]
+    },
+    {
+      "id": "outcome",
+      "label": "What would help you move forward?",
+      "options": [
+        { "value": "memo", "label": "A clear recommendation" },
+        { "value": "action-list", "label": "A prioritized action list" },
+        { "value": "risk-view", "label": "A clearer risk or status view" },
+        { "value": "data-plan", "label": "A data or measurement plan" }
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "engineering-review-sprint",
+      "title": "Engineering Support Sprint",
+      "service": "Engineering Support",
+      "url": "engineering-support.html",
+      "summary": "A focused technical review for a defined asset, system, proposal, design question, or facility issue.",
+      "bestFor": [
+        "A decision needs a clear technical basis before cost, schedule, or scope moves forward.",
+        "An owner, operator, or project team needs a practical second opinion.",
+        "A technical issue needs to be explained clearly to non-technical stakeholders."
+      ],
+      "outputs": [
+        "Technical review memo",
+        "Options and tradeoff summary",
+        "Issue and risk list",
+        "Recommended next-step plan"
+      ],
+      "prepChecklist": [
+        "Decision deadline",
+        "Drawings or photos",
+        "Equipment or system records",
+        "Known constraints"
+      ],
+      "match": {
+        "issue": ["technical-review"],
+        "stage": ["planning", "active", "stuck"],
+        "outcome": ["memo", "action-list"]
+      },
+      "referenceLinks": [
+        { "label": "Engineering support", "url": "engineering-support.html" }
+      ],
+      "keywordTriggers": [
+        "design",
+        "equipment",
+        "technical",
+        "review",
+        "specification",
+        "submittal",
+        "proposal",
+        "second opinion",
+        "commissioning",
+        "field issue"
+      ],
+      "cta": "Email the technical question and the date it has to be settled, and attach whatever drawings, photos, or readings you already have."
+    },
+    {
+      "id": "project-controls-reset",
+      "title": "Project Controls Reset",
+      "service": "Project Management",
+      "url": "project-management.html",
+      "summary": "A structured review of project records, open issues, decisions, RFIs, submittals, risks, and stakeholder reporting.",
+      "bestFor": [
+        "A project is active but the next actions are unclear.",
+        "Risks, RFIs, decisions, or submittals are scattered across too many places.",
+        "An owner needs a plain-language status view without losing technical detail."
+      ],
+      "outputs": [
+        "Decision log",
+        "Risk register",
+        "Open action list",
+        "Weekly project status view"
+      ],
+      "prepChecklist": [
+        "Current project phase",
+        "Open issue or decision log",
+        "Schedule snapshot",
+        "Known responsible parties"
+      ],
+      "match": {
+        "issue": ["project-control"],
+        "stage": ["active", "stuck"],
+        "outcome": ["risk-view", "action-list", "memo"]
+      },
+      "referenceLinks": [
+        { "label": "Project management", "url": "project-management.html" }
+      ],
+      "keywordTriggers": [
+        "schedule",
+        "rfi",
+        "submittal",
+        "change order",
+        "delay",
+        "risk",
+        "stakeholder",
+        "status",
+        "coordination",
+        "meeting"
+      ],
+      "cta": "Email the current blocker and who is waiting on it, with a schedule snapshot or issue log if one exists."
+    },
+    {
+      "id": "energy-opportunity-scan",
+      "title": "Energy Opportunity Scan",
+      "service": "Energy Management",
+      "url": "energy-management.html",
+      "summary": "A practical review of utility data, operating schedules, BAS trends, demand patterns, and obvious energy-waste signals.",
+      "bestFor": [
+        "Utility costs are rising and the cause is unclear.",
+        "Energy data exists but is not yet tied to specific actions.",
+        "Operators need help prioritizing what to verify first."
+      ],
+      "outputs": [
+        "Energy-use observations",
+        "Priority action list",
+        "Operating constraints",
+        "Follow-up and measurement plan"
+      ],
+      "prepChecklist": [
+        "Recent utility bills",
+        "Interval or meter data",
+        "BAS trends and schedules",
+        "Comfort or production limits"
+      ],
+      "match": {
+        "issue": ["energy-performance"],
+        "stage": ["active", "improve", "planning"],
+        "outcome": ["action-list", "data-plan", "memo"]
+      },
+      "referenceLinks": [
+        { "label": "Energy management", "url": "energy-management.html" }
+      ],
+      "keywordTriggers": [
+        "utility",
+        "energy",
+        "meter",
+        "bas",
+        "controls",
+        "demand",
+        "trend",
+        "schedule",
+        "hvac",
+        "operating waste"
+      ],
+      "cta": "Email a recent bill or trend along with the operating limits you cannot break, and Techniek will name the first dataset worth reviewing."
+    }
+  ],
+  "publicSafety": {
+    "allowed": [
+      "Approved service descriptions",
+      "Generalized project situations",
+      "Public process descriptions",
+      "Non-confidential example outputs"
+    ],
+    "notAllowed": [
+      "Client names",
+      "Private project history",
+      "Proposal details",
+      "Financial performance",
+      "Confidential files",
+      "FCI, CUI, export-controlled technical data, credentials, or contract-controlled records",
+      "Google Drive documents unless explicitly approved for public use"
+    ]
+  }
+}

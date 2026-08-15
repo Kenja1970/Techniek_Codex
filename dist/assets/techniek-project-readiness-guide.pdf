@@ -1,0 +1,85 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 6 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 7 0 R >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+7 0 obj
+<< /Length 2836 >>
+stream
+BT /F2 26 Tf 1 0 0 1 64.00 732.00 Tm (Project Readiness Guide) Tj ET
+BT /F1 13 Tf 1 0 0 1 64.00 692.00 Tm (What to bring to your first conversation with Techniek Engineering) Tj ET
+BT /F1 11 Tf 1 0 0 1 64.00 655.00 Tm (A short, well-organized document set helps Techniek Engineering move quickly from) Tj ET
+BT /F1 11 Tf 1 0 0 1 64.00 640.00 Tm (the issue to a practical recommendation. Use this guide to gather the right evidence) Tj ET
+BT /F1 11 Tf 1 0 0 1 64.00 625.00 Tm (before the first conversation so the discussion stays focused on decisions, not) Tj ET
+BT /F1 11 Tf 1 0 0 1 64.00 610.00 Tm (document hunting.) Tj ET
+BT /F2 15 Tf 1 0 0 1 64.00 573.00 Tm (How Techniek can help) Tj ET
+BT /F1 11 Tf 1 0 0 1 80.00 548.00 Tm ("  Engineering Support: practical technical review, documentation, and) Tj ET
+BT /F1 11 Tf 1 0 0 1 97.16 533.00 Tm (problem-solving so a decision has a clear basis before scope, cost, or) Tj ET
+BT /F1 11 Tf 1 0 0 1 97.16 518.00 Tm (schedule moves.) Tj ET
+BT /F1 11 Tf 1 0 0 1 80.00 498.00 Tm ("  Project Management: structured planning, coordination, and progress tracking) Tj ET
+BT /F1 11 Tf 1 0 0 1 97.16 483.00 Tm (that keeps owners, engineers, contractors, and operators aligned on the same) Tj ET
+BT /F1 11 Tf 1 0 0 1 97.16 468.00 Tm (picture.) Tj ET
+BT /F1 11 Tf 1 0 0 1 80.00 448.00 Tm ("  Energy Management: performance guidance that turns energy data into specific) Tj ET
+BT /F1 11 Tf 1 0 0 1 97.16 433.00 Tm (actions, owners, and follow-up checks.) Tj ET
+BT /F2 15 Tf 1 0 0 1 64.00 399.00 Tm (Bring the right evidence \(by area\)) Tj ET
+BT /F2 12 Tf 1 0 0 1 64.00 366.00 Tm (Mechanical / equipment issue) Tj ET
+BT /F1 11 Tf 1 0 0 1 80.00 348.00 Tm ("  Drawings, photos, trend data, reports, and maintenance history.) Tj ET
+BT /F2 12 Tf 1 0 0 1 64.00 320.00 Tm (Civil / facility question) Tj ET
+BT /F1 11 Tf 1 0 0 1 80.00 302.00 Tm ("  Condition notes, site photos, inspection records, utility maps, and known) Tj ET
+BT /F1 11 Tf 1 0 0 1 97.16 287.00 Tm (constraints.) Tj ET
+BT /F2 12 Tf 1 0 0 1 64.00 259.00 Tm (Project control) Tj ET
+BT /F1 11 Tf 1 0 0 1 80.00 241.00 Tm ("  Schedules, logs, meeting notes, decision history, and current blockers.) Tj ET
+BT /F2 12 Tf 1 0 0 1 64.00 213.00 Tm (Energy action) Tj ET
+BT /F1 11 Tf 1 0 0 1 80.00 195.00 Tm ("  Bills, interval data, BAS exports, occupancy and operating schedules, and) Tj ET
+BT /F1 11 Tf 1 0 0 1 97.16 180.00 Tm (operating limits.) Tj ET
+BT /F2 15 Tf 1 0 0 1 64.00 146.00 Tm (Frame the conversation) Tj ET
+BT /F1 11 Tf 1 0 0 1 80.00 121.00 Tm ("  Name the asset, facility, or project phase involved.) Tj ET
+BT /F1 11 Tf 1 0 0 1 80.00 101.00 Tm ("  State the decision, blocker, or deadline that matters most.) Tj ET
+BT /F1 11 Tf 1 0 0 1 80.00 81.00 Tm ("  Keep controlled or client-confidential files off public channels until a) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Length 862 >>
+stream
+BT /F1 11 Tf 1 0 0 1 97.16 732.00 Tm (secure intake path is agreed.) Tj ET
+BT /F2 15 Tf 1 0 0 1 64.00 698.00 Tm (Secure document handling) Tj ET
+BT /F1 11 Tf 1 0 0 1 64.00 673.00 Tm (Do not submit FCI, CUI, export-controlled technical data, credentials, pricing, or) Tj ET
+BT /F1 11 Tf 1 0 0 1 64.00 658.00 Tm (client-confidential records through public channels. Controlled project artifacts) Tj ET
+BT /F1 11 Tf 1 0 0 1 64.00 643.00 Tm (should use an owner-approved secure intake path and be reviewed before any public) Tj ET
+BT /F1 11 Tf 1 0 0 1 64.00 628.00 Tm (summary is created.) Tj ET
+BT /F2 15 Tf 1 0 0 1 64.00 591.00 Tm (Start a conversation) Tj ET
+BT /F1 11 Tf 1 0 0 1 64.00 566.00 Tm (Email: gregory@techniekengineering.com) Tj ET
+BT /F1 11 Tf 1 0 0 1 64.00 543.00 Tm (Techniek Engineering | Engineering | Project Management | Energy Management) Tj ET
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000127 00000 n 
+0000000224 00000 n 
+0000000326 00000 n 
+0000000462 00000 n 
+0000000598 00000 n 
+0000003486 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+4399
+%%EOF

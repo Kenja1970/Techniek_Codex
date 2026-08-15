@@ -8,6 +8,9 @@
 # which served internal repo files, put the career page at the wrong URL, and
 # broke the build by trying to upload node_modules as static assets.
 name = "techniek-codex"
+# dist/ is committed, so Cloudflare needs no build command: it uploads this directory
+# exactly as it appears in the repository. That keeps the deploy independent of any
+# dashboard build configuration and guarantees the reviewed artifact is the published one.
 pages_build_output_dir = "./dist"
 
 # Pinned deliberately. Letting Wrangler default to "today" produces a date the
