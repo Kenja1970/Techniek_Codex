@@ -795,7 +795,6 @@
       const matches = keywordMatches(top, answers.situation);
       const matchedText = matches.length ? matches.slice(0, 5).join(", ") : "question choices";
       const summary = buildContactSummary(top, answers, matchedText);
-      const mailtoHref = `mailto:gregory@techniekengineering.com?subject=${encodeURIComponent(`Techniek support inquiry: ${top.service}`)}&body=${encodeURIComponent(summary)}`;
 
       resultCard.innerHTML = `
         <div class="result-meta">
@@ -829,15 +828,80 @@
           </div>
         </div>
         <p><strong>Suggested next step:</strong> ${escapeHtml(top.cta)}</p>
-        <h3>Contact-ready summary</h3>
-        <textarea class="summary-box" id="contact-summary" readonly>${escapeHtml(summary)}</textarea>
-        <div class="te-actions">
-          <a class="te-button" href="${escapeHtml(mailtoHref)}">Email This to Techniek</a>
-          <button class="finder-reset" type="button" data-copy-summary>Copy summary instead</button>
+        
+        <div id="intake-success" class="te-form-success">
+          <h3>Inquiry Sent</h3>
+          <p>Thank you. Techniek will review the summary and respond shortly.</p>
         </div>
-        <p class="te-note">Opens your email app with the summary filled in. Nothing is sent until you send it.</p>
-        <p class="safety-note">Read more about <a class="te-text-link" href="${escapeHtml(top.url)}">${escapeHtml(top.service)}</a>, or consider ${secondary.map((item) => escapeHtml(item.title)).join(" or ")}.</p>
+
+        <form id="intake-form" style="margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--te-border);">
+          <h3>Send this inquiry to Techniek</h3>
+          <p class="te-note" style="margin-bottom: 24px;">Submit the generated summary directly to Greg Brown.</p>
+          
+          <div id="intake-error" class="te-form-error"></div>
+
+          <div class="te-form-group">
+            <label for="intake-name">Your Name</label>
+            <input type="text" id="intake-name" name="name" class="te-input" placeholder="Jane Doe">
+          </div>
+          <div class="te-form-group">
+            <label for="intake-email">Your Email *</label>
+            <input type="email" id="intake-email" name="email" class="te-input" placeholder="jane@example.com" required>
+          </div>
+          <div class="te-form-group">
+            <label for="intake-message">Message Summary *</label>
+            <textarea id="intake-message" name="message" class="te-textarea" required>${escapeHtml(summary)}</textarea>
+            <p class="te-note" style="margin-top: 6px;">You can edit this summary before sending.</p>
+          </div>
+          <input type="hidden" name="service" value="${escapeHtml(top.service)}">
+
+          <div class="te-actions">
+            <button type="submit" id="intake-submit" class="te-button">Submit Inquiry</button>
+            <button class="finder-reset" type="button" data-copy-summary>Copy summary instead</button>
+          </div>
+        </form>
+
+        <p class="safety-note" style="margin-top: 48px;">Read more about <a class="te-text-link" href="${escapeHtml(top.url)}">${escapeHtml(top.service)}</a>, or consider ${secondary.map((item) => escapeHtml(item.title)).join(" or ")}.</p>
       `;
+
+      // Attach submit handler to the new form
+      const intakeForm = resultCard.querySelector("#intake-form");
+      const submitBtn = resultCard.querySelector("#intake-submit");
+      const errorBox = resultCard.querySelector("#intake-error");
+      const successBox = resultCard.querySelector("#intake-success");
+
+      intakeForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        errorBox.style.display = "none";
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+
+        const formData = new FormData(intakeForm);
+        const payload = Object.fromEntries(formData.entries());
+
+        try {
+          const res = await fetch("/api/intake", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          
+          if (!res.ok) {
+            const data = await res.json().catch(() => ({}));
+            throw new Error(data.error || "Failed to send inquiry.");
+          }
+
+          intakeForm.style.display = "none";
+          successBox.style.display = "block";
+        } catch (err) {
+          errorBox.textContent = err.message === "unconfigured" 
+            ? "The server email is currently unconfigured. Please use the 'Copy summary' button and email gregory@techniekengineering.com directly." 
+            : err.message;
+          errorBox.style.display = "block";
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Submit Inquiry";
+        }
+      });
     }
 
     resultCard.addEventListener("click", async (event) => {
