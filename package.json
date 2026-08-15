@@ -8,7 +8,7 @@
     "build": "node scripts/build-site.mjs",
     "publish:precisionflow": "npm run build --prefix tools/Techniek-PrecisionFlow && node scripts/publish-precisionflow.mjs",
     "lint": "node --check outputs/tools/flange-capacity/app.js && node --check outputs/tools/flange-capacity/configuration.js && node --check outputs/tools/flange-capacity/qualification.js && node --check outputs/tools/_shared/blueledger-core.js && node --check outputs/tools/blueledger-georgia/app.js && node --check outputs/tools/blueledger-georgia/data.js && node --check outputs/tools/blueledger-west/app.js && node --check outputs/tools/blueledger-west/data.js",
-    "test": "node outputs/tools/flange-capacity/tests/configuration.test.mjs && node outputs/tools/flange-capacity/tests/qualification.test.mjs && node outputs/tools/flange-capacity/tests/publishing.test.mjs && node outputs/tools/flange-capacity/tests/calculation.test.mjs && node outputs/tools/blueledger-georgia/tests/smoke.test.mjs && node tests/support-finder.test.mjs && npm run verify --prefix tools/Techniek-PrecisionFlow",
+    "test": "node outputs/tools/flange-capacity/tests/configuration.test.mjs && node outputs/tools/flange-capacity/tests/qualification.test.mjs && node outputs/tools/flange-capacity/tests/publishing.test.mjs && node outputs/tools/flange-capacity/tests/calculation.test.mjs && node outputs/tools/blueledger-georgia/tests/smoke.test.mjs && node tests/support-finder.test.mjs && node scripts/verify-precisionflow.mjs",
     "validate": "npm run build && node scripts/validate-site.mjs",
     "check": "npm run lint && npm test && npm run validate"
   }
