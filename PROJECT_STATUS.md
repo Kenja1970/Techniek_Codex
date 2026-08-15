@@ -16,8 +16,8 @@
 - Live base URL: `https://kenja1970.github.io/Techniek_Codex/`.
 
 ### Key paths
-- `outputs/index.html` — homepage (has a Tools section with cards).
-- `outputs/tools/index.html` — Tools landing page (card grid).
+- `outputs/index.html` — homepage; services lead, and tools are one link to the tools page.
+- `outputs/tools/index.html` — Tools landing page, grouped by category with maturity labels.
 - `outputs/tools/<tool>/` — published source for each tool.
 - `dist/` — generated deploy artifact; never committed.
 - `outputs/tools/techniek-opsboard` — published OpsBoard submodule.
@@ -29,12 +29,10 @@ There are ~six tools under `outputs/tools/`. Each tool has (or will have) **its 
 named after its subdirectory, for independent maintenance/upgrade. The `Techniek_Codex` repo holds
 the **published build** of each tool plus the site shell. We review/upgrade tools one at a time.
 
-### Landing-page card order (by maturity) — DONE
-1. **Techniek OpsBoard Pro V2** (`techniek-opsboard/`)
-2. **Techniek TwinSim Studio** (`techniek-twinsim-studio/`)
-3. **Flange Capacity Explorer** (`flange-capacity/`)
-
-Order is reflected in both `outputs/index.html` and `outputs/tools/index.html`.
+### Tools page grouping — DONE
+`outputs/tools/index.html` groups tools by category (engineering screening; project controls and
+simulation; data prototypes and profile) and labels each with a maturity badge. The homepage no
+longer lists individual tools; it links to this page once so services stay the primary story.
 
 ### Tool status
 | Tool | Published dir | Source repo | State |

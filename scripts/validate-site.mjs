@@ -5,6 +5,9 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const canonicalOrigin = "https://kenja1970.github.io/Techniek_Codex";
+const contactEmail = "gregory@techniekengineering.com";
+const primaryCtaLabel = "Start a Project";
+const navLabels = ["Services", "Tools", "Support Finder", "Contact"];
 const errors = [];
 
 const ownedPages = new Map([
@@ -100,6 +103,29 @@ for (const [relativePath, expectedCanonical] of ownedPages) {
   for (const logo of html.matchAll(/<img\b[^>]*class=["'][^"']*(?:logo|te-logo)[^"']*["'][^>]*>/gi)) {
     if (!/\bwidth=["']294["']/i.test(logo[0]) || !/\bheight=["']99["']/i.test(logo[0])) {
       errors.push(`${relativePath}: logo is missing intrinsic 294x99 dimensions`);
+    }
+  }
+
+  // Every page must offer a way to make contact without navigating elsewhere first.
+  if (!html.includes(`mailto:${contactEmail}`)) {
+    errors.push(`${relativePath}: no direct contact email`);
+  }
+
+  // One label for the conversion action, one navigation vocabulary, on every page.
+  const headerCta = html.match(/<a class="te-button" href="[^"]*#contact">([^<]+)<\/a>/);
+  if (!headerCta) {
+    errors.push(`${relativePath}: missing the header contact button`);
+  } else if (headerCta[1].trim() !== primaryCtaLabel) {
+    errors.push(`${relativePath}: header button says "${headerCta[1].trim()}", expected "${primaryCtaLabel}"`);
+  }
+
+  const nav = html.match(/<nav class="te-nav-links"[^>]*>([\s\S]*?)<\/nav>/);
+  if (!nav) {
+    errors.push(`${relativePath}: missing the main navigation`);
+  } else {
+    const labels = [...nav[1].matchAll(/>([^<>]+)<\/a>/g)].map((match) => match[1].trim());
+    if (labels.join("|") !== navLabels.join("|")) {
+      errors.push(`${relativePath}: nav is [${labels.join(", ")}], expected [${navLabels.join(", ")}]`);
     }
   }
 }

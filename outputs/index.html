@@ -4,877 +4,154 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Techniek Engineering</title>
-  <meta name="description" content="Techniek Engineering provides professional engineering support, project management, and energy management guidance for commercial and industrial teams.">
+  <meta name="description" content="Engineering support, project management, and energy management for commercial and industrial teams. Led by a licensed professional engineer in Marietta, Georgia.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://kenja1970.github.io/Techniek_Codex/">
   <meta property="og:site_name" content="Techniek Engineering">
   <meta property="og:title" content="Techniek Engineering">
-  <meta property="og:description" content="Techniek Engineering provides professional engineering support, project management, and energy management guidance for commercial and industrial teams.">
+  <meta property="og:description" content="Engineering support, project management, and energy management for commercial and industrial teams.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kenja1970.github.io/Techniek_Codex/">
   <meta property="og:image" content="https://kenja1970.github.io/Techniek_Codex/assets/logo.png">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Techniek Engineering">
-  <meta name="twitter:description" content="Techniek Engineering provides professional engineering support, project management, and energy management guidance for commercial and industrial teams.">
-  <style>
-    :root {
-      --blue: #0060e0;
-      --blue-dark: #004eb8;
-      --green: #60d040;
-      --yellow: #ffd040;
-      --charcoal: #1f1f1f;
-      --ink: #353535;
-      --silver: #b3b3b3;
-      --soft-silver: #eceff3;
-      --white: #ffffff;
-      --panel: #f8fafc;
-      --shadow: 0 18px 45px rgba(31, 31, 31, 0.09);
-      --radius: 8px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--charcoal);
-      background: var(--white);
-      line-height: 1.6;
-    }
-
-    h1,
-    h2,
-    h3,
-    p,
-    li,
-    a {
-      overflow-wrap: break-word;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    a:focus-visible {
-      outline: 3px solid rgba(0, 96, 224, 0.35);
-      outline-offset: 3px;
-    }
-
-    .skip-link {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      z-index: 10;
-      padding: 10px 14px;
-      border-radius: var(--radius);
-      background: var(--charcoal);
-      color: var(--white);
-      font-weight: 700;
-      transform: translateY(-160%);
-      transition: transform 160ms ease;
-    }
-
-    .skip-link:focus {
-      transform: translateY(0);
-    }
-
-    .page {
-      min-height: 100vh;
-      /* clip (not hidden) avoids creating a scroll container that would break the sticky hero */
-      overflow-x: clip;
-    }
-
-    .container {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      border-bottom: 1px solid var(--soft-silver);
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(10px);
-    }
-
-    .nav {
-      min-height: 86px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      margin-left: auto;
-    }
-
-    .nav-links a {
-      min-height: 40px;
-      display: inline-flex;
-      align-items: center;
-      padding: 0 10px;
-      border-radius: var(--radius);
-      color: #4b5563;
-      font-size: 0.93rem;
-      font-weight: 700;
-    }
-
-    .nav-links a:hover,
-    .nav-links a:focus-visible {
-      background: var(--panel);
-      color: var(--blue-dark);
-    }
-
-    .logo {
-      display: block;
-      width: min(230px, 54vw);
-      height: auto;
-    }
-
-    .nav .button {
-      min-height: 42px;
-      padding: 0 16px;
-      font-size: 0.94rem;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 22px;
-      border: 0;
-      border-radius: var(--radius);
-      background: var(--blue);
-      color: var(--white);
-      font-size: 0.98rem;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 10px 22px rgba(0, 96, 224, 0.22);
-      transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
-      white-space: nowrap;
-    }
-
-    .button:hover,
-    .button:focus-visible {
-      background: var(--blue-dark);
-      transform: translateY(-1px);
-      box-shadow: 0 13px 26px rgba(0, 96, 224, 0.28);
-    }
-
-    .button.secondary {
-      background: var(--charcoal);
-      box-shadow: 0 10px 22px rgba(31, 31, 31, 0.15);
-    }
-
-    .hero {
-      position: relative;
-      padding: 76px 0 70px;
-      background:
-        linear-gradient(90deg, rgba(0, 96, 224, 0.08), transparent 42%),
-        linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, var(--blue), var(--green), var(--yellow));
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.75fr);
-      gap: 48px;
-      align-items: start;
-    }
-
-    /* Keep the headline pinned at the top while the right-hand panel scrolls past. */
-    .hero-intro {
-      position: sticky;
-      top: 104px;
-      align-self: start;
-      padding-bottom: 8px;
-    }
-
-    .hero-grid > *,
-    .feature-grid > *,
-    .cta-inner > * {
-      min-width: 0;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 0 20px;
-      color: var(--blue-dark);
-      font-size: 0.83rem;
-      font-weight: 700;
-      letter-spacing: 0;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 38px;
-      height: 4px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--green), var(--yellow));
-    }
-
-    h1 {
-      max-width: 720px;
-      margin: 0;
-      font-size: clamp(2.3rem, 4.2vw, 3.7rem);
-      line-height: 1.08;
-      letter-spacing: 0;
-      color: var(--charcoal);
-    }
-
-    .subheading {
-      max-width: 650px;
-      margin: 24px 0 0;
-      color: var(--ink);
-      font-size: clamp(1.05rem, 2vw, 1.28rem);
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 34px;
-    }
-
-    .note {
-      margin: 0;
-      color: #5f6874;
-      font-size: 0.96rem;
-    }
-
-    .signup-panel {
-      display: grid;
-      gap: 18px;
-      padding: 30px;
-      border: 1px solid var(--soft-silver);
-      border-radius: var(--radius);
-      background: var(--white);
-      box-shadow: var(--shadow);
-    }
-
-    .signup-panel h2 {
-      margin: 0 0 10px;
-      font-size: 1.45rem;
-      line-height: 1.25;
-      letter-spacing: 0;
-    }
-
-    .signup-panel p {
-      margin: 0 0 22px;
-      color: #5f6874;
-    }
-
-    .contact-intro {
-      margin: 0 0 16px;
-      color: #5f6874;
-    }
-
-    .contact-start {
-      display: grid;
-      gap: 12px;
-      padding: 18px;
-      border: 1px solid var(--soft-silver);
-      border-radius: var(--radius);
-      background: var(--panel);
-    }
-
-    .contact-start h3 {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.3;
-      color: var(--charcoal);
-    }
-
-    .contact-start p {
-      margin: 0;
-    }
-
-    .contact-actions {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .contact-actions .button {
-      min-width: 210px;
-    }
-
-    .contact-actions .text-link {
-      font-weight: 700;
-    }
-
-    .contact-list {
-      display: grid;
-      gap: 10px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .contact-list li {
-      position: relative;
-      padding-left: 18px;
-      color: #3f4954;
-      font-size: 0.94rem;
-    }
-
-    .contact-list li::before {
-      content: "";
-      position: absolute;
-      top: 0.56em;
-      left: 0;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--green), var(--yellow));
-    }
-
-    .jump-menu-section {
-      padding: 18px 0;
-      border-top: 1px solid var(--soft-silver);
-      border-bottom: 1px solid var(--soft-silver);
-      background: #ffffff;
-    }
-
-    .jump-menu {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .jump-menu-label {
-      flex: 0 0 auto;
-      color: #5f6874;
-      font-size: 0.88rem;
-      font-weight: 700;
-    }
-
-    .jump-menu-links {
-      display: flex;
-      flex: 1 1 auto;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .jump-menu-links a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 40px;
-      padding: 0 13px;
-      border: 1px solid #d7dde5;
-      border-radius: var(--radius);
-      background: var(--panel);
-      color: #3f4954;
-      font-size: 0.92rem;
-      font-weight: 700;
-      transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
-    }
-
-    .jump-menu-links a:hover,
-    .jump-menu-links a:focus-visible {
-      border-color: rgba(0, 96, 224, 0.38);
-      background: rgba(0, 96, 224, 0.08);
-      color: var(--blue-dark);
-    }
-
-    .features {
-      scroll-margin-top: 96px;
-      padding: 68px 0;
-      background: var(--white);
-    }
-
-    .section-heading {
-      max-width: 700px;
-      margin-bottom: 34px;
-    }
-
-    .section-heading h2 {
-      margin: 0;
-      font-size: clamp(1.8rem, 3.3vw, 2.7rem);
-      line-height: 1.12;
-      letter-spacing: 0;
-    }
-
-    .section-heading p {
-      margin: 16px 0 0;
-      color: #5f6874;
-      font-size: 1.05rem;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-    }
-
-    .feature-card {
-      position: relative;
-      min-height: 255px;
-      padding: 28px;
-      border: 1px solid var(--soft-silver);
-      border-radius: var(--radius);
-      background: var(--panel);
-    }
-
-    .feature-card::before {
-      content: "";
-      display: block;
-      width: 50px;
-      height: 5px;
-      margin-bottom: 24px;
-      border-radius: 999px;
-      background: var(--blue);
-    }
-
-    .feature-card:nth-child(2)::before {
-      background: var(--green);
-    }
-
-    .feature-card:nth-child(3)::before {
-      background: var(--yellow);
-    }
-
-    .feature-card h3 {
-      margin: 0 0 12px;
-      font-size: 1.22rem;
-      line-height: 1.25;
-      letter-spacing: 0;
-    }
-
-    .feature-card p {
-      margin: 0;
-      color: #56616c;
-    }
-
-    .feature-fit {
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid #dfe4ea;
-      font-size: 0.95rem;
-    }
-
-    .feature-more {
-      margin: 32px 0 0;
-      font-size: 1.05rem;
-    }
-
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .tool-link-card {
-      display: flex;
-      flex-direction: column;
-      padding: 24px;
-      border: 1px solid var(--soft-silver);
-      border-radius: var(--radius);
-      background: #ffffff;
-      text-decoration: none;
-      color: inherit;
-      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
-    }
-
-    .tool-link-card:hover,
-    .tool-link-card:focus-visible {
-      border-color: var(--blue);
-      box-shadow: 0 12px 24px rgba(0, 96, 224, 0.08);
-      transform: translateY(-2px);
-      outline: none;
-    }
-
-    .tool-link-card h3 {
-      margin: 0 0 10px;
-      color: var(--blue-dark);
-      font-size: 1.15rem;
-    }
-
-    .tool-link-card p {
-      margin: 0;
-      color: #56616c;
-      font-size: 0.96rem;
-    }
-
-    .tool-link-card .feature-fit {
-      margin-top: auto;
-    }
-
-    .text-link {
-      color: var(--blue-dark);
-      font-weight: 700;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .cta {
-      scroll-margin-top: 96px;
-      padding: 72px 0 82px;
-      background: linear-gradient(135deg, var(--charcoal), #313131);
-      color: var(--white);
-    }
-
-    .cta-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-    }
-
-    .cta h2 {
-      margin: 0;
-      font-size: clamp(1.85rem, 3vw, 3rem);
-      line-height: 1.12;
-      letter-spacing: 0;
-    }
-
-    .cta p {
-      max-width: 610px;
-      margin: 16px 0 0;
-      color: #dde3ea;
-      font-size: 1.05rem;
-    }
-
-    .site-footer {
-      padding: 26px 0;
-      color: #6b7280;
-      border-top: 1px solid var(--soft-silver);
-      background: var(--white);
-      font-size: 0.94rem;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 880px) {
-      .hero {
-        padding: 64px 0;
-      }
-
-      .hero-grid,
-      .feature-grid,
-      .tools-grid,
-      .cta-inner {
-        grid-template-columns: 1fr;
-      }
-
-      /* Stacked layout: let the headline scroll normally with the rest of the page. */
-      .hero-intro {
-        position: static;
-        top: auto;
-        padding-bottom: 0;
-      }
-
-      .cta-inner {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .feature-card {
-        min-height: auto;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .container {
-        width: min(calc(100% - 28px), 1120px);
-      }
-
-      .nav {
-        min-height: auto;
-        padding: 18px 0;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .nav-links {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        justify-content: stretch;
-        flex-wrap: initial;
-        gap: 6px;
-        margin-left: 0;
-      }
-
-      .nav-links a {
-        min-height: 38px;
-        justify-content: center;
-        padding: 0 8px;
-        font-size: 0.9rem;
-      }
-
-      .nav-links a:last-child {
-        grid-column: 1 / -1;
-      }
-
-      .nav .button,
-      .hero-actions .button,
-      .contact-actions .button,
-      .cta .button {
-        width: 100%;
-        white-space: normal;
-      }
-
-      .hero {
-        padding: 48px 0 54px;
-      }
-
-      h1 {
-        max-width: 330px;
-        font-size: clamp(1.85rem, 7.4vw, 2.05rem);
-        line-height: 1.18;
-      }
-
-      .subheading {
-        max-width: 330px;
-        font-size: 0.95rem;
-      }
-
-      .hero-actions {
-        align-items: stretch;
-      }
-
-      .note {
-        width: 100%;
-      }
-
-      .signup-panel {
-        padding: 22px;
-      }
-
-      .jump-menu {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .jump-menu-section {
-        padding: 14px 0;
-      }
-
-      .jump-menu-links {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr;
-      }
-
-      .jump-menu-links a {
-        min-height: 42px;
-        padding: 0 8px;
-        font-size: 0.88rem;
-      }
-
-      .features,
-      .cta {
-        padding: 54px 0;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-  </style>
+  <meta name="twitter:description" content="Engineering support, project management, and energy management for commercial and industrial teams.">
+  <link rel="stylesheet" href="assets/css/design-system.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="page">
-    <header class="site-header">
-      <div class="container nav">
-        <a href="#" aria-label="Techniek Engineering home">
-          <img class="logo" src="assets/logo.png" alt="Techniek Engineering logo" width="294" height="99">
+  <div class="te-page">
+    <header class="te-header">
+      <div class="te-container te-nav">
+        <a href="index.html" aria-label="Techniek Engineering home">
+          <img class="te-logo" src="assets/logo.png" alt="Techniek Engineering logo" width="294" height="99">
         </a>
-        <nav class="nav-links" aria-label="Main navigation">
+        <nav class="te-nav-links" aria-label="Main navigation">
           <a href="#services">Services</a>
-          <a href="support-finder.html">Find Support</a>
           <a href="tools/index.html">Tools</a>
+          <a href="support-finder.html">Support Finder</a>
           <a href="#contact">Contact</a>
         </nav>
-        <a class="button" href="#contact">Request Consultation</a>
+        <a class="te-button" href="#contact">Start a Project</a>
       </div>
     </header>
 
-    <nav class="jump-menu-section" aria-label="Page jump menu">
-      <div class="container jump-menu">
-        <span class="jump-menu-label">Jump to</span>
-        <div class="jump-menu-links">
-          <a href="#services">Services</a>
-          <a href="#tools">Tools</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </div>
-    </nav>
-
     <main id="main">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="container hero-grid">
-          <div class="hero-intro">
-            <p class="eyebrow">Engineering made practical</p>
+      <section class="te-hero" aria-labelledby="hero-title">
+        <div class="te-container te-hero-grid">
+          <div>
+            <p class="te-eyebrow">Engineering made practical</p>
             <h1 id="hero-title">Engineering support for safer, cleaner, better-managed projects.</h1>
-            <p class="subheading">Techniek Engineering helps commercial and industrial teams plan technical work, manage delivery, and improve energy performance with straightforward guidance.</p>
-            <div class="hero-actions">
-              <a class="button" href="#contact">Start a Project</a>
-              <p class="note">Clear next steps for technical teams, owners, and operators.</p>
+            <p class="te-lead">Techniek Engineering helps commercial and industrial teams plan technical work, manage delivery, and improve energy performance &mdash; with clear recommendations you can act on.</p>
+            <div class="te-actions">
+              <a class="te-button" href="#contact">Start a Project</a>
+              <a class="te-text-link" href="support-finder.html">Not sure what you need?</a>
             </div>
           </div>
-
-          <aside class="signup-panel" id="contact" aria-labelledby="contact-start-title">
-            <h2 id="contact-start-title">Start a project conversation</h2>
-            <p class="contact-intro">Let's scope the issue, the likely service, and what to prepare before the first conversation.</p>
-            
-            <div class="contact-start">
-              <h3 id="project-scoping-title">Project scoping</h3>
-              <ul class="contact-list">
-                <li>Name the asset, facility, or project phase involved.</li>
-                <li>State the decision, blocker, or deadline that matters.</li>
-                <li>Keep controlled or client-confidential files off the public site.</li>
-              </ul>
-              <div class="contact-actions">
-                <a class="button" href="support-finder.html">Use the Support Finder</a>
-                <a class="text-link" href="mailto:gregory@techniekengineering.com">gregory@techniekengineering.com</a>
-              </div>
-            </div>
+          <aside class="te-panel" aria-labelledby="credentials-title">
+            <span class="te-accent"></span>
+            <h2 id="credentials-title">Who you work with</h2>
+            <p>Techniek is led by Greg Brown, PE, PMP, with three decades of engineering and program leadership across industrial, infrastructure, maritime, and federal work.</p>
+            <p class="te-note">Based in Marietta, Georgia. Serving commercial and industrial clients.</p>
           </aside>
         </div>
       </section>
 
-      <section class="features" id="services" aria-labelledby="features-title">
-        <div class="container">
-          <div class="section-heading">
-            <h2 id="features-title">Reliable support from concept to completion.</h2>
-            <p>Simple, focused services for organizations that need technical work to be organized, understandable, and outcome driven.</p>
+      <section class="te-section" id="services" aria-labelledby="services-title">
+        <div class="te-container">
+          <div class="te-section-heading">
+            <h2 id="services-title">Three ways Techniek helps.</h2>
+            <p>Focused engagements with a defined question, a defined output, and a clear next step.</p>
           </div>
-
-          <div class="feature-grid">
-            <article class="feature-card">
-              <h3><a class="text-link" href="engineering-support.html">Engineering Support</a></h3>
-              <p>Practical technical review, documentation, and problem-solving support for projects that need clarity before decisions are made.</p>
-              <p class="feature-fit"><strong>Useful when:</strong> a technical decision needs a clear basis before scope, cost, or schedule moves forward.</p>
+          <div class="te-card-grid">
+            <article class="te-card te-card-white">
+              <span class="te-accent"></span>
+              <h3>Engineering Support</h3>
+              <p>Technical review, options and tradeoffs, and documentation for decisions that need a defensible basis.</p>
+              <p class="te-card-divider"><a class="te-text-link" href="engineering-support.html" aria-label="See what this covers: Engineering Support">See what this covers</a></p>
             </article>
-
-            <article class="feature-card">
-              <h3><a class="text-link" href="project-management.html">Project Management</a></h3>
-              <p>Structured planning, coordination, and progress tracking to keep engineering work aligned with scope, schedule, and stakeholders.</p>
-              <p class="feature-fit"><strong>Useful when:</strong> owners, engineers, contractors, and operators need the same project picture.</p>
+            <article class="te-card te-card-white">
+              <span class="te-accent te-accent-green"></span>
+              <h3>Project Management</h3>
+              <p>Planning, coordination, and risk tracking that keep owners, engineers, and contractors on the same picture.</p>
+              <p class="te-card-divider"><a class="te-text-link" href="project-management.html" aria-label="See what this covers: Project Management">See what this covers</a></p>
             </article>
-
-            <article class="feature-card">
-              <h3><a class="text-link" href="energy-management.html">Energy Management</a></h3>
-              <p>Energy performance guidance that helps identify savings opportunities, reduce waste, and support smarter operational choices.</p>
-              <p class="feature-fit"><strong>Useful when:</strong> energy data needs to become specific actions, owners, and follow-up checks.</p>
+            <article class="te-card te-card-white">
+              <span class="te-accent te-accent-yellow"></span>
+              <h3>Energy Management</h3>
+              <p>Utility and controls review that turns energy data into prioritized actions with a way to verify results.</p>
+              <p class="te-card-divider"><a class="te-text-link" href="energy-management.html" aria-label="See what this covers: Energy Management">See what this covers</a></p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="features" id="tools" aria-labelledby="tools-title">
-        <div class="container">
-          <div class="section-heading">
-            <p class="eyebrow">Engineering Tools</p>
-            <h2 id="tools-title">Practical tools for faster technical decisions.</h2>
-            <p>Browser-based screening and management tools. Each produces working evidence to support the next level of review, not certification or Code compliance.</p>
-          </div>
-
-          <div class="tools-grid">
-            <a href="tools/techniek-opsboard/index.html" class="tool-link-card">
-              <h3>Techniek OpsBoard Pro V2</h3>
-              <p>Local-first project delivery control center: Kanban with WIP limits, resource utilization, PMI/PMBOK earned value (CPI/SPI/EAC) at project and program level, Gantt with critical path, integrated change control, and role-gated manager and client reports.</p>
-              <div class="feature-fit"><strong>Useful when:</strong> engineering operations need planning, cost, and schedule control in one browser workspace.</div>
-            </a>
-
-            <a href="tools/techniek-twinsim-studio/index.html" class="tool-link-card">
-              <h3>Techniek TwinSim Studio</h3>
-              <p>Local-first digital-twin and discrete-event simulation studio: model a production line on a canvas, run replicated simulations, and review throughput, bottlenecks, and what-if scenarios with confidence ranges.</p>
-              <div class="feature-fit"><strong>Useful when:</strong> a process or production queue needs to be tested before committing capital.</div>
-            </a>
-
-            <a href="tools/flange-capacity/index.html" class="tool-link-card">
-              <h3>Flange Capacity Explorer</h3>
-              <p>Screen standard-rated and compact flanges under pressure, axial load, and bending moment, with material and bolting selection and downloadable calculation evidence.</p>
-              <div class="feature-fit"><strong>Useful when:</strong> a flange configuration needs a defensible starting point before review.</div>
-            </a>
-
-            <a href="tools/precisionflow/index.html" class="tool-link-card">
-              <h3>Techniek PrecisionFlow</h3>
-              <p>Hazardous-material dosing digital twin with facility layout, preheat trace heating, SCADA-style tags, per-liquid SPC/Cpk, and batch records.</p>
-              <div class="feature-fit"><strong>Useful when:</strong> a dosing line needs process capability and consumption screening.</div>
-            </a>
-
-            <a href="tools/greg-brown-site/index.html" class="tool-link-card">
-              <h3>Greg Brown — Career &amp; Digital Twin</h3>
-              <p>Client-facing career page for Greg Brown, PE, PMP: credentials, federal BD and modernization journey, and an AI Digital Twin grounded in professional experience.</p>
-              <div class="feature-fit"><strong>Useful when:</strong> you want a professional overview or to ask career-grounded questions.</div>
-            </a>
-          </div>
-
-          <p class="feature-more"><a class="text-link" href="tools/index.html">See all engineering tools</a></p>
-        </div>
-      </section>
-
-      <section class="cta" aria-labelledby="cta-title">
-        <div class="container cta-inner">
+      <section class="te-section te-section-muted" aria-labelledby="process-title">
+        <div class="te-container te-two-column">
           <div>
-            <h2 id="cta-title">Ready to make your next technical project easier to manage?</h2>
-            <p>Connect with Techniek Engineering for clear support across planning, delivery, and energy performance.</p>
+            <div class="te-section-heading">
+              <h2 id="process-title">How an engagement starts.</h2>
+              <p>No long discovery process. The goal of the first exchange is to name the decision and identify what is missing.</p>
+            </div>
+            <div class="te-process">
+              <article class="te-process-step">
+                <div>
+                  <h3>Send the question</h3>
+                  <p>Describe the asset or project, the decision that is blocked, and the date it matters.</p>
+                </div>
+              </article>
+              <article class="te-process-step">
+                <div>
+                  <h3>Get a scoped reply</h3>
+                  <p>Techniek responds with the likely review path, the missing inputs, and whether the work is a fit.</p>
+                </div>
+              </article>
+              <article class="te-process-step">
+                <div>
+                  <h3>Agree the output</h3>
+                  <p>Work is organized around a specific deliverable &mdash; a memo, a register, an action list &mdash; not open-ended consulting.</p>
+                </div>
+              </article>
+            </div>
           </div>
-          <a class="button secondary" href="#contact">Contact Techniek</a>
+          <aside class="te-panel" aria-labelledby="tools-title">
+            <span class="te-accent te-accent-green"></span>
+            <h2 id="tools-title">Engineering tools</h2>
+            <p>Techniek publishes browser-based screening and project-controls tools. They produce evidence to support the next level of review &mdash; not certification or Code compliance.</p>
+            <p class="te-card-divider"><a class="te-text-link" href="tools/index.html">Browse the engineering tools</a></p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="te-cta" id="contact" aria-labelledby="contact-title">
+        <div class="te-container te-cta-row">
+          <div class="te-cta-copy">
+            <h2 id="contact-title">Start a project.</h2>
+            <p>Email the question directly. Techniek replies with the likely review path and what to prepare.</p>
+            <div class="te-actions">
+              <a class="te-button te-button-secondary" href="mailto:gregory@techniekengineering.com?subject=Project%20inquiry">gregory@techniekengineering.com</a>
+              <a class="te-text-link" href="support-finder.html">Not sure what you need?</a>
+            </div>
+            <p class="te-note te-cta-note">Based in Marietta, Georgia. Public email is for general scoping only &mdash; keep controlled or client-confidential material off it.</p>
+          </div>
+          <aside class="te-cta-panel" aria-labelledby="intake-title">
+            <h3 id="intake-title">A good first message</h3>
+            <ul class="te-cta-checklist">
+              <li>The asset, facility, or project phase involved</li>
+              <li>The decision, blocker, or deadline that matters</li>
+              <li>What you already have: drawings, bills, schedules, photos</li>
+            </ul>
+          </aside>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-inner">
+    <footer class="te-footer">
+      <div class="te-container te-footer-row">
         <span>&copy; 2026 Techniek Engineering. All rights reserved.</span>
-        <span><a class="text-link" href="mailto:gregory@techniekengineering.com">gregory@techniekengineering.com</a></span>
-        <span><a class="text-link" href="tools/greg-brown-site/index.html">Greg Brown — Career &amp; Digital Twin</a></span>
-        <span>Engineering | Project Management | Energy Management</span>
+        <span><a class="te-text-link" href="mailto:gregory@techniekengineering.com">gregory@techniekengineering.com</a> &middot; Marietta, Georgia</span>
       </div>
     </footer>
   </div>
-
 </body>
 </html>

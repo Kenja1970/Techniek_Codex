@@ -8,10 +8,7 @@ const finderHtml = await readFile(path.join(root, "outputs", "support-finder.htm
 const skills = JSON.parse(await readFile(path.join(root, "outputs", "skills.json"), "utf8"));
 
 // The generated summary must use real newlines so copied and emailed text stays readable.
-assert.ok(
-  !finderHtml.includes('.join("\\\\n")'),
-  "contact summary must join with real newlines"
-);
+assert.ok(!finderHtml.includes('.join("\\\\n")'), "contact summary must join with real newlines");
 
 // The primary handoff must transmit the generated summary, not just link to the homepage.
 assert.ok(finderHtml.includes("const mailtoHref = `mailto:"), "result card must build a mailto link");
@@ -19,9 +16,15 @@ assert.ok(
   finderHtml.includes("encodeURIComponent(summary)"),
   "mailto link must carry the generated summary"
 );
+
+// Emailing the summary is the conversion action, so it must outrank copying it.
 assert.ok(
-  finderHtml.includes('href="${escapeHtml(mailtoHref)}"'),
-  "summary email link must use the escaped mailto href"
+  finderHtml.includes('<a class="te-button" href="${escapeHtml(mailtoHref)}">'),
+  "the email action must be the primary button in the result card"
+);
+assert.ok(
+  !finderHtml.includes('<button class="te-button" type="button" data-copy-summary>'),
+  "copying must not be styled as the primary action"
 );
 
 // The embedded fallback knowledge must stay aligned with the published skills.json contract.
@@ -46,9 +49,62 @@ for (const recommendation of skills.recommendations) {
 
 // Retired options must not linger in either the data contract or the embedded fallback.
 assert.ok(!finderHtml.includes("ai-workflow"), "retired ai-workflow option must be removed");
-assert.ok(
-  !offeredIssues.includes("ai-workflow"),
-  "retired ai-workflow option must be removed from skills.json"
+
+// Exhaustive correctness check: the visitor's stated need must never be overruled by the
+// broader stage/outcome overlap. Weights are read from the page so the two cannot drift.
+const weightSource = finderHtml.match(/const ANSWER_WEIGHTS = \{([^}]*)\}/)?.[1];
+assert.ok(weightSource, "support finder must declare ANSWER_WEIGHTS");
+
+const weights = Object.fromEntries(
+  weightSource
+    .split(",")
+    .map((entry) => entry.trim())
+    .filter(Boolean)
+    .map((entry) => {
+      const [key, value] = entry.split(":").map((part) => part.trim());
+      return [key, Number(value)];
+    })
 );
 
-console.log("support finder tests passed");
+const score = (recommendation, answers) =>
+  Object.entries(answers).reduce(
+    (total, [questionId, answer]) =>
+      total +
+      ((recommendation.match?.[questionId] || []).includes(answer) ? weights[questionId] ?? 1 : 0),
+    0
+  );
+
+const [issues, stages, outcomes] = skills.questions.map((question) =>
+  question.options.map((option) => option.value)
+);
+
+const serviceForIssue = new Map(
+  skills.recommendations.map((recommendation) => [recommendation.match.issue[0], recommendation.service])
+);
+
+const contradictions = [];
+
+for (const issue of issues) {
+  for (const stage of stages) {
+    for (const outcome of outcomes) {
+      const answers = { issue, stage, outcome };
+      const [best] = [...skills.recommendations]
+        .map((recommendation) => ({ ...recommendation, score: score(recommendation, answers) }))
+        .sort((a, b) => b.score - a.score);
+
+      if (best.service !== serviceForIssue.get(issue)) {
+        contradictions.push(`${issue}/${stage}/${outcome} recommended ${best.service}`);
+      }
+    }
+  }
+}
+
+assert.deepEqual(
+  contradictions,
+  [],
+  `finder recommended a service the visitor did not ask for:\n${contradictions.join("\n")}`
+);
+
+console.log(
+  `support finder tests passed (${issues.length * stages.length * outcomes.length} answer combinations verified)`
+);

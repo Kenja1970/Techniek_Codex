@@ -332,51 +332,8 @@
       font-size: 0.94rem;
     }
 
-    .option-cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .option-card {
-      position: relative;
-      overflow: hidden;
-      padding: 22px;
-      border: 1px solid var(--te-border);
-      border-radius: var(--te-radius);
-      background: var(--te-white);
-    }
-
-    .option-card::before {
-      content: "";
-      display: block;
-      width: 52px;
-      height: 6px;
-      margin-bottom: 18px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--te-blue), var(--te-green));
-    }
-
-    .option-card:nth-child(2)::before {
-      background: linear-gradient(90deg, var(--te-green), var(--te-yellow));
-    }
-
-    .option-card:nth-child(3)::before {
-      background: linear-gradient(90deg, var(--te-yellow), var(--te-blue));
-    }
-
-    .option-card h3 {
-      margin: 0 0 8px;
-      font-size: 1.08rem;
-      line-height: 1.25;
-    }
-
     @media (max-width: 880px) {
       .finder-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .option-cards {
         grid-template-columns: 1fr;
       }
 
@@ -409,30 +366,30 @@
         </a>
         <nav class="te-nav-links" aria-label="Main navigation">
           <a href="index.html#services">Services</a>
-          <a href="support-finder.html" aria-current="page">Find Support</a>
           <a href="tools/index.html">Tools</a>
+          <a href="support-finder.html" aria-current="page">Support Finder</a>
           <a href="index.html#contact">Contact</a>
         </nav>
-        <a class="te-button" href="index.html#contact">Request Consultation</a>
+        <a class="te-button" href="index.html#contact">Start a Project</a>
       </div>
     </header>
 
     <main id="main">
-      <section class="te-hero">
+      <section class="te-hero" aria-labelledby="page-title">
         <div class="te-container te-hero-grid">
           <div>
-            <p class="te-eyebrow">Client support finder</p>
-            <h1>Find the right Techniek support for your situation.</h1>
-            <p class="te-lead">Answer three practical questions, then add a short description if it helps. Techniek will show the best-fit service, likely deliverables, useful reading, and a clear next step after the selection is complete.</p>
+            <p class="te-eyebrow">Support Finder</p>
+            <h1 id="page-title">Find the right Techniek support for your situation.</h1>
+            <p class="te-lead">Three questions. You get the best-fit service, what Techniek would produce, what to prepare, and a summary you can email in one click.</p>
             <div class="te-actions">
               <a class="te-button" href="#finder">Start the Finder</a>
-              <p class="te-note">Built for fast decisions, not long browsing sessions.</p>
+              <a class="te-text-link" href="index.html#contact">Or just email the question</a>
             </div>
           </div>
-          <aside class="te-panel">
+          <aside class="te-panel" aria-labelledby="finder-value">
             <span class="te-accent"></span>
-            <h2>What you get</h2>
-            <p>A practical starting point: the best-fit service, what Techniek would likely produce, what to prepare, and where to read more before reaching out.</p>
+            <h2 id="finder-value">What you get</h2>
+            <p>A starting recommendation and a contact-ready summary. It takes about a minute and nothing is submitted until you send the email yourself.</p>
           </aside>
         </div>
       </section>
@@ -453,65 +410,32 @@
               <div class="result-meta">
                 <span class="score">Ready</span>
               </div>
-              <h2>Choose the three selection steps to unlock a recommendation.</h2>
-              <p>Results will appear here with the best-fit service, likely deliverables, useful preparation items, and a contact-ready summary after the required choices are complete.</p>
+              <h2>Answer the three questions to see the best-fit service.</h2>
+              <p>Your recommendation, likely deliverables, and a contact-ready summary appear here.</p>
             </div>
           </aside>
         </div>
       </section>
 
-      <section class="te-section">
+      <section class="te-section" aria-labelledby="prepare-title">
         <div class="te-container te-two-column">
           <div>
             <div class="te-section-heading">
-              <h2>What to prepare before contacting Techniek</h2>
-              <p>The finder gives a starting recommendation. A better first conversation comes from a few clear inputs that explain the decision, constraint, and urgency.</p>
+              <h2 id="prepare-title">What to prepare</h2>
+              <p>The finder gives a starting recommendation. A useful first exchange needs three things.</p>
             </div>
             <ul class="te-list">
-              <li>Describe the asset, facility, project phase, or operating problem.</li>
-              <li>Identify the decision you need to make and when you need to make it.</li>
-              <li>List what records are available, such as drawings, logs, photos, schedules, bills, trends, or reports.</li>
-              <li>Flag whether any supporting records may include FCI, CUI, export-controlled data, credentials, pricing, or client-confidential details.</li>
+              <li>The asset, facility, project phase, or operating problem.</li>
+              <li>The decision you need to make, and when you need to make it.</li>
+              <li>What records exist: drawings, logs, photos, schedules, bills, or trends.</li>
             </ul>
           </div>
-          <aside class="te-panel">
-            <h2>Good first question</h2>
-            <p>"Here is the issue, here is the decision we need to make, and here is what we already know." That is enough to start a useful technical conversation.</p>
-            <p class="safety-note">Use the public form for general contact only. Use a secure owner-approved intake path before sharing controlled, confidential, or contract-related files.</p>
+          <aside class="te-panel" aria-labelledby="tools-title">
+            <span class="te-accent te-accent-green"></span>
+            <h2 id="tools-title">Engineering tools</h2>
+            <p>Browser-based screening and project-controls tools that produce evidence for the next level of review.</p>
+            <p class="te-card-divider"><a class="te-text-link" href="tools/index.html">Browse the engineering tools</a></p>
           </aside>
-        </div>
-      </section>
-
-      <section class="te-section te-section-muted" aria-labelledby="practical-tools">
-        <div class="te-container">
-          <div class="te-section-heading">
-            <p class="te-eyebrow">Engineering Tools</p>
-            <h2 id="practical-tools">Try a practical tool before your first review.</h2>
-            <p>Our browser-based screening and management tools produce working evidence to support your technical decisions. Explore them to get a defensible starting point.</p>
-          </div>
-          <div class="option-cards">
-            <article class="option-card">
-              <h3>Flange Capacity Explorer</h3>
-              <p>Screen standard-rated and compact flanges under pressure, axial load, and bending moment, and download calculation evidence.</p>
-              <div class="te-actions" style="margin-top: 16px;">
-                <a class="te-button" href="tools/flange-capacity/index.html">Try the Explorer</a>
-              </div>
-            </article>
-            <article class="option-card">
-              <h3>Techniek OpsBoard Pro</h3>
-              <p>Control center for project delivery: Kanban with WIP limits, resource utilization, earned value metrics, and integrated change control.</p>
-              <div class="te-actions" style="margin-top: 16px;">
-                <a class="te-button" href="tools/techniek-opsboard/index.html">View OpsBoard</a>
-              </div>
-            </article>
-            <article class="option-card">
-              <h3>Digital Twin Studio</h3>
-              <p>Model production lines, run replicated simulations, and review throughput and bottlenecks before committing capital.</p>
-              <div class="te-actions" style="margin-top: 16px;">
-                <a class="te-button" href="tools/techniek-twinsim-studio/index.html">Open TwinSim</a>
-              </div>
-            </article>
-          </div>
         </div>
       </section>
     </main>
@@ -519,7 +443,7 @@
     <footer class="te-footer">
       <div class="te-container te-footer-row">
         <span>&copy; 2026 Techniek Engineering. All rights reserved.</span>
-        <span>Engineering | Project Management | Energy Management</span>
+        <span><a class="te-text-link" href="mailto:gregory@techniekengineering.com">gregory@techniekengineering.com</a> &middot; Marietta, Georgia</span>
       </div>
     </footer>
   </div>
@@ -785,10 +709,15 @@
       ].join("\n");
     }
 
+    // The stated support need outweighs everything else combined, so stage and outcome
+    // overlap can reorder the runners-up but can never override what the visitor asked for.
+    const ANSWER_WEIGHTS = { issue: 10, stage: 1, outcome: 1 };
+
     function scoreRecommendation(recommendation, answers) {
       const answerScore = Object.entries(answers).reduce((score, [questionId, answer]) => {
         if (questionId === "situation") return score;
-        return score + ((recommendation.match?.[questionId] || []).includes(answer) ? 1 : 0);
+        const matched = (recommendation.match?.[questionId] || []).includes(answer);
+        return score + (matched ? (ANSWER_WEIGHTS[questionId] ?? 1) : 0);
       }, 0);
       const promptScore = Math.min(keywordMatches(recommendation, answers.situation).length, 3);
       return answerScore + promptScore;
@@ -797,7 +726,6 @@
     function renderQuestions() {
       const promptCard = form.querySelector(".question-card");
       form.innerHTML = "";
-      form.appendChild(promptCard);
       const questionTotal = knowledge.questions.length;
       form.insertAdjacentHTML("beforeend", knowledge.questions.map((question, questionIndex) => `
         <fieldset class="question-card">
@@ -818,11 +746,12 @@
           </div>
         </fieldset>
       `).join(""));
+      form.appendChild(promptCard);
       form.insertAdjacentHTML("beforeend", `
         <div class="finder-controls">
           <div class="finder-status">
-            <strong id="finder-progress">Complete 0 of ${questionTotal} required selection steps.</strong>
-            <p id="finder-status-detail">Recommendations appear after the required choices are complete. Keep sensitive project details out of this public page.</p>
+            <strong id="finder-progress">Answered 0 of ${questionTotal} questions.</strong>
+            <p id="finder-status-detail">Your recommendation appears once all ${questionTotal} are answered. Keep sensitive project details off this public page.</p>
           </div>
           <button class="finder-reset" type="reset">Reset finder</button>
         </div>
@@ -837,12 +766,12 @@
       const progressField = document.querySelector("#finder-progress");
       const statusField = document.querySelector("#finder-status-detail");
       if (progressField) {
-        progressField.textContent = `Complete ${completedCount} of ${requiredCount} required selection steps.`;
+        progressField.textContent = `Answered ${completedCount} of ${requiredCount} questions.`;
       }
       if (statusField) {
         statusField.textContent = remainingQuestions.length
-          ? `Remaining: ${remainingQuestions.map((question) => question.label).join(" · ")}.`
-          : "Recommendation ready. You can refine it further with a short situation note if needed.";
+          ? `Still to answer: ${remainingQuestions.map((question) => question.label).join(" · ")}`
+          : "Recommendation ready. Add a situation note to sharpen it.";
       }
       if (completedCount < requiredCount) {
         resultCard.innerHTML = `
@@ -850,12 +779,11 @@
             <span class="score">Step ${completedCount} of ${requiredCount}</span>
             <span class="score">Recommendation pending</span>
           </div>
-          <h2>Finish the required selections to see the best-fit service.</h2>
-          <p>Techniek waits for your explicit choices before suggesting a service so the result reflects your situation instead of a default assumption.</p>
+          <h2>Answer the three questions to see the best-fit service.</h2>
           <ul class="pending-list">
             ${remainingQuestions.map((question) => `<li>${escapeHtml(question.label)}</li>`).join("")}
           </ul>
-          <p class="te-note">The situation note is optional. Use it when a technical issue, project blocker, or operating concern needs more context.</p>
+          <p class="te-note">The situation note is optional, but it sharpens the recommendation.</p>
         `;
         return;
       }
@@ -873,7 +801,6 @@
         <div class="result-meta">
           <span class="score">Best fit</span>
           <span class="score">${escapeHtml(top.service)}</span>
-          <span class="score">${top.score} match points</span>
         </div>
         <h2>${escapeHtml(top.title)}</h2>
         <p>${escapeHtml(top.summary)}</p>
@@ -905,17 +832,11 @@
         <h3>Contact-ready summary</h3>
         <textarea class="summary-box" id="contact-summary" readonly>${escapeHtml(summary)}</textarea>
         <div class="te-actions">
-          <button class="te-button" type="button" data-copy-summary>Copy Summary</button>
-          <a class="te-text-link" href="${escapeHtml(mailtoHref)}">Email this summary to Techniek</a>
+          <a class="te-button" href="${escapeHtml(mailtoHref)}">Email This to Techniek</a>
+          <button class="finder-reset" type="button" data-copy-summary>Copy summary instead</button>
         </div>
-        <p><strong>Useful reading:</strong></p>
-        <div class="te-actions">
-          ${(top.referenceLinks || []).map((link) => `<a class="te-text-link" href="${escapeHtml(link.url)}">${escapeHtml(link.label)}</a>`).join("")}
-        </div>
-        <div class="te-actions">
-          <a class="te-button" href="${escapeHtml(top.url)}">View ${escapeHtml(top.service)}</a>
-        </div>
-        <p class="safety-note">Also consider: ${secondary.map((item) => escapeHtml(item.title)).join(" or ")}.</p>
+        <p class="te-note">Opens your email app with the summary filled in. Nothing is sent until you send it.</p>
+        <p class="safety-note">Read more about <a class="te-text-link" href="${escapeHtml(top.url)}">${escapeHtml(top.service)}</a>, or consider ${secondary.map((item) => escapeHtml(item.title)).join(" or ")}.</p>
       `;
     }
 
@@ -933,7 +854,7 @@
         copyButton.textContent = "Copied";
       }
       window.setTimeout(() => {
-        copyButton.textContent = "Copy Summary";
+        copyButton.textContent = "Copy summary instead";
       }, 1600);
     });
 
