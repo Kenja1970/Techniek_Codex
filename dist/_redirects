@@ -6,3 +6,8 @@
 # through to the homepage with a 200, which hides the breakage rather than
 # fixing it, so map the old prefix away permanently.
 /outputs/* /:splat 301
+
+# OpsBoard moved from a static copy embedded in this site to its own Worker
+# deployment, which is where accounts, saved work, and the PM Assistant live.
+# Old links and bookmarks keep working.
+/tools/techniek-opsboard/* https://opsboard.techniekengineering.com/ 301

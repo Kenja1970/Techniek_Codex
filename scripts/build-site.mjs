@@ -23,6 +23,9 @@ const excludedNames = new Set(["README.md", "CHANGELOG.md"]);
 
 // Retained in the repository for later development, but not published to the live site.
 const unpublishedTools = [
+  // Published separately at opsboard.techniekengineering.com; the old path
+  // redirects there. Publishing a copy here would serve a stale app.
+  "tools/techniek-opsboard",
   "tools/flange-capacity",
   "tools/blueledger-georgia",
   "tools/blueledger-west",
@@ -31,7 +34,6 @@ const unpublishedTools = [
 
 const canonicalOrigin = "https://techniekengineering.com";
 const toolRoutes = new Map([
-  ["tools/techniek-opsboard/index.html", "/tools/techniek-opsboard/"],
   ["tools/techniek-twinsim-studio/index.html", "/tools/techniek-twinsim-studio/"],
   ["tools/precisionflow/index.html", "/tools/precisionflow/"],
   ["tools/greg-brown-site/index.html", "/tools/greg-brown-site/"]
